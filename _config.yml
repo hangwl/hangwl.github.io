@@ -1,8 +1,8 @@
 title:              Clean Blog
 email:              hangweilow@gmail.com
 description:        A Blog Theme by Start Bootstrap
-author:             Start Bootstrap
-baseurl:            "/startbootstrap-clean-blog-jekyll"
+author:             hangwl
+baseurl:            "/hangwl.github.io"
 url:                "https://hangwl.github.io"
 
 # Social Profiles
