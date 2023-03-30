@@ -2,7 +2,7 @@ title:              Clean Blog
 email:              hangweilow@gmail.com
 description:        A Blog Theme by Start Bootstrap
 author:             hangwl
-baseurl:            "/hangwl.github.io"
+baseurl:            ""
 url:                "https://hangwl.github.io"
 
 # Social Profiles
