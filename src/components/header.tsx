@@ -4,7 +4,7 @@ import { DocSearch } from '@docsearch/react';
 
 export default function Header() {
   return (
-    <header className="App-header sticky top-0 z-40 flex items-center justify-between w-full px-4 py-2">
+    <header id="main-header" className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-4 py-2">
       <div className="flex items-center gap-4">
         <HyperText>hangwl</HyperText>
         <ModeToggle className="rounded-full" />

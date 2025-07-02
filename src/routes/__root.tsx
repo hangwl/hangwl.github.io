@@ -1,9 +1,9 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 import { ThemeProvider } from "@/components/theme-provider"
-import { AppDock } from '@/components/dock'
 import { BackgroundGrid } from "@/components/background-grid";
 import Header from "@/components/header";
+import { AppDock } from '@/components/dock'
 
 export const Route = createRootRoute({
   head: () => ({
