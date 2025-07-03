@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useLayoutEffect } from "react";
-import { ProjectCard } from "@/components/project-card";
+import { Timeline } from "@/components/timeline";
 
 export const Route = createFileRoute('/')({
   component: App,
@@ -107,20 +107,10 @@ function App() {
           </section>
           <section id="projects" className="scroll-section min-h-screen py-20 w-full flex flex-col justify-center items-center border-t animate-on-scroll">
             <div className="max-w-2xl w-full px-4">
-              <h3 className="text-2xl font-semibold tracking-tight mb-4">Projects</h3>
+              <h3 className="text-2xl font-semibold tracking-tight mb-4 text-center">Projects</h3>
 
               <div className="space-y-6">
-                <ProjectCard
-                  title="Aquarium"
-                  description={
-                    <>
-                      Aquarium is a community-driven platform aimed at addressing data scarcity and increasing language representation within Southeast Asia.
-                      It features an assistive chatbot focused on increasing data accessibility to the public.
-                      The underlying data that powers Aquarium is the product of AI-integrated data pipelines that validate and enrich dataset metadata.
-                    </>
-                  }
-                  footerIcons={[]}
-                />
+                <Timeline />
               </div>
             </div>
           </section>
