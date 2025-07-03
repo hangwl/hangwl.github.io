@@ -1,6 +1,7 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
+import { TOCProvider } from '@/context/toc-context';
 import { BackgroundGrid } from "@/components/background-grid";
 import Header from "@/components/header";
 import { AppDock } from '@/components/dock'
@@ -28,13 +29,15 @@ export const Route = createRootRoute({
   }),
   component: () => (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <>
+      <TOCProvider>
+        <>
         <BackgroundGrid />
         <Header />
         <AppDock />
         <Outlet />
         <TanStackRouterDevtools />
-      </>
+        </>
+      </TOCProvider>
     </ThemeProvider>
   ),
 })

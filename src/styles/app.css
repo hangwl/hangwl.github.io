@@ -128,6 +128,78 @@
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
+
+  /* Custom Prose Styles */
+  .prose h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight text-balance my-8;
+  }
+  .prose h2 {
+    @apply scroll-m-20 border-b border-border pb-2 text-3xl font-semibold tracking-tight first:mt-0 my-8;
+  }
+  .prose h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight my-8;
+  }
+  .prose h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight my-8;
+  }
+  .prose p {
+    @apply leading-7;
+  }
+  .prose p + p {
+    @apply mt-6;
+  }
+  .prose a {
+    @apply text-primary underline decoration-primary/50 hover:decoration-primary transition-colors;
+  }
+  .prose strong {
+    @apply text-foreground font-bold;
+  }
+  .prose blockquote {
+    @apply mt-6 border-l-2 border-border pl-6 italic;
+  }
+  .prose ul {
+    @apply my-4 ml-6 list-disc;
+  }
+  .prose ul li {
+    @apply mt-2;
+  }
+  .prose table {
+    @apply my-6 w-full;
+  }
+  .prose thead tr {
+    @apply m-0 border-t border-border p-0;
+  }
+  .prose thead th {
+    @apply border border-border px-4 py-2 text-left font-bold;
+  }
+  .prose thead th[align=center] {
+    @apply text-center;
+  }
+  .prose thead th[align=right] {
+    @apply text-right;
+  }
+  .prose tbody tr {
+    @apply m-0 border-t border-border p-0 even:bg-muted;
+  }
+  .prose tbody td {
+    @apply border border-border px-4 py-2 text-left;
+  }
+  .prose tbody td[align=center] {
+    @apply text-center;
+  }
+  .prose tbody td[align=right] {
+    @apply text-right;
+  }
+  .prose code:not(in-pre) {
+    @apply bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+  /* Code blocks */
+  .prose pre {
+    @apply rounded-lg bg-muted p-4 my-4;
+  }
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
 }
 
 /* Timeline Styles */
@@ -175,4 +247,3 @@
     margin-bottom: 3rem !important;
   }
 }
-
