@@ -4,20 +4,16 @@ import { useTheme } from "@/components/theme-provider";
 import { useEffect, useState } from "react";
 
 export function ModeToggle({ className }: { className?: string }) {
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Ensure theme is synced with system by default on mount
   useEffect(() => {
-    setTheme("system");
     setMounted(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Toggle between light and dark
   const handleToggle = () => {
     if (!mounted) return;
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
   return (
