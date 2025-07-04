@@ -1,10 +1,10 @@
-import { Outlet, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
+import { Outlet, createRootRoute, useRouterState } from '@tanstack/react-router';
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { ThemeProvider } from "@/components/theme-provider";
 import { TOCProvider } from '@/context/toc-context';
 import { BackgroundGrid } from "@/components/background-grid";
 import Header from "@/components/header";
-import { AppDock } from '@/components/dock'
+import { AppDock } from '@/components/dock';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -27,17 +27,25 @@ export const Route = createRootRoute({
     ],
     title: "Your Site Title",
   }),
-  component: () => (
+  component: () => {
+    const pathname = useRouterState({ select: (s) => s.location.pathname })
+    const isNotes = pathname.startsWith('/notes')
+    return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <TOCProvider>
         <>
+        {!isNotes && (
+          <>
+            <Header />
+          </>
+        )}
         <BackgroundGrid />
-        <Header />
         <AppDock />
         <Outlet />
         <TanStackRouterDevtools />
         </>
       </TOCProvider>
     </ThemeProvider>
-  ),
+    )
+  }
 })
