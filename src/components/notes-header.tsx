@@ -16,8 +16,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 /**
  * Header variant for the /notes section.
- * Identical to the global Header but WITHOUT fixed positioning so that it
- * scrolls naturally and pushes content when the sidebar expands/collapses.
+ * It is sticky to keep it visible on scroll.
  */
 export default function NotesHeader() {
   const { tocItems } = useTOC();
@@ -25,7 +24,7 @@ export default function NotesHeader() {
 
   return (
     <header id="notes-header" className={cn(
-      "w-full px-4 py-2 flex items-center justify-between transition-all duration-200 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md border-b border-border/40"
+      "sticky top-0 z-10 w-full px-4 py-2 flex items-center justify-between transition-all duration-200 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md border-b border-border/40"
     )}>
       <div className="flex items-center gap-4">
         <SidebarTrigger />

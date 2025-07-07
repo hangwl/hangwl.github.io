@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as NotesIndexRouteImport } from './routes/notes/index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
+import { Route as NotesNoteIdRouteImport } from './routes/notes/$noteId'
 
 const NotesRoute = NotesRouteImport.update({
   id: '/notes',
@@ -29,42 +31,70 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotesIndexRoute = NotesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NotesRoute,
+} as any)
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   id: '/projects/$slug',
   path: '/projects/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotesNoteIdRoute = NotesNoteIdRouteImport.update({
+  id: '/$noteId',
+  path: '/$noteId',
+  getParentRoute: () => NotesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/notes': typeof NotesRoute
+  '/notes': typeof NotesRouteWithChildren
+  '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/notes/': typeof NotesIndexRoute
   '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/notes': typeof NotesRoute
+  '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/notes': typeof NotesIndexRoute
   '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/notes': typeof NotesRoute
+  '/notes': typeof NotesRouteWithChildren
+  '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/notes/': typeof NotesIndexRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/notes' | '/projects/$slug' | '/projects'
+  fullPaths:
+    | '/'
+    | '/notes'
+    | '/notes/$noteId'
+    | '/projects/$slug'
+    | '/notes/'
+    | '/projects'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/notes' | '/projects/$slug' | '/projects'
-  id: '__root__' | '/' | '/notes' | '/projects/$slug' | '/projects/'
+  to: '/' | '/notes/$noteId' | '/projects/$slug' | '/notes' | '/projects'
+  id:
+    | '__root__'
+    | '/'
+    | '/notes'
+    | '/notes/$noteId'
+    | '/projects/$slug'
+    | '/notes/'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  NotesRoute: typeof NotesRoute
+  NotesRoute: typeof NotesRouteWithChildren
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
@@ -92,6 +122,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notes/': {
+      id: '/notes/'
+      path: '/'
+      fullPath: '/notes/'
+      preLoaderRoute: typeof NotesIndexRouteImport
+      parentRoute: typeof NotesRoute
+    }
     '/projects/$slug': {
       id: '/projects/$slug'
       path: '/projects/$slug'
@@ -99,12 +136,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notes/$noteId': {
+      id: '/notes/$noteId'
+      path: '/$noteId'
+      fullPath: '/notes/$noteId'
+      preLoaderRoute: typeof NotesNoteIdRouteImport
+      parentRoute: typeof NotesRoute
+    }
   }
 }
 
+interface NotesRouteChildren {
+  NotesNoteIdRoute: typeof NotesNoteIdRoute
+  NotesIndexRoute: typeof NotesIndexRoute
+}
+
+const NotesRouteChildren: NotesRouteChildren = {
+  NotesNoteIdRoute: NotesNoteIdRoute,
+  NotesIndexRoute: NotesIndexRoute,
+}
+
+const NotesRouteWithChildren = NotesRoute._addFileChildren(NotesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  NotesRoute: NotesRoute,
+  NotesRoute: NotesRouteWithChildren,
   ProjectsSlugRoute: ProjectsSlugRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
