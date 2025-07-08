@@ -3,7 +3,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupLabel,
+
   SidebarHeader,
 } from "@/components/ui/sidebar";
 import { Note } from "@/lib/notes";
