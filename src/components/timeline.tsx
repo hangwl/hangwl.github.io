@@ -2,6 +2,7 @@ import { ReactNode, createRef, useRef } from "react";
 import { VerticalAnimatedBeam } from "@/components/magicui/vertical-animated-beam";
 import { MagicCard } from "@/components/magicui/magic-card";
 import { useTheme } from "@/components/theme-provider";
+import { Link } from "@tanstack/react-router";
 
 interface TimelineProject {
   id: string;
@@ -10,11 +11,7 @@ interface TimelineProject {
   year: number;
   date?: string;
   technologies?: string[];
-  links?: {
-    homepage?: string;
-    github?: string;
-    demo?: string;
-  };
+  projectHref?: string; // Internal link for project page
 }
 
 interface TimelineItemProps {
@@ -30,9 +27,10 @@ const Projects: TimelineProject[] = [
     year: 2025,
     date: "June 2025",
     technologies: ["Next.js", "LangGraph", "Python", "FastAPI", "PostgreSQL"],
-    links: {
-      homepage: "https://aquarium.sea-lion.ai/",
-    }
+    // links: {
+    //   homepage: "https://aquarium.sea-lion.ai/",
+    // },
+    projectHref: "/projects/aquarium",
   },
   {
     id: "2",
@@ -41,9 +39,9 @@ const Projects: TimelineProject[] = [
     year: 2024,
     date: "Sept 2024",
     technologies: ["Streamlit", "Python", "Bayesian A/B Testing"],
-    links: {
-      github: "https://github.com/hangwl/thompson_sampling_demo"
-    }
+    // links: {
+    //   github: "https://github.com/hangwl/thompson_sampling_demo"
+    // }
   },
   {
     id: "3",
@@ -52,85 +50,92 @@ const Projects: TimelineProject[] = [
     year: 2023,
     date: "Jul 2023",
     technologies: ["Python", "PaddleOCR", "Fuzzy String Matching"],
-    links: {
-      github: "https://github.com/hangwl/MaplestoryOCR"
-    }
+    // links: {
+    //   github: "https://github.com/hangwl/MaplestoryOCR"
+    // }
   }
 ];
 
 function TimelineItem({ project }: Omit<TimelineItemProps, 'index'>) {
   const { theme } = useTheme();
-  
+
+  const Wrapper = project.projectHref ? Link : 'div';
+  const wrapperProps = project.projectHref
+    ? { to: project.projectHref, className: "block" }
+    : {};
+
   return (
     <div className="timeline-item relative mb-8">
       {/* Content Card - centered and overlaying the timeline line */}
-            <div className="timeline-content relative z-20 max-w-2xl mx-auto">
-        <MagicCard
-          gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
-          className="p-0 rounded-lg"
-        >
-          <div className="p-6">
-            <div className="flex justify-between items-start mb-2">
-              <h4 className="text-xl font-semibold tracking-tight">{project.title}</h4>
-              <span className="text-sm text-muted-foreground font-medium bg-muted px-2 py-1 rounded">
-                {project.date || project.year}
-              </span>
-            </div>
-            <div className="text-base leading-7 text-muted-foreground mb-4">
-              {project.description}
-            </div>
-            
-            {/* Technologies */}
-            {project.technologies && (
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map((tech, idx) => (
-                  <span 
-                    key={idx}
-                    className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
+      <div className="timeline-content relative z-20 max-w-2xl mx-auto">
+        <Wrapper {...wrapperProps}>
+          <MagicCard
+            gradientColor={theme === "dark" ? "#262626" : "#D9D9D955"}
+            className="p-0 rounded-lg"
+          >
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="text-xl font-semibold tracking-tight">{project.title}</h4>
+                <span className="text-sm text-muted-foreground font-medium bg-muted px-2 py-1 rounded">
+                  {project.date || project.year}
+                </span>
               </div>
-            )}
-            
-            {/* Links */}
-            {project.links && (
-              <div className="flex gap-3">
-                {project.links.github && (
-                  <a 
-                    href={project.links.github}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub →
-                  </a>
-                )}
-                {project.links.demo && (
-                  <a 
-                    href={project.links.demo}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Live Demo →
-                  </a>
-                )}
-                {project.links.homepage && (
-                  <a 
-                    href={project.links.homepage}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Homepage →
-                  </a>
-                )}
+              <div className="text-base leading-7 text-muted-foreground mb-4">
+                {project.description}
               </div>
-            )}
-          </div>
-        </MagicCard>
+
+              {/* Technologies */}
+              {project.technologies && (
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.technologies.map((tech, idx) => (
+                    <span
+                      key={idx}
+                      className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {/* Links */}
+              {/* {project.links && (
+                <div className="flex gap-3">
+                  {project.links.github && (
+                    <a
+                      href={project.links.github}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub →
+                    </a>
+                  )}
+                  {project.links.demo && (
+                    <a
+                      href={project.links.demo}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Live Demo →
+                    </a>
+                  )}
+                  {project.links.homepage && (
+                    <a
+                      href={project.links.homepage}
+                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Homepage →
+                    </a>
+                  )}
+                </div>
+              )} */}
+            </div>
+          </MagicCard>
+        </Wrapper>
       </div>
     </div>
   );
@@ -167,8 +172,8 @@ export function Timeline() {
             {/* Projects for this year */}
             <div className="space-y-8 mb-12">
               {projectsByYear[year].map((project) => (
-                <TimelineItem 
-                  key={project.id} 
+                <TimelineItem
+                  key={project.id}
                   project={project}
                 />
               ))}

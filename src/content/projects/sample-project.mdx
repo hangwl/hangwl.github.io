@@ -3,7 +3,6 @@ title: "Sample Project"
 description: "A demonstration of how to structure project content using MDX"
 date: "2024-01-15"
 tags: ["React", "TypeScript", "TanStack Router"]
-featured: true
 image: "/images/sample-project.jpg"
 github: "https://github.com/yourusername/sample-project"
 demo: "https://sample-project.demo.com"
@@ -24,7 +23,7 @@ This is a sample project to demonstrate how to use MDX files for project content
 
 Here's some code to show how you can include syntax highlighting:
 
-```typescript
+```typescript title="hello.ts" caption="hello" showLineNumbers{3}
 function greet(name: string): string {
   return `Hello, ${name}!`
 }
@@ -32,6 +31,17 @@ function greet(name: string): string {
 const message = greet("World")
 console.log(message)
 ```
+
+```python
+print("Hello World!")
+
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+
+message = greet("World")
+print(message)
+```
+
 
 ## Architecture
 

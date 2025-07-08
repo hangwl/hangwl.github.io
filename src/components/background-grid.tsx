@@ -17,9 +17,6 @@ export function BackgroundGrid() {
           [12, 15],
           [15, 10],
           [10, 15],
-          [15, 10],
-          [10, 15],
-          [15, 10],
         ]}
         className={cn(
           "[mask-image:radial-gradient(600px_circle_at_center,white,transparent)]",

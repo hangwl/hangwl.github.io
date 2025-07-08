@@ -6,7 +6,7 @@ declare module '*.mdx' {
     description?: string
     date?: string
     tags?: string[]
-    featured?: boolean
+
     image?: string
     [key: string]: any
   }

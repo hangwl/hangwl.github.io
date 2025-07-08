@@ -16,7 +16,7 @@ function NotesIndex() {
           <h1 className="text-5xl font-bold tracking-tighter mb-4">Notes</h1>
           <p className="text-xl text-muted-foreground">A collection of thoughts and learnings.</p>
         </header>
-        <div className="space-y-8">
+        <div className="space-y-8 bg-card">
           {notes.map((note) => (
             <Link
               key={note.slug}

@@ -191,16 +191,16 @@
   .prose tbody td[align=right] {
     @apply text-right;
   }
-  .prose code:not(in-pre) {
+  /* .prose code:not(in-pre) {
     @apply bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
-  }
-  /* Code blocks */
-  .prose pre {
+  } */
+  /* Code blocks - Handled by rehype-pretty-code */
+  /* .prose pre {
     @apply rounded-lg bg-muted p-4 my-4;
   }
   .prose pre code {
     @apply bg-transparent p-0;
-  }
+  } */
 }
 
 /* Timeline Styles */
@@ -248,3 +248,69 @@
     margin-bottom: 3rem !important;
   }
 }
+
+/* Dual theme code block support for rehype-pretty-code and shiki */
+code[data-theme*=" "], code[data-theme*=" "] span, pre[data-theme*=" "] {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+.dark code[data-theme*=" "], .dark code[data-theme*=" "] span, .dark pre[data-theme*=" "] {
+  color: var(--shiki-dark);
+  background-color: var(--shiki-dark-bg);
+}
+
+figure[data-rehype-pretty-code-figure] {
+  margin-top: 1rem; /* mt-4 */
+}
+
+.prose [data-rehype-pretty-code-figure] pre {
+  @apply p-4 mt-4 rounded-lg overflow-x-auto;
+  border-radius: var(--radius);
+}
+
+.prose [data-rehype-pretty-code-figure]:has([data-rehype-pretty-code-title]) pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+/* default visibility behaviour – only show on hover (matches transformer default) */
+figure[data-rehype-pretty-code-figure]:hover > pre button.rehype-pretty-copy {
+  @apply opacity-100;
+}
+
+/* rehype-pretty-code: code block title styling */
+[data-rehype-pretty-code-title] {
+  display: block;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: rgba(69, 69, 69, 0.69);
+  color: #ffffff;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-bottom: 1px solid #000000;
+  margin-bottom: -1rem;
+  position: relative;
+  z-index: 1;
+}
+.dark [data-rehype-pretty-code-title] {
+  background: rgba(69, 69, 69, 0.69);
+  color: #ffffff;
+  border-bottom: 1px solid #000000;
+}
+
+/* rehype-pretty-code: code block caption styling */
+figcaption[data-rehype-pretty-code-caption] {
+  display: block;
+  font-size: 0.85rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+.dark figcaption[data-rehype-pretty-code-caption] {
+  color: #a1a1aa;
+}
+

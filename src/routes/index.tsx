@@ -108,16 +108,9 @@ function App() {
           <section id="projects" className="scroll-section min-h-screen py-20 w-full flex flex-col justify-center items-center border-t animate-on-scroll">
             <div className="max-w-2xl w-full px-4">
               <h3 className="text-2xl font-semibold tracking-tight mb-4 text-center">Projects</h3>
-
               <div className="space-y-6">
                 <Timeline />
               </div>
-            </div>
-          </section>
-          <section id="contact" className="scroll-section min-h-screen py-20 w-full flex flex-col justify-center items-center bg-background/50 border-t animate-on-scroll">
-            <div className="max-w-2xl w-full px-4">
-              <h3 className="text-2xl font-semibold mb-2">Contact</h3>
-              <p className="text-muted-foreground">Add your contact form or details here.</p>
             </div>
           </section>
         </main>
