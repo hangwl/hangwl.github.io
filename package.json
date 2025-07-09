@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "vite --port 3000",
     "start": "vite --port 3000",
-    "build": "vite build && tsc",
+    "build": "vite build && tsc", 
+    "postbuild": "copy dist\\index.html dist\\404.html",
     "serve": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@docsearch/css": "3",
@@ -47,6 +49,7 @@
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
+    "gh-pages": "^6.3.0",
     "jsdom": "^26.0.0",
     "tw-animate-css": "^1.3.4",
     "typescript": "^5.7.2",
