@@ -1,4 +1,4 @@
-import{j as i}from"./index-QP35Pb75.js";const n={title:"Sample Note",description:"This is a sample note to demonstrate the dynamic routing based on the projects structure.",date:"2025-07-04",tags:["sample","guide","tanstack"],published:!0};function t(e){const s={button:"button",code:"code",figure:"figure",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",span:"span",style:"style",ul:"ul",...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(s.h2,{children:"Introduction"}),`
+import{j as i}from"./index-owej41gH.js";const n={title:"Sample Note",description:"This is a sample note to demonstrate the dynamic routing based on the projects structure.",date:"2025-07-04",tags:["sample","guide","tanstack"],published:!0};function t(e){const s={button:"button",code:"code",figure:"figure",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",span:"span",style:"style",ul:"ul",...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(s.h2,{children:"Introduction"}),`
 `,i.jsx(s.p,{children:"This is a sample note. The content is written in MDX, and the routing is handled by TanStack Router."}),`
 `,i.jsx(s.h3,{children:"Features"}),`
 `,i.jsxs(s.ul,{children:[`
