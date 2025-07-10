@@ -1,4 +1,4 @@
-import{j as e}from"./index-BcNhbBpk.js";const n={title:"Aquarium",description:"Empowering Southeast Asian languages.",date:"2025-06-05",tags:["Next.js","Python","PostgreSQL","FastAPI","LangGraph"],image:"/images/aquarium.svg",website:"https://aquarium.sea-lion.ai/",status:"completed"};function a(i){const t={a:"a",button:"button",code:"code",figcaption:"figcaption",figure:"figure",h1:"h1",h2:"h2",h3:"h3",h4:"h4",h5:"h5",img:"img",li:"li",ol:"ol",p:"p",pre:"pre",span:"span",style:"style",...i.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h1,{children:"Introduction"}),`
+import{j as e}from"./index-DXzyFN0g.js";const n={title:"Aquarium",description:"Empowering Southeast Asian languages.",date:"2025-06-05",tags:["Next.js","Python","PostgreSQL","FastAPI","LangGraph"],image:"/images/aquarium.svg",website:"https://aquarium.sea-lion.ai/",status:"completed"};function a(i){const t={a:"a",blockquote:"blockquote",button:"button",code:"code",figcaption:"figcaption",figure:"figure",h1:"h1",h2:"h2",h3:"h3",h4:"h4",h5:"h5",img:"img",li:"li",ol:"ol",p:"p",pre:"pre",span:"span",style:"style",...i.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h1,{children:"Introduction"}),`
 `,e.jsx(t.p,{children:`Aquarium is a platform that was developed to address challenges related to the accessibility of language datasets specifically within Southeast Asia.\r
 The region is incredibly linguistically diverse and is home to over 1,200 languages and dialects.\r
 With recent developments in large language models, leaders have recognized the importance of regional collaboration and\r
@@ -109,7 +109,9 @@ This ensures that query embeddings and document embeddings are aligned, and do n
 `,e.jsx(t.h5,{children:"Query Expander Tool"}),`
 `,e.jsx(t.p,{children:`If a user's query is too sparse or ambiguous, the orchestrator agent can decide to call the query expander tool to generate a more detailed query that improves retrieval recall performance.\r
 This works by adding synonyms or related terms, crafting more precise queries, or creating multiple query variants to cast a wider net for the initial retrieval.`}),`
+`,e.jsxs(t.blockquote,{children:[`
 `,e.jsx(t.p,{children:"It is important to note that over-expansion may lead to a decrease in retrieval precision, as the original intent of a query may become distorted."}),`
+`]}),`
 `,e.jsx(t.h4,{children:"Retrieval Agent"}),`
 `,e.jsxs(t.p,{children:[`After initial query preprocessing, the retrieval agent should be invoked if a data retrieval action is needed.\r
 As the "Data Expert", it is responsible for all operations to retrieve data from our unified PostgreSQL + `,e.jsx(t.code,{children:"pgvector"})," database."]}),`
@@ -121,14 +123,18 @@ By comparing cosine similarity scores between query embeddings and document embe
 `,e.jsx(t.p,{children:`The Text-to-SQL tool can be used to convert natural language queries into SQL queries aligned with the schema of the database.\r
 Given that database entities can be nested and contain complex relationships, this tool can be very powerful when it works.\r
 It allows the retrieval agent to perform more precise, filtered data retrieval operations.`}),`
+`,e.jsxs(t.blockquote,{children:[`
 `,e.jsx(t.p,{children:`It is important to note that presently, the performance of Text-to-SQL tools fail to meet expectations when dealing with complex databases.\r
 However, models are continuously improving and we can expect exponential improvements in the near future.`}),`
+`]}),`
 `,e.jsx(t.h5,{children:"Database Retrieval Tool"}),`
 `,e.jsx(t.p,{children:"The database retrieval tool is used to execute any generated SQL query against the PostgreSQL database."}),`
 `,e.jsx(t.h5,{children:"Reranker Tool (Optional)"}),`
 `,e.jsx(t.p,{children:"Finally, a reranker tool that leverages a reranker model or another LLM as a judge can be used by the retrieval agent to refine and reorder retrieval results."}),`
+`,e.jsxs(t.blockquote,{children:[`
 `,e.jsx(t.p,{children:`For a small database, a reranker tool may not be necessary.\r
 However as data grows, the addition of a reranking layer may be useful to improve retrieval precision.`}),`
+`]}),`
 `,e.jsx(t.h4,{children:"Response Generation Agent"}),`
 `,e.jsxs(t.p,{children:[`After sufficient information is retrieved via the retrieval agent, and the orchestrator agent decides that sufficient context has been acquired,\r
 the response generation agent should be invoked to generate an appropriate response to the initial user's query.\r
@@ -136,6 +142,8 @@ This may necessitate calling the `,e.jsx(t.code,{children:"translation tool"}),`
 or the language the response was requested to be in.`]}),`
 `,e.jsx(t.p,{children:"In its system prompt, the final response is instructed to be in markdown format which is flexible and highly portable."}),`
 `,e.jsx(t.h2,{children:"Contribution Pipeline"}),`
+`,e.jsxs(t.blockquote,{children:[`
 `,e.jsx(t.p,{children:"WIP"}),`
+`]}),`
 `,e.jsx(t.h2,{children:"Me and the Boys"}),`
 `,e.jsx(t.p,{children:e.jsx(t.img,{src:"/images/aquarium-swensens.png",alt:"Me and the boys at swensens unlimited"})})]})}function r(i={}){const{wrapper:t}=i.components||{};return t?e.jsx(t,{...i,children:e.jsx(a,{...i})}):a(i)}export{r as default,n as frontmatter};
