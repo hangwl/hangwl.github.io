@@ -1,4 +1,4 @@
-import{j as e}from"./index-DXzyFN0g.js";const n={title:"Aquarium",description:"Empowering Southeast Asian languages.",date:"2025-06-05",tags:["Next.js","Python","PostgreSQL","FastAPI","LangGraph"],image:"/images/aquarium.svg",website:"https://aquarium.sea-lion.ai/",status:"completed"};function a(i){const t={a:"a",blockquote:"blockquote",button:"button",code:"code",figcaption:"figcaption",figure:"figure",h1:"h1",h2:"h2",h3:"h3",h4:"h4",h5:"h5",img:"img",li:"li",ol:"ol",p:"p",pre:"pre",span:"span",style:"style",...i.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h1,{children:"Introduction"}),`
+import{j as e}from"./index-Bj0UTwX6.js";const n={title:"Aquarium",description:"Empowering Southeast Asian languages.",date:"2025-06-05",tags:["Next.js","Python","PostgreSQL","FastAPI","LangGraph"],image:"/images/aquarium.svg",website:"https://aquarium.sea-lion.ai/",status:"completed"};function a(i){const t={a:"a",blockquote:"blockquote",button:"button",code:"code",figcaption:"figcaption",figure:"figure",h1:"h1",h2:"h2",h3:"h3",h4:"h4",h5:"h5",img:"img",li:"li",ol:"ol",p:"p",pre:"pre",span:"span",style:"style",...i.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h1,{children:"Introduction"}),`
 `,e.jsx(t.p,{children:`Aquarium is a platform that was developed to address challenges related to the accessibility of language datasets specifically within Southeast Asia.\r
 The region is incredibly linguistically diverse and is home to over 1,200 languages and dialects.\r
 With recent developments in large language models, leaders have recognized the importance of regional collaboration and\r
@@ -99,8 +99,8 @@ The process is autonomous and a LLM is capable of dynamic updating its strategy 
 Given that the Aquarium platform is meant to serve users of various native tongues, the chatbot should also be able to understand non-English queries, and respond appropriately.`}),`
 `,e.jsx(t.h3,{children:"Agents"}),`
 `,e.jsx(t.h4,{children:"Orchestrator Agent"}),`
-`,e.jsx(t.p,{children:`The orchestrator agent is the main agent that is responsible for orchestrating the entire chatbot workflow.\r
-It serves as the brain for understanding user intent, managing conversation flow, and deciding what information is needed for other agents to complete delegated tasks.`}),`
+`,e.jsx(t.p,{children:`The orchestrator agent is the main agent that is responsible for orchestrating the entire chatbot workflow as well as supervising and delegating tasks to other agents.\r
+It serves as the brain for understanding user intent, managing conversation flow, and deciding what information is needed for other agents to complete their tasks.`}),`
 `,e.jsx(t.p,{children:"As the orchestrator, it is given access to the following tools that should be called in order:"}),`
 `,e.jsx(t.h5,{children:"Translation Tool"}),`
 `,e.jsx(t.p,{children:`The translation tool is essential to ensure that user queries are first standardized to English.\r
