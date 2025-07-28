@@ -8,7 +8,7 @@ export function NoteLayout({ children }: PropsWithChildren) {
   const hasTOC = tocItems.length > 0;
 
   return (
-    <div className="px-12 pt-5 pb-24">
+    <div className="px-6 pt-5 pb-24">
       <div
         className={cn(
           "grid gap-8 mx-auto",

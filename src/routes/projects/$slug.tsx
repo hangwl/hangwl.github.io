@@ -5,6 +5,7 @@ import { ProjectLayout } from '@/components/project-layout'
 import { useHeadings } from '@/hooks/use-headings'
 import { useTOC } from '@/context/toc-context'
 import { Button } from '@/components/ui/button'
+import Pre from '@/components/mdx/Pre'
 
 export const Route = createFileRoute('/projects/$slug')({
   loader: async ({ params }) => {
@@ -143,7 +144,7 @@ function ProjectPage() {
       {/* Project Content */}
       <article className="prose prose-lg max-w-none dark:prose-invert prose-headings:scroll-mt-20">
         <Suspense fallback={<div className="animate-pulse">Loading content...</div>}>
-          <Component />
+          <Component components={{ pre: Pre }} />
         </Suspense>
       </article>
     </ProjectLayout>

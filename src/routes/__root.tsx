@@ -1,4 +1,3 @@
-
 import { Outlet, createRootRoute, useRouterState } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 import { ThemeProvider } from "@/components/theme-provider";
@@ -6,7 +5,6 @@ import { TOCProvider } from '@/context/toc-context';
 import { BackgroundGrid } from "@/components/background-grid";
 import Header from "@/components/header";
 import { AppDock } from '@/components/dock';
-import { useCodeCopyEffect } from '@/lib/useCodeCopyEffect';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -32,9 +30,6 @@ export const Route = createRootRoute({
   component: () => {
     const pathname = useRouterState({ select: (s) => s.location.pathname })
     const isNotes = pathname.startsWith('/notes')
-
-    // Attach copy-to-clipboard logic for the copy buttons injected by rehype-pretty-code
-    useCodeCopyEffect(pathname);
 
     return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">

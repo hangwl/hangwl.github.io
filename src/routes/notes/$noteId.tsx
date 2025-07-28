@@ -4,6 +4,7 @@ import { getNote } from '@/lib/notes';
 import { NoteLayout } from '@/components/note-layout';
 import { useHeadings } from '@/hooks/use-headings';
 import { useTOC } from '@/context/toc-context';
+import Pre from '@/components/mdx/Pre';
 
 export const Route = createFileRoute('/notes/$noteId')({
   loader: async ({ params }) => {
@@ -64,7 +65,7 @@ function NotePage() {
 
       <article className="prose prose-lg max-w-none dark:prose-invert prose-headings:scroll-mt-24">
         <Suspense fallback={<div>Loading...</div>}>
-          <Component />
+          <Component components={{ pre: Pre }} />
         </Suspense>
       </article>
     </NoteLayout>

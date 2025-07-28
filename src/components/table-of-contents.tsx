@@ -47,7 +47,9 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
                 {
                   'pl-4': item.level <= 2,
                   'pl-7': item.level === 3,
-                  'pl-10': item.level >= 4,
+                  'pl-10': item.level === 4,
+                  'pl-12': item.level === 5,
+                  'pl-14': item.level >= 6,
                 }
               )}
             >

@@ -12,7 +12,7 @@ export function ProjectLayout({ children, tocItems, className }: ProjectLayoutPr
   const hasTOC = tocItems.length > 0
 
   return (
-    <div className={cn('mx-auto px-12 pt-24 pb-24', className)}>
+    <div className={cn('mx-auto px-6 pt-24 pb-24', className)}>
       <div className={cn(
         'grid gap-8 mx-auto',
         hasTOC

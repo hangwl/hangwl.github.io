@@ -7,7 +7,7 @@ import mdx from '@mdx-js/rollup'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import rehypePrettyCode from 'rehype-pretty-code'
-import { transformerCopyButton } from '@rehype-pretty/transformers'
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -23,9 +23,7 @@ export default defineConfig({
             // light: 'everforest-light',
             light: 'dark-plus',
           },
-          transformers: [
-            transformerCopyButton(),
-          ],
+          transformers: [],
         }],
       ],
     }),

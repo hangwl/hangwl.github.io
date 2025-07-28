@@ -75,6 +75,9 @@
   --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
+  /* Shiki code block colors */
+  --shiki-light: #24292f;
+  --shiki-light-bg: #f6f8fa;
 }
 
 .dark {
@@ -110,6 +113,9 @@
   --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  /* Shiki code block colors */
+  --shiki-dark: #d1d5db;
+  --shiki-dark-bg: #181825;
 }
 
 @layer base {
@@ -125,10 +131,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-      monospace;
-  }
 
   /* Custom Prose Styles */
   .prose h1 {
@@ -142,6 +144,9 @@
   }
   .prose h4 {
     @apply scroll-m-20 text-xl font-semibold tracking-tight my-8;
+  }
+  .prose h5 {
+    @apply scroll-m-20 text-lg font-semibold tracking-tight my-6;
   }
   .prose p {
     @apply leading-7;
@@ -162,6 +167,12 @@
     @apply my-4 ml-6 list-disc;
   }
   .prose ul li {
+    @apply mt-2;
+  }
+  .prose ol {
+    @apply my-4 ml-6 list-decimal;
+  }
+  .prose ol li {
     @apply mt-2;
   }
   .prose table {
@@ -191,9 +202,25 @@
   .prose tbody td[align=right] {
     @apply text-right;
   }
-  /* .prose code:not(in-pre) {
-    @apply bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
-  } */
+  .prose p > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .prose code:not(pre code) {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+    border-radius: var(--radius) !important;
+    padding: 0.2em 0.4em !important;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace !important;
+    font-size: 0.95em !important;
+    font-weight: 500;
+    box-decoration-break: clone;
+  }
+  .dark .prose code:not(pre code) {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
   /* Code blocks - Handled by rehype-pretty-code */
   /* .prose pre {
     @apply rounded-lg bg-muted p-4 my-4;
@@ -264,7 +291,7 @@ figure[data-rehype-pretty-code-figure] {
 }
 
 .prose [data-rehype-pretty-code-figure] pre {
-  @apply p-4 mt-4 rounded-lg overflow-x-auto;
+  @apply p-4 my-4 rounded-lg overflow-x-auto relative;
   border-radius: var(--radius);
 }
 
@@ -273,11 +300,6 @@ figure[data-rehype-pretty-code-figure] {
   border-top-right-radius: 0;
   border-bottom-left-radius: var(--radius);
   border-bottom-right-radius: var(--radius);
-}
-
-/* default visibility behaviour – only show on hover (matches transformer default) */
-figure[data-rehype-pretty-code-figure]:hover > pre button.rehype-pretty-copy {
-  @apply opacity-100;
 }
 
 /* rehype-pretty-code: code block title styling */

@@ -106,7 +106,7 @@ function App() {
           </div>
           </section>
           <section id="projects" className="scroll-section min-h-screen py-20 w-full flex flex-col justify-center items-center border-t animate-on-scroll">
-            <div className="max-w-2xl w-full px-4">
+            <div className="max-w-2xl w-full">
               <h3 className="text-2xl font-semibold tracking-tight mb-4 text-center">Projects</h3>
               <div className="space-y-6">
                 <Timeline />
