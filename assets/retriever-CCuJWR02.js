@@ -1,10 +1,10 @@
-import{j as e}from"./index-DHhXh1XA.js";const a={title:"Retriever (RAG)",description:"Retriever module for RAG systems.",date:"2025-07-29",tags:["RAG","LLMs","Retriever"],published:!0,showcase:!0};function r(n){const t={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
+import{j as e}from"./index-CIks8L5e.js";const a={title:"Retriever (RAG)",description:"Retriever module for RAG systems.",date:"2025-07-29",tags:["RAG","LLMs","Retriever"],published:!0,showcase:!0};function r(n){const t={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
 `,e.jsx(t.p,{children:`The purpose of a retriever in the context of RAG systems is to provide useful information to LLMs so that they can generate better responses.
 While it is possible to implement a retriever that pulls data directly from a relational database that many existing systems use, setting up a separate vector database is generally more scalable.`}),`
+`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/images/IwF7vGE0aa.png",alt:"Knowledge Bases"})}),`
 `,e.jsxs(t.blockquote,{children:[`
 `,e.jsxs(t.p,{children:["Note that PostgreSQL is a relational database that can be extended into a vector database via ",e.jsx(t.a,{href:"https://github.com/pgvector/pgvector",children:"pgvector"}),"."]}),`
 `]}),`
-`,e.jsx(t.p,{children:e.jsx(t.img,{src:"/images/IwF7vGE0aa.png",alt:"Knowledge Bases"})}),`
 `,e.jsx(t.h2,{children:"Document Relevance"}),`
 `,e.jsx(t.p,{children:`Ideally, only the most relevant documents should be retrieved as opposed to overloading an LLMs context window by stuffing all available documents to it.
 The challenge here is deciding an appropriate relevance scoring threshold, as well as a reasonable number of documents to retrieve.`}),`
