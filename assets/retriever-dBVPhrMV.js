@@ -1,4 +1,4 @@
-import{j as e}from"./index-CIks8L5e.js";const a={title:"Retriever (RAG)",description:"Retriever module for RAG systems.",date:"2025-07-29",tags:["RAG","LLMs","Retriever"],published:!0,showcase:!0};function r(n){const t={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
+import{j as e}from"./index-BEigmAV3.js";const a={title:"Retriever (RAG)",description:"Retriever module for RAG systems.",date:"2025-07-29",tags:["RAG","LLMs","Retriever"],published:!0,showcase:!0};function r(n){const t={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
 `,e.jsx(t.p,{children:`The purpose of a retriever in the context of RAG systems is to provide useful information to LLMs so that they can generate better responses.
 While it is possible to implement a retriever that pulls data directly from a relational database that many existing systems use, setting up a separate vector database is generally more scalable.`}),`
 `,e.jsx(t.p,{children:e.jsx(t.img,{src:"/images/IwF7vGE0aa.png",alt:"Knowledge Bases"})}),`
@@ -12,7 +12,7 @@ The challenge here is deciding an appropriate relevance scoring threshold, as we
 `,e.jsx(t.p,{children:"Note that a retriever usually doesn't perfectly rank documents. Hence, monitoring and experimentation is required to optimize RAG systems."}),`
 `]}),`
 `,e.jsx(t.h2,{children:"Search Techniques"}),`
-`,e.jsx(t.p,{children:`Most modern retrievers make use of both keyword search and semantic search. In what is known as hybrid search.
+`,e.jsx(t.p,{children:`Most modern retrievers make use of both keyword search and semantic search in hybrid search.
 The decision on how to optimize the retrieval process for both approaches depends on individual project needs.`}),`
 `,e.jsx(t.p,{children:e.jsx(t.img,{src:"/images/S2wISTTrvh.png",alt:"Search Techniques"})}),`
 `,e.jsx(t.h3,{children:"Keyword Search"}),`
