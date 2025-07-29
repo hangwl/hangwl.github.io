@@ -161,7 +161,7 @@
     @apply text-foreground font-bold;
   }
   .prose blockquote {
-    @apply mt-6 border-l-2 border-border pl-6 italic;
+    @apply my-6 border-l-2 border-border pl-6 italic;
   }
   .prose ul {
     @apply my-4 ml-6 list-disc;

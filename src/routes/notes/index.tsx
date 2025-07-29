@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { getAllNotes } from '@/lib/notes';
+import { getShowcasedNotes } from '@/lib/notes';
 
 export const Route = createFileRoute('/notes/')({
-  loader: getAllNotes,
+  loader: getShowcasedNotes,
   component: NotesIndex,
 });
 
@@ -16,7 +16,7 @@ function NotesIndex() {
           <h1 className="text-5xl font-bold tracking-tighter mb-4">Notes</h1>
           <p className="text-xl text-muted-foreground">A collection of thoughts and learnings.</p>
         </header>
-        <div className="space-y-8 bg-card">
+        <div className="space-y-8">
           {notes.map((note) => (
             <Link
               key={note.slug}
@@ -24,7 +24,7 @@ function NotesIndex() {
               params={{ noteId: note.slug }}
               className="block group"
             >
-              <article className="p-6 border rounded-xl hover:bg-muted/50 transition-colors duration-200">
+              <article className="p-6 border rounded-xl bg-card transition-colors duration-200">
                 <h2 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
                   {note.title}
                 </h2>

@@ -4,6 +4,7 @@ export interface NoteFrontmatter {
   date?: string
   tags?: string[]
   published?: boolean
+  showcase?: boolean
 }
 
 export interface Note extends NoteFrontmatter {
@@ -44,8 +45,24 @@ export async function getAllNotes(): Promise<Note[]> {
   )
   
   // Filter out unpublished notes and sort by date (newest first)
-  return notes
+  const publishedNotes = notes
     .filter(note => note.published !== false)
+    .sort((a, b) => {
+      if (a.date && b.date) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      }
+      if (a.date) return -1
+      if (b.date) return 1
+      return (a.title || '').localeCompare(b.title || '')
+    })
+  
+  return publishedNotes
+}
+
+export async function getShowcasedNotes(): Promise<Note[]> {
+  const publishedNotes = await getAllNotes();
+  return publishedNotes
+    .filter(note => note.showcase === true)
     .sort((a, b) => {
       if (a.date && b.date) {
         return new Date(b.date).getTime() - new Date(a.date).getTime()

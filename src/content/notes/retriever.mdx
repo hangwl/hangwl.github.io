@@ -1,0 +1,45 @@
+---
+title: "Retriever (RAG)"
+description: "Retriever module for RAG systems."
+date: "2025-07-29"
+tags: ["RAG", "LLMs", "Retriever"]
+published: true
+showcase: true
+---
+
+## Introduction
+
+The purpose of a retriever in the context of RAG systems is to provide useful information to LLMs so that they can generate better responses. 
+While it is possible to implement a retriever that pulls data directly from a relational database that many existing systems use, setting up a separate vector database is generally more scalable. 
+
+![Knowledge Bases](/images/IwF7vGE0aa.png)
+
+> Note that PostgreSQL is a relational database that can be extended into a vector database via [pgvector](https://github.com/pgvector/pgvector).
+
+## Document Relevance
+
+Ideally, only the most relevant documents should be retrieved as opposed to overloading an LLMs context window by stuffing all available documents to it. 
+The challenge here is deciding an appropriate relevance scoring threshold, as well as a reasonable number of documents to retrieve. 
+
+> Note that a retriever usually doesn't perfectly rank documents. Hence, monitoring and experimentation is required to optimize RAG systems.
+
+## Search Techniques
+
+Most modern retrievers make use of both keyword search and semantic search in hybrid search. 
+The decision on how to optimize the retrieval process for both approaches depends on individual project needs. 
+
+![Search Techniques](/images/S2wISTTrvh.png)
+
+### Keyword Search
+
+The keyword search approach scans documents for **exact matching words** found in a query prompt. 
+
+### Semantic Search
+
+The semantic search approach looks for documents with **similar meaning** to the query prompt. 
+
+### Metadata Filtering
+
+To improve retrieval precision, retrievers can apply metadata filters to exclude documents that do not contain specific metadata tags. 
+
+> Note that this metadata filtering layer depends on the richness of the underlying metadata that is available. In the real world, data originating from different sources are bound to be unstandardized and inconsistent. Hence the need for data engineers and data janitors. 
