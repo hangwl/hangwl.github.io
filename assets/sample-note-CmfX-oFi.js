@@ -1,4 +1,4 @@
-import{j as i}from"./index-BopdPzOD.js";const h={title:"Sample Note",description:"This is a sample note to demonstrate the dynamic routing based on the projects structure.",date:"2025-07-04",tags:["sample","guide","tanstack"],published:!1,showcase:!1};function n(e){const s={code:"code",figcaption:"figcaption",figure:"figure",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",span:"span",ul:"ul",...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(s.h2,{children:"Introduction"}),`
+import{j as i}from"./index-DEOc_SeM.js";const h={title:"Sample Note",description:"This is a sample note to demonstrate the dynamic routing based on the projects structure.",date:"2025-07-04",tags:["sample","guide","tanstack"],published:!1,showcase:!1};function n(e){const s={code:"code",figcaption:"figcaption",figure:"figure",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",span:"span",ul:"ul",...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(s.h2,{children:"Introduction"}),`
 `,i.jsx(s.p,{children:"This is a sample note. The content is written in MDX, and the routing is handled by TanStack Router."}),`
 `,i.jsx(s.h3,{children:"Features"}),`
 `,i.jsxs(s.ul,{children:[`
