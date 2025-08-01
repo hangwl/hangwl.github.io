@@ -1,58 +1,24 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { getShowcasedNotes } from '@/lib/notes';
+import { createFileRoute } from '@tanstack/react-router';
+import NoteGraph from '@/components/note-graph';
+import { getNotesGraph } from '@/lib/notes';
 
 export const Route = createFileRoute('/notes/')({
-  loader: getShowcasedNotes,
+  loader: getNotesGraph,
   component: NotesIndex,
 });
 
 function NotesIndex() {
-  const notes = Route.useLoaderData();
+  const graph = Route.useLoaderData();
 
   return (
-    <div className="pt-24 p-6 lg:p-8">
-      <div className="max-w-4xl mx-auto">
-        <header className="mb-12 text-center">
-          <h1 className="text-5xl font-bold tracking-tighter mb-4">Notes</h1>
-          <p className="text-xl text-muted-foreground">A collection of thoughts and learnings.</p>
-        </header>
-        <div className="space-y-8">
-          {notes.map((note) => (
-            <Link
-              key={note.slug}
-              to="/notes/$noteId"
-              params={{ noteId: note.slug }}
-              className="block group"
-            >
-              <article className="p-6 border rounded-xl bg-card transition-colors duration-200">
-                <h2 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">
-                  {note.title}
-                </h2>
-                <p className="text-muted-foreground mb-4 line-clamp-2">
-                  {note.description}
-                </p>
-                <div className="flex items-center justify-between text-sm text-muted-foreground">
-                  {note.date && (
-                    <time dateTime={note.date}>
-                      {new Date(note.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </time>
-                  )}
-                  <div className="flex flex-wrap gap-2">
-                    {note.tags?.map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 bg-muted rounded-full text-xs">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            </Link>
-          ))}
-        </div>
+    <div className="p-6">
+      <header>
+        <p className="text-xl text-muted-foreground mb-4">
+          Inspired by <a href="https://chanjunren.github.io/" className="underline" target="_blank" rel="noopener noreferrer">CJR</a>
+        </p>
+      </header>
+      <div className="mx-auto">
+        <NoteGraph graph={graph} />
       </div>
     </div>
   );

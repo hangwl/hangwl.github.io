@@ -3,6 +3,7 @@ export interface NoteFrontmatter {
   description?: string
   date?: string
   tags?: string[]
+  links?: string[]
   published?: boolean
   showcase?: boolean
 }
@@ -57,6 +58,29 @@ export async function getAllNotes(): Promise<Note[]> {
     })
   
   return publishedNotes
+}
+
+export async function getNotesGraph() {
+  const notes = await getAllNotes();
+
+  const nodeSet = new Set(notes.map(n => n.slug));
+
+  const nodes = notes.map(n => ({
+    id: n.slug,
+    title: n.title,
+  }));
+
+  const links: { source: string; target: string }[] = [];
+
+  notes.forEach(n => {
+    n.links?.forEach(target => {
+      if (nodeSet.has(target)) {
+        links.push({ source: n.slug, target });
+      }
+    });
+  });
+
+  return { nodes, links };
 }
 
 export async function getShowcasedNotes(): Promise<Note[]> {
