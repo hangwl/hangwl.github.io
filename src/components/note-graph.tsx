@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, memo } from 'react'
 import ForceGraph2D, { GraphData, NodeObject, LinkObject } from 'react-force-graph-2d'
 import { useNavigate } from '@tanstack/react-router'
 
@@ -6,7 +6,7 @@ export interface NoteGraphProps {
   graph: GraphData
 }
 
-export default function NoteGraph({ graph }: NoteGraphProps) {
+const NoteGraph = memo(({ graph }: NoteGraphProps) => {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement>(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
@@ -108,4 +108,6 @@ export default function NoteGraph({ graph }: NoteGraphProps) {
       />
     </div>
   )
-}
+});
+
+export default NoteGraph;
