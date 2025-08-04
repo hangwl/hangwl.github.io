@@ -70,27 +70,37 @@ export function AppDock() {
       <div className="pointer-events-auto">
         <TooltipProvider>
           <Dock direction="middle">
-            {DATA.navbar.map((item) => (
-              <DockIcon key={item.label}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Link
-                      to={item.href}
-                      aria-label={item.label}
-                      className={cn(
-                        buttonVariants({ variant: "ghost", size: "icon" }),
-                        "size-12 rounded-full",
+            {DATA.navbar.map((item) => {
+              const isNotesLink = item.href === "/notes";
+              const commonProps = {
+                "aria-label": item.label,
+                className: cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "size-12 rounded-full",
+                ),
+              };
+
+              return (
+                <DockIcon key={item.label}>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      {isNotesLink ? (
+                        <a href={item.href} {...commonProps}>
+                          <item.icon className="size-4" />
+                        </a>
+                      ) : (
+                        <Link to={item.href} {...commonProps}>
+                          <item.icon className="size-4" />
+                        </Link>
                       )}
-                    >
-                      <item.icon className="size-4" />
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{item.label}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </DockIcon>
-            ))}
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{item.label}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </DockIcon>
+              );
+            })}
             <Separator orientation="vertical" className="h-full" />
             {Object.entries(DATA.contact.social).map(([name, social]) => (
               <DockIcon key={name}>
