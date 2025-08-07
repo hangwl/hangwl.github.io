@@ -1,4 +1,4 @@
-import{j as e}from"./index-C5nun0ui.js";const r={title:"Semantic Search",description:"Semantic search via embedding models.",date:"2025-08-04",tags:["RAG","LLMs","Retriever","Semantic Search"],published:!0,showcase:!0};function t(s){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-C7Hwhl69.js";const r={title:"Semantic Search",description:"Semantic search via embedding models.",tags:["RAG","LLMs","Retriever","Semantic Search"],published:!0,showcase:!0,links:["hybrid-search"]};function t(s){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsxs(n.p,{children:["Semantic search is an approach that ",e.jsx(n.strong,{children:"matches queries to documents based on shared meaning"}),`.\r
 It overcomes the limitations of keyword search that rely on exact word matches by capturing the meaning and nuances behind words.`]}),`
 `,e.jsx(n.p,{children:e.jsx(n.img,{src:"/images/QK5D1O1ltN.png",alt:"Semantic Search"})}),`
@@ -8,7 +8,11 @@ The magic behind this is that documents and queries that have similar semantic r
 This makes semantic search possible.`]}),`
 `,e.jsx(n.p,{children:e.jsx(n.img,{src:"/images/BHV0uQ4y8X.png",alt:"Vector Representations"})}),`
 `,e.jsx(n.h2,{children:"Embedding Models"}),`
-`,e.jsx(n.p,{children:"Depending on the problem, different embedding models can be used."}),`
+`,e.jsxs(n.blockquote,{children:[`
+`,e.jsxs(n.p,{children:[`In practice, we can use off-the-shelf pre-trained embedding models that are optimized for semantic search.\r
+These embedding models are trained using `,e.jsx(n.strong,{children:"contrastive learning"})," to learn how to cluster positive and negative text examples."]}),`
+`]}),`
+`,e.jsx(n.p,{children:"Depending on the problem, a developer would want look at the different embedding models that can be used."}),`
 `,e.jsx(n.p,{children:e.jsx(n.img,{src:"/images/rMT0v3wgsA.png",alt:"Embedding Models"})}),`
 `,e.jsx(n.h2,{children:"Relevance Measures"}),`
 `,e.jsxs(n.blockquote,{children:[`
