@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, memo } from 'react'
 import ForceGraph2D, { GraphData, NodeObject, LinkObject } from 'react-force-graph-2d'
 import { useNavigate } from '@tanstack/react-router'
+import { useTheme } from './theme-provider'
 
 export interface NoteGraphProps {
   graph: GraphData
@@ -10,17 +11,18 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement>(null)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
-  const [isDarkMode, setIsDarkMode] = useState(() => 
-    document.documentElement.classList.contains('dark')
-  );
+  const { resolvedTheme } = useTheme();
+  const isDarkMode = resolvedTheme === 'dark';
   const [hoveredNode, setHoveredNode] = useState<NodeObject | null>(null);
   const [draggedNode, setDraggedNode] = useState<NodeObject | null>(null);
 
   useEffect(() => {
     if (containerRef.current) {
       const observer = new ResizeObserver(entries => {
-        const { width, height } = entries[0].contentRect
-        setDimensions({ width, height })
+        const entry = entries[0];
+        if (!entry) return;
+        const { width, height } = entry.contentRect;
+        setDimensions({ width, height });
       })
       observer.observe(containerRef.current)
       return () => observer.disconnect()
@@ -40,21 +42,7 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
         link: 'rgba(45, 55, 72, 0.3)',     // subtle
       };
 
-  useEffect(() => {
-    const mutationObserver = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
-        if (mutation.attributeName === 'class') {
-          setIsDarkMode(document.documentElement.classList.contains('dark'));
-        }
-      });
-    });
-
-    mutationObserver.observe(document.documentElement, {
-      attributes: true
-    });
-
-    return () => mutationObserver.disconnect();
-  }, []);
+  // Theme is derived from ThemeProvider via useTheme(); no MutationObserver needed.
 
   const handleNodeClick = (node: NodeObject) => {
     if (typeof node.id === 'string') {
