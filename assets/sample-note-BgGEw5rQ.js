@@ -1,4 +1,4 @@
-import{j as i}from"./index-BbBazHcZ.js";const t={title:"Sample Note",hide:!0};function n(e){const s={code:"code",figcaption:"figcaption",figure:"figure",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",span:"span",ul:"ul",...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(s.h2,{children:"Introduction"}),`
+import{j as i}from"./index-CbLHc5bD.js";const t={title:"Sample Note",hide:!0};function n(e){const s={code:"code",figcaption:"figcaption",figure:"figure",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",span:"span",ul:"ul",...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(s.h2,{children:"Introduction"}),`
 `,i.jsx(s.p,{children:"This is a sample note. The content is written in MDX, and the routing is handled by TanStack Router."}),`
 `,i.jsx(s.h3,{children:"Features"}),`
 `,i.jsxs(s.ul,{children:[`
