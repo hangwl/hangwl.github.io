@@ -1,4 +1,4 @@
-import{j as i}from"./index-C7Hwhl69.js";const h={title:"Sample Note",description:"This is a sample note to demonstrate the dynamic routing based on the projects structure.",tags:["sample","guide","tanstack"],published:!1,showcase:!1};function n(e){const s={code:"code",figcaption:"figcaption",figure:"figure",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",span:"span",ul:"ul",...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(s.h2,{children:"Introduction"}),`
+import{j as i}from"./index-BZPpgFds.js";const t={title:"Sample Note",hide:!0};function n(e){const s={code:"code",figcaption:"figcaption",figure:"figure",h2:"h2",h3:"h3",li:"li",p:"p",pre:"pre",span:"span",ul:"ul",...e.components};return i.jsxs(i.Fragment,{children:[i.jsx(s.h2,{children:"Introduction"}),`
 `,i.jsx(s.p,{children:"This is a sample note. The content is written in MDX, and the routing is handled by TanStack Router."}),`
 `,i.jsx(s.h3,{children:"Features"}),`
 `,i.jsxs(s.ul,{children:[`
@@ -15,4 +15,4 @@ import{j as i}from"./index-C7Hwhl69.js";const h={title:"Sample Note",description
 `,i.jsxs(s.span,{"data-line":"",children:[i.jsx(s.span,{style:{"--shiki-dark":"#E6EDF3","--shiki-light":"#D4D4D4"},children:"message "}),i.jsx(s.span,{style:{"--shiki-dark":"#FF7B72","--shiki-light":"#D4D4D4"},children:"="}),i.jsx(s.span,{style:{"--shiki-dark":"#E6EDF3","--shiki-light":"#D4D4D4"},children:" greet("}),i.jsx(s.span,{style:{"--shiki-dark":"#A5D6FF","--shiki-light":"#CE9178"},children:'"World"'}),i.jsx(s.span,{style:{"--shiki-dark":"#E6EDF3","--shiki-light":"#D4D4D4"},children:")"})]}),`
 `,i.jsxs(s.span,{"data-line":"",children:[i.jsx(s.span,{style:{"--shiki-dark":"#79C0FF","--shiki-light":"#DCDCAA"},children:"print"}),i.jsx(s.span,{style:{"--shiki-dark":"#E6EDF3","--shiki-light":"#D4D4D4"},children:"(message)"})]})]})})]}),`
 `,i.jsx(s.h2,{children:"Conclusion"}),`
-`,i.jsx(s.p,{children:"This structure allows for easy content creation."})]})}function l(e={}){const{wrapper:s}=e.components||{};return s?i.jsx(s,{...e,children:i.jsx(n,{...e})}):n(e)}export{l as default,h as frontmatter};
+`,i.jsx(s.p,{children:"This structure allows for easy content creation."})]})}function l(e={}){const{wrapper:s}=e.components||{};return s?i.jsx(s,{...e,children:i.jsx(n,{...e})}):n(e)}export{l as default,t as frontmatter};
