@@ -27,7 +27,18 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
     }
   }, [])
 
-  const themeColor = isDarkMode ? 'rgba(226, 232, 240, 0.8)' : 'rgba(45, 55, 72, 0.8)';
+  // Theme-aware colors: opaque nodes, readable labels, subtle links
+  const colors = isDarkMode
+    ? {
+        node: '#e2e8f0',    // slate-200 (opaque)
+        text: '#cbd5e1',    // slate-300
+        link: 'rgba(226, 232, 240, 0.35)', // subtle
+      }
+    : {
+        node: '#2d3748',    // gray-800 (opaque)
+        text: '#475569',    // slate-600
+        link: 'rgba(45, 55, 72, 0.3)',     // subtle
+      };
 
   useEffect(() => {
     const mutationObserver = new MutationObserver(mutations => {
@@ -59,7 +70,10 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
   }
 
   return (
-    <div ref={containerRef} className="w-full h-[60vh] bg-card border rounded-lg shadow-sm">
+    <div
+      ref={containerRef}
+      className="w-full h-[60vh] rounded-lg border border-border/40 backdrop-blur-md bg-background/80 dark:bg-black/20 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10"
+    >
       <ForceGraph2D
         width={dimensions.width}
         height={dimensions.height}
@@ -80,7 +94,7 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
           const isHovered = hoveredNode && hoveredNode.id === node.id;
           const isDragged = draggedNode && draggedNode.id === node.id;
           const radius = isHovered || isDragged ? 5 : 4;
-          const color = isHovered || isDragged ? 'rgba(239, 68, 68, 1)' : themeColor; // red-500
+          const color = isHovered || isDragged ? '#ef4444' : colors.node; // red-500
 
           // Draw node circle
           ctx.beginPath();
@@ -94,12 +108,12 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
 
           ctx.textAlign = 'center';
           ctx.textBaseline = 'top';
-          ctx.fillStyle = themeColor;
+          ctx.fillStyle = colors.text;
           ctx.fillText(label, textX, textY);
         }}
         onNodeClick={handleNodeClick}
         onLinkClick={handleLinkClick}
-        linkColor={() => themeColor}
+        linkColor={() => colors.link}
         linkDirectionalArrowLength={0}
         linkDirectionalArrowRelPos={1}
         nodeRelSize={4}

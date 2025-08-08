@@ -9,6 +9,7 @@
     "**/routeTree.gen.ts": true
   },
   "conventionalCommits.scopes": [
-    "notes"
+    "notes",
+    "note-graph"
   ]
 }
