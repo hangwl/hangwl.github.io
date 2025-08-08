@@ -1,11 +1,49 @@
 ---
 title: "Semantic Search"
-description: "Semantic search via embedding models."
-date: "2025-08-04"
-tags: ["RAG", "LLMs", "Retriever", "Semantic Search"]
-published: true
-showcase: true
+links:
+ - 'hybrid-search'
+hide: false
 ---
 
 ## Introduction
 
+Semantic search is an approach that **matches queries to documents based on shared meaning**. 
+It overcomes the limitations of keyword search that rely on exact word matches by capturing the meaning and nuances behind words. 
+
+![Semantic Search](/images/QK5D1O1ltN.png)
+
+## How It Works
+
+High-dimensional vectors are mapped from the documents and queries using **embedding models**. 
+The magic behind this is that documents and queries that have similar semantic representations will be **closer to each other in the vector space.** 
+This makes semantic search possible. 
+
+![Vector Representations](/images/BHV0uQ4y8X.png)
+
+## Embedding Models
+
+>In practice, we can use off-the-shelf pre-trained embedding models that are optimized for semantic search. 
+These embedding models are trained using **contrastive learning** to learn how to cluster positive and negative text examples. 
+
+Depending on the problem, a developer would want look at the different embedding models that can be used. 
+
+![Embedding Models](/images/rMT0v3wgsA.png)
+
+## Relevance Measures
+
+> Generally, cosine similarity is used when we are dealing with a system that contains documents with greatly varying lengths. 
+This is so that documents with longer lengths do not dominate the similarity score simply because they are longer. 
+
+### Cosine Similarity
+
+Cosine similarity is the most common distance measure used in semantic search. 
+It measures the **similarity in the direction** of two vectors regardless of whether they are close to each other in the vector space. 
+
+![Cosine Similarity](/images/fAlV8ixuPF.png)
+
+### Dot Product
+
+Dot product is another distance measure used in semantic search. 
+Compared to cosine similarity, it considers both the **angle** and **magnitude** between vectors. 
+
+![Dot Product](/images/v9b0v8RLm1.png)

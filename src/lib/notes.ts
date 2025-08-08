@@ -1,11 +1,7 @@
 export interface NoteFrontmatter {
   title: string
-  description?: string
-  date?: string
-  tags?: string[]
   links?: string[]
-  published?: boolean
-  showcase?: boolean
+  hide?: boolean
 }
 
 export interface Note extends NoteFrontmatter {
@@ -37,27 +33,20 @@ export async function getAllNotes(): Promise<Note[]> {
     Object.entries(noteModules).map(async ([path, moduleLoader]) => {
       const slug = path.replace('/src/content/notes/', '').replace('.mdx', '')
       const { frontmatter } = await moduleLoader()
-      
+
       return {
         slug,
         ...frontmatter,
       }
-    })
+    }),
   )
-  
-  // Filter out unpublished notes and sort by date (newest first)
-  const publishedNotes = notes
-    .filter(note => note.published !== false)
-    .sort((a, b) => {
-      if (a.date && b.date) {
-        return new Date(b.date).getTime() - new Date(a.date).getTime()
-      }
-      if (a.date) return -1
-      if (b.date) return 1
-      return (a.title || '').localeCompare(b.title || '')
-    })
-  
-  return publishedNotes
+
+  // Filter out hidden notes and sort by title
+  const visibleNotes = notes
+    .filter((note) => note.hide !== true)
+    .sort((a, b) => (a.title || '').localeCompare(b.title || ''))
+
+  return visibleNotes
 }
 
 export async function getNotesGraph() {
@@ -83,16 +72,3 @@ export async function getNotesGraph() {
   return { nodes, links };
 }
 
-export async function getShowcasedNotes(): Promise<Note[]> {
-  const publishedNotes = await getAllNotes();
-  return publishedNotes
-    .filter(note => note.showcase === true)
-    .sort((a, b) => {
-      if (a.date && b.date) {
-        return new Date(b.date).getTime() - new Date(a.date).getTime()
-      }
-      if (a.date) return -1
-      if (b.date) return 1
-      return (a.title || '').localeCompare(b.title || '')
-    })
-}
