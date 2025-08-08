@@ -12,6 +12,8 @@ export const Route = createFileRoute('/')({
 
 function App() {
   useLayoutEffect(() => {
+    document.title = "home | hangwl's digital gallery";
+
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
     // Create smooth scrolling

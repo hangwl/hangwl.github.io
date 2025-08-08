@@ -20,9 +20,16 @@ export const Route = createFileRoute('/projects/$slug')({
 })
 
 function ProjectPage() {
+  const { slug } = Route.useParams()
   const { Component, frontmatter } = Route.useLoaderData()
   const headings = useHeadings()
   const { setTocItems } = useTOC()
+
+  useEffect(() => {
+    if (slug) {
+      document.title = `projects | ${slug}`
+    }
+  }, [slug])
 
   useEffect(() => {
     setTocItems(headings)

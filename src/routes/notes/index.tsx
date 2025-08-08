@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { useEffect } from 'react';
 import NoteGraph from '@/components/note-graph';
 import { getNotesGraph } from '@/lib/notes';
 
@@ -9,6 +10,10 @@ export const Route = createFileRoute('/notes/')({
 
 function NotesIndex() {
   const graph = Route.useLoaderData();
+
+  useEffect(() => {
+    document.title = "notes | ...";
+  }, []);
 
   return (
     <div className="p-6">

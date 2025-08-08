@@ -20,8 +20,17 @@ export const Route = createFileRoute('/notes/$noteId')({
 
 function NotePage() {
   const { Component, frontmatter } = Route.useLoaderData();
+  const { noteId } = Route.useParams();
   const headings = useHeadings();
   const { setTocItems } = useTOC();
+
+  useEffect(() => {
+    const fallback = (noteId || '').replace(/-/g, ' ').trim().toLowerCase();
+    const name = (frontmatter?.title?.toString().trim().toLowerCase()) || fallback;
+    if (name) {
+      document.title = `notes | ${name}`;
+    }
+  }, [frontmatter?.title, noteId]);
 
   useEffect(() => {
     setTocItems(headings);
