@@ -1,4 +1,4 @@
-import{j as e}from"./index-3i9CqdL3.js";const s={title:"Retriever",links:["keyword-search","semantic-search"],hide:!1};function a(n){const t={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
+import{j as e}from"./index-BZloEFKH.js";const s={title:"Retriever",links:["keyword-search","semantic-search"],hide:!1};function a(n){const t={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
 `,e.jsx(t.p,{children:`The purpose of a retriever in the context of RAG systems is to provide useful information to LLMs so that they can generate better responses.
 While it is possible to implement a retriever that pulls data directly from a relational database that many existing systems use, setting up a separate vector database is generally more scalable.`}),`
 `,e.jsx(t.p,{children:e.jsx(t.img,{src:"/images/IwF7vGE0aa.png",alt:"Knowledge Bases"})}),`
