@@ -11,8 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ThreeIndexRouteImport } from './routes/three/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as NotesIndexRouteImport } from './routes/notes/index'
+import { Route as ThreeSpinningCubeRouteImport } from './routes/three/spinning-cube'
+import { Route as ThreeSnake3dRouteImport } from './routes/three/snake-3d'
 import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
 import { Route as NotesNoteIdRouteImport } from './routes/notes/$noteId'
 
@@ -26,6 +29,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThreeIndexRoute = ThreeIndexRouteImport.update({
+  id: '/three/',
+  path: '/three/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
@@ -35,6 +43,16 @@ const NotesIndexRoute = NotesIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => NotesRoute,
+} as any)
+const ThreeSpinningCubeRoute = ThreeSpinningCubeRouteImport.update({
+  id: '/three/spinning-cube',
+  path: '/three/spinning-cube',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThreeSnake3dRoute = ThreeSnake3dRouteImport.update({
+  id: '/three/snake-3d',
+  path: '/three/snake-3d',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
   id: '/projects/$slug',
@@ -52,15 +70,21 @@ export interface FileRoutesByFullPath {
   '/notes': typeof NotesRouteWithChildren
   '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/three/snake-3d': typeof ThreeSnake3dRoute
+  '/three/spinning-cube': typeof ThreeSpinningCubeRoute
   '/notes/': typeof NotesIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/three': typeof ThreeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/three/snake-3d': typeof ThreeSnake3dRoute
+  '/three/spinning-cube': typeof ThreeSpinningCubeRoute
   '/notes': typeof NotesIndexRoute
   '/projects': typeof ProjectsIndexRoute
+  '/three': typeof ThreeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,8 +92,11 @@ export interface FileRoutesById {
   '/notes': typeof NotesRouteWithChildren
   '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/three/snake-3d': typeof ThreeSnake3dRoute
+  '/three/spinning-cube': typeof ThreeSpinningCubeRoute
   '/notes/': typeof NotesIndexRoute
   '/projects/': typeof ProjectsIndexRoute
+  '/three/': typeof ThreeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -78,25 +105,42 @@ export interface FileRouteTypes {
     | '/notes'
     | '/notes/$noteId'
     | '/projects/$slug'
+    | '/three/snake-3d'
+    | '/three/spinning-cube'
     | '/notes/'
     | '/projects'
+    | '/three'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/notes/$noteId' | '/projects/$slug' | '/notes' | '/projects'
+  to:
+    | '/'
+    | '/notes/$noteId'
+    | '/projects/$slug'
+    | '/three/snake-3d'
+    | '/three/spinning-cube'
+    | '/notes'
+    | '/projects'
+    | '/three'
   id:
     | '__root__'
     | '/'
     | '/notes'
     | '/notes/$noteId'
     | '/projects/$slug'
+    | '/three/snake-3d'
+    | '/three/spinning-cube'
     | '/notes/'
     | '/projects/'
+    | '/three/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NotesRoute: typeof NotesRouteWithChildren
   ProjectsSlugRoute: typeof ProjectsSlugRoute
+  ThreeSnake3dRoute: typeof ThreeSnake3dRoute
+  ThreeSpinningCubeRoute: typeof ThreeSpinningCubeRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
+  ThreeIndexRoute: typeof ThreeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -115,6 +159,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/three/': {
+      id: '/three/'
+      path: '/three'
+      fullPath: '/three'
+      preLoaderRoute: typeof ThreeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/': {
       id: '/projects/'
       path: '/projects'
@@ -128,6 +179,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/notes/'
       preLoaderRoute: typeof NotesIndexRouteImport
       parentRoute: typeof NotesRoute
+    }
+    '/three/spinning-cube': {
+      id: '/three/spinning-cube'
+      path: '/three/spinning-cube'
+      fullPath: '/three/spinning-cube'
+      preLoaderRoute: typeof ThreeSpinningCubeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/three/snake-3d': {
+      id: '/three/snake-3d'
+      path: '/three/snake-3d'
+      fullPath: '/three/snake-3d'
+      preLoaderRoute: typeof ThreeSnake3dRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/projects/$slug': {
       id: '/projects/$slug'
@@ -162,7 +227,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NotesRoute: NotesRouteWithChildren,
   ProjectsSlugRoute: ProjectsSlugRoute,
+  ThreeSnake3dRoute: ThreeSnake3dRoute,
+  ThreeSpinningCubeRoute: ThreeSpinningCubeRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
+  ThreeIndexRoute: ThreeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
