@@ -36,11 +36,32 @@ const Icons = {
       ></path>
     </svg>
   ),
+  threejs: (props: IconProps) => (
+    <svg viewBox="0 0 226.77 226.77" fill="none" {...props}>
+      <g
+        transform="translate(8.964 4.2527)"
+        fillRule="evenodd"
+        stroke="currentColor"
+        strokeLinecap="butt"
+        strokeLinejoin="round"
+        strokeMiterlimit={10}
+        strokeWidth={10}
+      >
+        <path d="m63.02 200.61-43.213-174.94 173.23 49.874z"/>
+        <path d="m106.39 50.612 21.591 87.496-86.567-24.945z"/>
+        <path d="m84.91 125.03-10.724-43.465 43.008 12.346z"/>
+        <path d="m63.458 38.153 10.724 43.465-43.008-12.346z"/>
+        <path d="m149.47 62.93 10.724 43.465-43.008-12.346z"/>
+        <path d="m84.915 125.06 10.724 43.465-43.008-12.346z"/>
+      </g>
+    </svg>
+  ),
 };
 
 const DATA = {
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/three", icon: Icons.threejs, label: "Three.js" },
     { href: "/notes", icon: NotebookPen, label: "Notes" },
   ],
   contact: {
@@ -65,6 +86,22 @@ const DATA = {
 };
 
 export function AppDock() {
+  const [isCoarsePointer, setIsCoarsePointer] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mql = window.matchMedia("(pointer: coarse)");
+    const update = () => setIsCoarsePointer(mql.matches);
+    update();
+    if (typeof mql.addEventListener === "function") {
+      mql.addEventListener("change", update);
+      return () => mql.removeEventListener("change", update);
+    } else if (typeof mql.addListener === "function") {
+      mql.addListener(update);
+      return () => mql.removeListener(update);
+    }
+  }, []);
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-4 pointer-events-none">
       <div className="pointer-events-auto">
@@ -82,47 +119,74 @@ export function AppDock() {
 
               return (
                 <DockIcon key={item.label}>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      {isNotesLink ? (
-                        <a href={item.href} {...commonProps}>
-                          <item.icon className="size-4" />
-                        </a>
-                      ) : (
-                        <Link to={item.href} {...commonProps}>
-                          <item.icon className="size-4" />
-                        </Link>
-                      )}
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{item.label}</p>
-                    </TooltipContent>
-                  </Tooltip>
+                  {isCoarsePointer ? (
+                    isNotesLink ? (
+                      <a href={item.href} {...commonProps}>
+                        <item.icon className="size-4" />
+                      </a>
+                    ) : (
+                      <Link to={item.href} {...commonProps}>
+                        <item.icon className="size-4" />
+                      </Link>
+                    )
+                  ) : (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        {isNotesLink ? (
+                          <a href={item.href} {...commonProps}>
+                            <item.icon className="size-4" />
+                          </a>
+                        ) : (
+                          <Link to={item.href} {...commonProps}>
+                            <item.icon className="size-4" />
+                          </Link>
+                        )}
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{item.label}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  )}
                 </DockIcon>
               );
             })}
             <Separator orientation="vertical" className="h-full" />
             {Object.entries(DATA.contact.social).map(([name, social]) => (
               <DockIcon key={name}>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <a
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.name}
-                      className={cn(
-                        buttonVariants({ variant: "ghost", size: "icon" }),
-                        "size-12 rounded-full",
-                      )}
-                    >
-                      <social.icon className="size-4" />
-                    </a>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{social.name}</p>
-                  </TooltipContent>
-                </Tooltip>
+                {isCoarsePointer ? (
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "size-12 rounded-full",
+                    )}
+                  >
+                    <social.icon className="size-4" />
+                  </a>
+                ) : (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.name}
+                        className={cn(
+                          buttonVariants({ variant: "ghost", size: "icon" }),
+                          "size-12 rounded-full",
+                        )}
+                      >
+                        <social.icon className="size-4" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{social.name}</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
               </DockIcon>
             ))}
             {/* <Separator orientation="vertical" className="h-full py-2" />

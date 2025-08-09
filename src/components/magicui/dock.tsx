@@ -45,6 +45,24 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     ref,
   ) => {
     const mouseX = useMotionValue(Infinity);
+    const [hasInteracted, setHasInteracted] = React.useState(false);
+    const [isCoarsePointer, setIsCoarsePointer] = React.useState(false);
+
+    // Detect coarse pointer (mobile/touch) to disable transforms entirely
+    React.useEffect(() => {
+      if (typeof window === "undefined" || !window.matchMedia) return;
+      const mql = window.matchMedia("(pointer: coarse)");
+      const update = () => setIsCoarsePointer(mql.matches);
+      update();
+      // Some browsers use addEventListener, others use addListener (legacy)
+      if (typeof mql.addEventListener === "function") {
+        mql.addEventListener("change", update);
+        return () => mql.removeEventListener("change", update);
+      } else if (typeof mql.addListener === "function") {
+        mql.addListener(update);
+        return () => mql.removeListener(update);
+      }
+    }, []);
 
     const renderChildren = () => {
       return React.Children.map(children, (child) => {
@@ -54,10 +72,11 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
         ) {
           return React.cloneElement(child, {
             ...child.props,
-            mouseX: mouseX,
+            mouseX: isCoarsePointer ? undefined : hasInteracted ? mouseX : undefined,
             size: iconSize,
             magnification: iconMagnification,
             distance: iconDistance,
+            disableTransform: isCoarsePointer,
           });
         }
         return child;
@@ -67,8 +86,19 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
     return (
       <motion.div
         ref={ref}
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
+        onMouseMove={isCoarsePointer ? undefined : (e) => {
+          if (!hasInteracted) setHasInteracted(true);
+          mouseX.set(e.pageX);
+        }}
+        onMouseLeave={isCoarsePointer ? undefined : () => mouseX.set(Infinity)}
+        // Do not track pointer on coarse devices; leave handlers undefined
+        onPointerMove={isCoarsePointer ? undefined : (e) => {
+          if (!hasInteracted) setHasInteracted(true);
+          mouseX.set(e.pageX);
+        }}
+        onPointerUp={isCoarsePointer ? undefined : () => mouseX.set(Infinity)}
+        onPointerCancel={isCoarsePointer ? undefined : () => mouseX.set(Infinity)}
+        onPointerLeave={isCoarsePointer ? undefined : () => mouseX.set(Infinity)}
         {...props}
         className={cn(dockVariants({ className }), {
           "items-start": direction === "top",
@@ -93,6 +123,7 @@ export interface DockIconProps
   className?: string;
   children?: React.ReactNode;
   props?: PropsWithChildren;
+  disableTransform?: boolean;
 }
 
 const DockIcon = ({
@@ -102,6 +133,7 @@ const DockIcon = ({
   mouseX,
   className,
   children,
+  disableTransform,
   ...props
 }: DockIconProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -128,7 +160,7 @@ const DockIcon = ({
   return (
     <motion.div
       ref={ref}
-      style={{ width: scaleSize, height: scaleSize, padding }}
+      style={{ width: disableTransform ? size : (scaleSize as any), height: disableTransform ? size : (scaleSize as any), padding }}
       className={cn(
         "flex aspect-square cursor-pointer items-center justify-center rounded-full",
         className,
