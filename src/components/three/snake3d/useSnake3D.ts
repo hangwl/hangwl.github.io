@@ -24,9 +24,17 @@ export function useSnake3D(grid: GridConfig) {
   const runningRef = useRef(false)
   const hasStartedRef = useRef(false)
   const gameOverRef = useRef(false)
+  const lastGameOverAtRef = useRef(0)
   useEffect(() => { runningRef.current = state.running }, [state.running])
   useEffect(() => { hasStartedRef.current = state.hasStarted }, [state.hasStarted])
-  useEffect(() => { gameOverRef.current = state.gameOver }, [state.gameOver])
+  useEffect(() => {
+    const was = gameOverRef.current
+    gameOverRef.current = state.gameOver
+    if (!was && state.gameOver) {
+      // record the moment we entered game over
+      lastGameOverAtRef.current = performance.now()
+    }
+  }, [state.gameOver])
 
   // three
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
@@ -70,6 +78,18 @@ export function useSnake3D(grid: GridConfig) {
     let w = mount.clientWidth
     if (!w && mount.parentElement) w = (mount.parentElement as HTMLElement).clientWidth
     const targetRatio = 0.62
+    // When in fullscreen, expand to the full viewport size
+    const isFs = !!document.fullscreenElement
+    if (isFs) {
+      const h = Math.max(1, window.innerHeight)
+      const fsW = Math.max(1, window.innerWidth)
+      camera.aspect = fsW / h
+      camera.updateProjectionMatrix()
+      setupRenderer(fsW, h)
+      setCanvasH(h)
+      if (miniCanvasRef.current) twoDRef.current?.resize(fsW, h)
+      return
+    }
     const maxH = Math.min(560, Math.floor(window.innerHeight * 0.8))
     const minH = 320
     const h = Math.max(minH, Math.min(maxH, Math.round(w * targetRatio)))
@@ -129,7 +149,15 @@ export function useSnake3D(grid: GridConfig) {
         })
         return
       }
-      if (k === 'r') { reset(); return }
+      if (k === 'r') {
+        // prevent accidental restart within 1s of game over
+        const now = performance.now()
+        if (gameOverRef.current && now - lastGameOverAtRef.current < 1000) {
+          return
+        }
+        reset();
+        return
+      }
       if (k === 'arrowleft' || k === 'a') {
         setState((s) => ({ ...s, pendingDir: turnLeft(s.dir) }))
       } else if (k === 'arrowright' || k === 'd') {
@@ -170,6 +198,8 @@ export function useSnake3D(grid: GridConfig) {
     const resizeHandler = () => onResize()
     resizeHandler()
     window.addEventListener('resize', resizeHandler)
+    // Ensure fullscreen transitions trigger a resize
+    document.addEventListener('fullscreenchange', resizeHandler)
 
     // initial food and camera reset
     setState((s) => {
@@ -245,6 +275,7 @@ export function useSnake3D(grid: GridConfig) {
     return () => {
       cancelAnimationFrame(raf)
       window.removeEventListener('resize', resizeHandler)
+      document.removeEventListener('fullscreenchange', resizeHandler)
       // dispose
       rendererRef.current?.dispose()
       parts.cleanup()
@@ -259,6 +290,11 @@ export function useSnake3D(grid: GridConfig) {
   }, [grid])
 
   const onCanvasClick = useCallback(() => {
+    // prevent accidental restart within 1s of game over
+    const now = performance.now()
+    if (gameOverRef.current && now - lastGameOverAtRef.current < 1000) {
+      return
+    }
     setState((s) => {
       if (s.gameOver) {
         const next = createInitialState(grid)

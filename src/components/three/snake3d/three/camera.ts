@@ -56,9 +56,9 @@ export function createCameraController(camera: THREE.PerspectiveCamera, grid: Gr
         targetLook.copy(headWorld)
       }
 
-      // Per-mode smoothing: chase (0.10/0.10), first (0.18/0.22), top defaults to chase values
+      // Smoothing values
       const ps = mode === 'first' ? 0.20 : mode === 'chase' ? 0.10 : 0.10
-      const ls = mode === 'first' ? 0.20 : mode === 'chase' ? 0.10 : 0.10
+      const ls = mode === 'first' ? 0.50 : mode === 'chase' ? 0.10 : 0.10
       const posAlpha = 1 - Math.pow(1 - ps, dt * 60)
       const lookAlpha = 1 - Math.pow(1 - ls, dt * 60)
       camPosLerp.lerp(targetPos, posAlpha)

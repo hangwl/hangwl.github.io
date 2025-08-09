@@ -10,14 +10,38 @@ export const Route = createFileRoute('/three/snake-3d')({
 function Snake3DRoute() {
   useEffect(() => {
     document.title = 'three | snake 3d'
+    // Lock scrolling for immersive full-screen experience
+    const html = document.documentElement
+    const body = document.body
+    const prevHtmlOverflow = html.style.overflow
+    const prevBodyOverflow = body.style.overflow
+    const prevOverscroll = body.style.overscrollBehavior
+    const prevHtmlBg = html.style.backgroundColor
+    const prevBodyBg = body.style.backgroundColor
+    html.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
+    body.style.overscrollBehavior = 'none'
+    // Force a black page background to avoid themed edges on mobile safe areas
+    html.style.backgroundColor = 'black'
+    body.style.backgroundColor = 'black'
+
+    return () => {
+      html.style.overflow = prevHtmlOverflow
+      body.style.overflow = prevBodyOverflow
+      body.style.overscrollBehavior = prevOverscroll
+      html.style.backgroundColor = prevHtmlBg
+      body.style.backgroundColor = prevBodyBg
+    }
   }, [])
 
   return (
-    <div className="px-4 py-10 max-w-5xl mx-auto my-8 space-y-4">
-      <header className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Snake 3D</h1>
-      </header>
-      <Snake3D />
+    <div
+      className="fixed inset-0 w-screen bg-black flex items-center justify-center"
+      style={{ height: '100dvh' }}
+    >
+      <div className="w-screen">
+        <Snake3D />
+      </div>
     </div>
   )
 }

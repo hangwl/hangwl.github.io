@@ -5,14 +5,15 @@ type Props = {
   show2D: boolean
   onCanvasClick: () => void
   miniCanvasRef?: RefObject<HTMLCanvasElement | null>
+  containerRef?: RefObject<HTMLDivElement | null>
 }
 
 export const Snake3DCanvas = forwardRef<HTMLDivElement, Props>(function Snake3DCanvas(
-  { height, show2D, onCanvasClick, miniCanvasRef },
+  { height, show2D, onCanvasClick, miniCanvasRef, containerRef },
   ref,
 ) {
   return (
-    <div className="relative rounded-lg overflow-hidden border bg-card w-full" style={{ height }}>
+    <div ref={containerRef} className="relative overflow-hidden w-full" style={{ height }}>
       <div ref={ref} className={`absolute inset-0 z-0 ${show2D ? 'opacity-0 pointer-events-none' : ''}`} />
       {show2D && (
         <canvas ref={miniCanvasRef} className="absolute inset-0 z-0 bg-black" />

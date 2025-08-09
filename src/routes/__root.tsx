@@ -30,18 +30,19 @@ export const Route = createRootRoute({
   component: () => {
     const pathname = useRouterState({ select: (s) => s.location.pathname })
     const isNotes = pathname.startsWith('/notes')
+    const isImmersive = pathname.startsWith('/three/snake-3d')
 
     return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <TOCProvider>
         <>
-        {!isNotes && (
+        {!isNotes && !isImmersive && (
           <>
             <Header />
           </>
         )}
-        <BackgroundGrid />
-        <AppDock />
+        {!isImmersive && <BackgroundGrid />}
+        {!isImmersive && <AppDock />}
         <Outlet />
         <TanStackRouterDevtools />
         </>
