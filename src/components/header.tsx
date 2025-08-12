@@ -1,7 +1,6 @@
 import { HyperText } from "@/components/magicui/hyper-text";
 import { ModeToggle } from "@/components/mode-toggle";
 import { DocSearch } from '@docsearch/react';
-import { useRouter } from '@tanstack/react-router';
 import { cn } from '@/lib/utils';
 import { useTOC } from '@/context/toc-context';
 import { TableOfContents } from './table-of-contents';
@@ -15,18 +14,13 @@ import {
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
-  const router = useRouter()
   const { tocItems } = useTOC();
-  const currentPath = router.state.location.pathname
-  const isProjectPage = currentPath.startsWith('/projects/')
   const hasTOC = tocItems.length > 0;
   
   return (
     <header id="main-header" className={cn(
       "fixed top-0 left-0 right-0 z-50 flex items-center justify-between w-full px-4 py-2 transition-all duration-200",
-      isProjectPage 
-        ? "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md border-b border-border/40" 
-        : "bg-transparent"
+      "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 backdrop-blur-md border-b border-border/40"
     )}>
       <div className="flex items-center gap-4">
         <HyperText>hangwl</HyperText>

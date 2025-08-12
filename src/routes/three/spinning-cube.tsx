@@ -19,7 +19,7 @@ function SpinningCubeRoute() {
 
   return (
     <div className="px-4 py-10 max-w-5xl mx-auto my-8">
-      <header className="space-y-2">
+      <header className="space-y-2 my-4">
         <h1 className="text-3xl font-bold tracking-tight">Spinning Cube</h1>
         <p className="text-muted-foreground">Interactive cube demo with controls.</p>
       </header>
