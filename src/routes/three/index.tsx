@@ -7,7 +7,7 @@ export const Route = createFileRoute('/three/')({
 
 function ThreeIndex() {
   useEffect(() => {
-    document.title = "three | hangwl's digital gallery"
+    document.title = "three | experiments"
   }, [])
 
   return (
