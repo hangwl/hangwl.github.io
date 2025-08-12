@@ -1,0 +1,1 @@
+import{j as e}from"./index-CuO8E2uv.js";const c={title:"Hybrid Search",hide:!1};function o(t){const n={h2:"h2",...t.components};return e.jsx(n.h2,{children:"Introduction"})}function s(t={}){const{wrapper:n}=t.components||{};return n?e.jsx(n,{...t,children:e.jsx(o,{...t})}):o(t)}export{s as default,c as frontmatter};
