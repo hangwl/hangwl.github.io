@@ -148,3 +148,6 @@ count.txt
 .env
 .nitro
 .tanstack
+
+# VSCode
+.vscode/
