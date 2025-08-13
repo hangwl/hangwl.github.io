@@ -4,3 +4,27 @@ hide: false
 ---
 
 ## Introduction
+
+Hybrid search combines both keyword and semantic search into a single retrieval pipeline. 
+Metadata filters are applied over search search approach as needed. 
+The result is the retrieval of separately filtered and ranked documents from the two search approaches. 
+These documents need to be combined to form a single continuous ranking.
+
+## Reciprocal Rank Fusion
+
+RFF (Reciprocal Rank Fusion) is a commonly used algorithm used to combined ranked lists. 
+It assigns a score to a document based on its rank across all of the lists it appears in.
+
+![Reciprocal Rank Fusion](/images/l5nIGZtLDW.png)
+
+### K Parameter
+
+![k Parameter](/images/IhpORJbRXX.png)
+
+>The k parameter is typically set to a small integer like 60 to prevent the score from being dominated by a single document that is ranked highly in only one list. It acts as a smoothing factor, giving more weight to a document that appears consistently high in multiple lists, rather than a document that is ranked extremely high in just one. 
+
+## Beta Parameter
+
+To set a weight to the ranked scores from each search approach, hybrid search systems can include a Beta parameter.
+
+![Beta Parameter](/images/rGzOMKumzS.png)
