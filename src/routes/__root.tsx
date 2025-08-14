@@ -30,7 +30,7 @@ export const Route = createRootRoute({
   component: () => {
     const pathname = useRouterState({ select: (s) => s.location.pathname })
     const isNotes = pathname.startsWith('/notes')
-    const isImmersive = pathname.startsWith('/three/snake-3d')
+    const isImmersive = pathname.startsWith('/lab/snake-3d')
 
     return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
