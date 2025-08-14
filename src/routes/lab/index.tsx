@@ -3,21 +3,21 @@ import { useEffect } from 'react'
 import { MagicCard } from '@/components/magicui/magic-card'
 import { useTheme } from '@/components/theme-provider'
 
-export const Route = createFileRoute('/three/')({
+export const Route = createFileRoute('/lab/')({
   component: ThreeIndex,
 })
 
 function ThreeIndex() {
   const { resolvedTheme } = useTheme()
   useEffect(() => {
-    document.title = "three | experiments"
+    document.title = "lab | experiments"
   }, [])
 
   return (
     <div className="px-4 py-10 max-w-5xl mx-auto my-8">
       <header className="space-y-2 my-4">
-        <h1 className="text-3xl font-bold tracking-tight">Three.js Experiments</h1>
-        <p className="text-muted-foreground">A playground of small visualizations and shaders.</p>
+        <h1 className="text-3xl font-bold tracking-tight">Experiments</h1>
+        <p className="text-muted-foreground">A playground of threejs experiments and more.</p>
       </header>
 
       {/* Demos list */}
@@ -30,7 +30,7 @@ function ThreeIndex() {
               gradientColor={resolvedTheme === "dark" ? "#262626" : "#D9D9D955"}
             >
               <Link
-                to="/three/spinning-cube"
+                to="/lab/spinning-cube"
                 className="block p-4"
               >
                 <div className="font-medium">Spinning Cube</div>
@@ -44,7 +44,7 @@ function ThreeIndex() {
               gradientColor={resolvedTheme === "dark" ? "#262626" : "#D9D9D955"}
             >
               <Link
-                to="/three/snake-3d"
+                to="/lab/snake-3d"
                 className="block p-4"
               >
                 <div className="font-medium">Snake 3D</div>

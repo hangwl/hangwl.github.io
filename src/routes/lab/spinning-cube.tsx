@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
 import SpinningCube from '@/components/three/SpinningCube'
 
-export const Route = createFileRoute('/three/spinning-cube')({
+export const Route = createFileRoute('/lab/spinning-cube')({
   component: SpinningCubeRoute,
 })
 

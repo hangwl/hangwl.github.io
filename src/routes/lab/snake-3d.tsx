@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { Snake3D } from '../../components/three/snake3d'
 
-export const Route = createFileRoute('/three/snake-3d')({
+export const Route = createFileRoute('/lab/snake-3d')({
   component: Snake3DRoute,
 })
 
