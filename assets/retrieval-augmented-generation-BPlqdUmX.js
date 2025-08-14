@@ -1,4 +1,4 @@
-import{j as e}from"./index-Dyr69eMO.js";const r={title:"Retrieval Augmented Generation",links:["retriever"],hide:!1};function i(t){const n={h2:"h2",img:"img",li:"li",p:"p",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-DLuQ13vk.js";const r={title:"Retrieval Augmented Generation",links:["retriever"],hide:!1};function i(t){const n={h2:"h2",img:"img",li:"li",p:"p",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsx(n.p,{children:'Retrieval Augmented Generation (RAG) is an approach that improves the capabilities of LLMs through the addition of information retrieval modules that allow the generation of more accurate and relevant "reasoning" outputs.'}),`
 `,e.jsx(n.p,{children:e.jsx(n.img,{src:"/images/2QEYdCD9An.png",alt:"RAG Diagram"})}),`
 `,e.jsx(n.h2,{children:"Limitations"}),`

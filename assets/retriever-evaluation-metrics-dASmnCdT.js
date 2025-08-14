@@ -1,2 +1,2 @@
-import{j as t}from"./index-Dyr69eMO.js";const a={title:"Retriever Evaluation Metrics"};function r(e){const n={h2:"h2",p:"p",...e.components};return t.jsxs(t.Fragment,{children:[t.jsx(n.h2,{children:"Introduction"}),`
+import{j as t}from"./index-DLuQ13vk.js";const a={title:"Retriever Evaluation Metrics"};function r(e){const n={h2:"h2",p:"p",...e.components};return t.jsxs(t.Fragment,{children:[t.jsx(n.h2,{children:"Introduction"}),`
 `,t.jsx(n.p,{children:"Retriever evaluation metrics are used to evaluate the performance of a retriever."})]})}function c(e={}){const{wrapper:n}=e.components||{};return n?t.jsx(n,{...e,children:t.jsx(r,{...e})}):r(e)}export{c as default,a as frontmatter};
