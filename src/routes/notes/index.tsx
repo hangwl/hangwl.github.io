@@ -6,6 +6,7 @@ import { getNotesGraph } from '@/lib/notes';
 export const Route = createFileRoute('/notes/')({
   loader: getNotesGraph,
   component: NotesIndex,
+  staleTime: Infinity,
 });
 
 function NotesIndex() {

@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, memo } from 'react'
+import { useRef, useState, useEffect, memo, useMemo } from 'react'
 import ForceGraph2D, { GraphData, NodeObject, LinkObject } from 'react-force-graph-2d'
 import { useNavigate } from '@tanstack/react-router'
 import { useTheme } from './theme-provider'
@@ -57,57 +57,61 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
     }
   }
 
+    const memoizedGraph = useMemo(() => (
+    <ForceGraph2D
+      width={dimensions.width}
+      height={dimensions.height}
+      graphData={graph}
+      onNodeHover={node => !draggedNode && setHoveredNode(node)}
+      onNodeDrag={node => {
+        setDraggedNode(node);
+        setHoveredNode(null); // Clear hover on drag start
+      }}
+      onNodeDragEnd={() => {
+        setDraggedNode(null);
+      }}
+      nodeCanvasObject={(node: any, ctx, globalScale) => {
+        const label = node.title || node.id;
+        const fontSize = 12 / globalScale;
+        ctx.font = `${fontSize}px Sans-Serif`;
+
+        const isHovered = hoveredNode && hoveredNode.id === node.id;
+        const isDragged = draggedNode && draggedNode.id === node.id;
+        const radius = isHovered || isDragged ? 5 : 4;
+        const color = isHovered || isDragged ? '#ef4444' : colors.node; // red-500
+
+        // Draw node circle
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI, false);
+        ctx.fillStyle = color;
+        ctx.fill();
+
+        // Draw label
+        const textX = node.x;
+        const textY = node.y + radius + 2;
+
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'top';
+        ctx.fillStyle = colors.text;
+        ctx.fillText(label, textX, textY);
+      }}
+      onNodeClick={handleNodeClick}
+      onLinkClick={handleLinkClick}
+      linkColor={() => colors.link}
+      linkDirectionalArrowLength={0}
+      linkDirectionalArrowRelPos={1}
+      nodeRelSize={4}
+      enableNodeDrag={true}
+      cooldownTicks={100}
+    />
+  ), [dimensions, graph, hoveredNode, draggedNode, colors, navigate]);
+
   return (
     <div
       ref={containerRef}
       className="w-full h-[60vh] rounded-lg border border-border/40 backdrop-blur-md bg-background/80 dark:bg-black/20 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10"
     >
-      <ForceGraph2D
-        width={dimensions.width}
-        height={dimensions.height}
-        graphData={graph}
-        onNodeHover={node => !draggedNode && setHoveredNode(node)}
-        onNodeDrag={node => {
-          setDraggedNode(node);
-          setHoveredNode(null); // Clear hover on drag start
-        }}
-        onNodeDragEnd={() => {
-          setDraggedNode(null);
-        }}
-        nodeCanvasObject={(node: any, ctx, globalScale) => {
-          const label = node.title || node.id;
-          const fontSize = 12 / globalScale;
-          ctx.font = `${fontSize}px Sans-Serif`;
-
-          const isHovered = hoveredNode && hoveredNode.id === node.id;
-          const isDragged = draggedNode && draggedNode.id === node.id;
-          const radius = isHovered || isDragged ? 5 : 4;
-          const color = isHovered || isDragged ? '#ef4444' : colors.node; // red-500
-
-          // Draw node circle
-          ctx.beginPath();
-          ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI, false);
-          ctx.fillStyle = color;
-          ctx.fill();
-
-          // Draw label
-          const textX = node.x;
-          const textY = node.y + radius + 2;
-
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'top';
-          ctx.fillStyle = colors.text;
-          ctx.fillText(label, textX, textY);
-        }}
-        onNodeClick={handleNodeClick}
-        onLinkClick={handleLinkClick}
-        linkColor={() => colors.link}
-        linkDirectionalArrowLength={0}
-        linkDirectionalArrowRelPos={1}
-        nodeRelSize={4}
-        enableNodeDrag={true}
-        cooldownTicks={100}
-      />
+      {memoizedGraph}
     </div>
   )
 });

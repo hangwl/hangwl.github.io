@@ -88,7 +88,6 @@ export function AppDock() {
         <TooltipProvider>
           <Dock direction="middle">
             {DATA.navbar.map((item) => {
-              const isNotesLink = item.href === "/notes";
               const commonProps = {
                 "aria-label": item.label,
                 className: cn(
@@ -100,27 +99,15 @@ export function AppDock() {
               return (
                 <DockIcon key={item.label}>
                   {isCoarsePointer ? (
-                    isNotesLink ? (
-                      <a href={item.href} {...commonProps}>
-                        <item.icon className="size-4" />
-                      </a>
-                    ) : (
-                      <Link to={item.href} {...commonProps}>
-                        <item.icon className="size-4" />
-                      </Link>
-                    )
+                    <Link to={item.href} {...commonProps}>
+                      <item.icon className="size-4" />
+                    </Link>
                   ) : (
                     <Tooltip>
                       <TooltipTrigger asChild>
-                        {isNotesLink ? (
-                          <a href={item.href} {...commonProps}>
-                            <item.icon className="size-4" />
-                          </a>
-                        ) : (
-                          <Link to={item.href} {...commonProps}>
-                            <item.icon className="size-4" />
-                          </Link>
-                        )}
+                        <Link to={item.href} {...commonProps}>
+                          <item.icon className="size-4" />
+                        </Link>
                       </TooltipTrigger>
                       <TooltipContent>
                         <p>{item.label}</p>
