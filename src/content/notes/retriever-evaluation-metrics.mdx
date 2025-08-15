@@ -4,4 +4,60 @@ title: "Retriever Evaluation Metrics"
 
 ## Introduction
 
-Retriever evaluation metrics are used to evaluate the performance of a retriever. 
+The primary goal of establishing metrics for information retrievers is to optimize the quality of search results. 
+While there are various other metrics such as latency, throughput, resource usage, etc., 
+the main metric we want to focus on is **document relevance**. 
+
+## Requirements
+
+To evaluate the performance of a retriever, we need to first prepare a collection of **ground truths**. 
+Specifically, a variety of prompts should be prepared to feed the retriever, and the retrieved documents should be manually verified to be relevant to the prompts. 
+If feasible, we can also identify a ranked list of relevant documents for each prompt, and use them as the ground truth. 
+
+![Common Ingredients](/images/aPRyJIzz4I.png)
+
+## Evaluation Metrics
+
+The goal of establishing evaluation metrics is to optimize the retriever's ability to retrieve relevant documents. 
+This is typically via the use of **precision** and **recall**. 
+
+- **Precision** measures the proportion of relevant documents retrieved out of a pool of retrieved documents. 
+- **Recall** measures the proportion of relevant documents retrieved out of a pool of **all (ground truth)** documents. 
+
+![Precision and Recall](/images/hfLUtHTwIA.png)
+
+>When optimizing a retriever, we normally need to consider tradeoffs between precision and recall. 
+That is, we may choose to cast a wider net to retrieve more documents and improve recall. 
+However, this may come at the cost of precision, as more irrelevant documents may also be retrieved. 
+
+### Top-K
+
+Typically in RAG systems, the **top-k highest ranked documents** are retrieved for evaluation across **different values of k**. 
+This is so that we can gather a more holistic assessment of the retriever's performance. 
+
+### Recall at K (Recall@K)
+
+Recall or Recall@K is generally the most commonly used metric for evaluating the performance of retrievers in retrieving relevant documents. 
+
+>However it does not account for the ranking of retrieved documents, and assumes a complete collection of ground truths. 
+This is often impractical nor feasible in large-scale knowledge bases that are continuously growing.
+
+### Mean Average Precision at K (MAP@K)
+
+The MAP@K metric measures the average precision of the top-k highest ranked documents that are **relevant**, averaged across various prompts. 
+
+>A high MAP@K score suggests that the retriever performs well in retrieving relevant documents, whilst at the same time excluding irrelevant documents. 
+
+![Mean Average Precision at K (MAP@K)](/images/ckkNZeL6Ot.png)
+
+### Mean Reciprocal Rank (MRR)
+
+MRR measures the **rank of the first relevant document** in the returned list of retrieved documents, averaged across various prompts. 
+It generally measures how well the retriever performs at the top of ranked documents.
+
+>A poor MRR score is a strong signal that the system isn't effectively ranking the correct documents at the top of its results. 
+Key reasons may include problems with the ranking algorithm itself, poor document indexing, bad ground truths or prompts that are too vague.
+
+![Mean Reciprocal Rank 1](/images/Zc7tzGmaSt.png)
+
+![Mean Reciprocal Rank 2](/images/0nA49Uw3hB.png)
