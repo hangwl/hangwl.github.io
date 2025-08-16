@@ -1,0 +1,15 @@
+---
+title: "Reranking"
+---
+
+## Introduction
+
+Reranking is a **post-retrieval process** whereby retrieved documents as reordered using high-performing models to assess their relevance to a given query. 
+
+Typically, rerankers have a **cross-encoder** architecture that may increase the latency of the system. 
+However, they can significantly improve the ranking quality of the retrieved documents. 
+
+Alternatively, **LLMs** can also be used as a reranker. 
+Although this approach seems increasingly feasible as LLMs become cheaper, it is as inefficient as a cross-encoder model simply because vectors cannot be precomputed. 
+
+![Reranking](/images/hH4trChWVS.png)

@@ -3,3 +3,36 @@ title: "Query Parsing"
 ---
 
 ## Introduction
+
+Human submitted queries tend to be **vague and ambiguous**. 
+If we vectorize these queries directly and submit them to a retriever, it is likely that the retrieved documents are not what the user is actually looking for. 
+
+To address this, there are several things we options we can consider to **transform and optimize these queries** and improve retrieval performance. 
+
+### Query Rewriting
+
+**Query Rewriting** is the most common query parsing technique that uses an **LLM to rewrite a query** into clearer and more precise queries. 
+The transformed queries may contain **more relevant keywords**, and as well as **better represent the user's intent**. 
+
+![Query Rewriting](/images/Y3q56UlpcG.png)
+
+![Query Rewriting Example](/images/HYL1byWgqr.png)
+
+### Named Entity Recognition
+
+A more advanced query parsing technique is **Named Entity Recognition (NER)**. 
+An NER model can be used to identify and **categorize entities** within a query, effectively **tagging** them with relevant **labels**. 
+This allows the search process to become more **targeted and focused**, and is particularly useful for retrievers that implement **metadata filtering**. 
+
+An example of such a model is the <a href="https://github.com/urchade/GLiNER" target="_blank">GLiNER model</a>. 
+Given an input text, it can identify relevant entities and assign category labels to them. 
+
+![GLiNER](/images/nA8Zcr0uvh.png)
+
+### Hypothetical Document Embeddings (HyDE)
+
+Another advanced query parsing technique is **Hypothetical Document Embeddings (HyDE)**. 
+As its name suggests, a hypothetical document is generated given an initial input query. 
+This hypothetical document is then used to generate a vector embedding that is submitted to a retriever to retrieve relevant documents. 
+
+>The main drawback of HyDE is that it depends on the underlying LLM used to generate the hypothetical document. 
