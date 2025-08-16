@@ -1,1 +1,0 @@
-import{j as e}from"./index-C_fwGqWz.js";const c={title:"Query Parsing"};function o(t){const n={h2:"h2",...t.components};return e.jsx(n.h2,{children:"Introduction"})}function s(t={}){const{wrapper:n}=t.components||{};return n?e.jsx(n,{...t,children:e.jsx(o,{...t})}):o(t)}export{s as default,c as frontmatter};

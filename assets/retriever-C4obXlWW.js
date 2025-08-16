@@ -1,4 +1,4 @@
-import{j as e}from"./index-C_fwGqWz.js";const s={title:"Retriever",links:["keyword-search","semantic-search","retriever-evaluation-metrics","vector-databases","query-parsing"],hide:!1};function a(n){const t={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
+import{j as e}from"./index-CifEWHmu.js";const s={title:"Retriever",links:["keyword-search","semantic-search","retriever-evaluation-metrics","vector-databases","query-parsing","cross-encoders","reranking"],hide:!1};function r(n){const t={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
 `,e.jsx(t.p,{children:`The purpose of a retriever in the context of RAG systems is to provide useful information to LLMs so that they can generate better responses.
 While it is possible to implement a retriever that pulls data directly from a relational database that many existing systems use, setting up a separate vector database is generally more scalable.`}),`
 `,e.jsx(t.p,{children:e.jsx(t.img,{src:"/images/IwF7vGE0aa.png",alt:"Knowledge Bases"})}),`
@@ -23,4 +23,4 @@ The decision on how to optimize the retrieval process for both approaches depend
 `,e.jsx(t.p,{children:"To improve retrieval precision, retrievers can apply metadata filters to exclude documents that do not contain specific metadata tags."}),`
 `,e.jsxs(t.blockquote,{children:[`
 `,e.jsx(t.p,{children:"Note that this metadata filtering layer depends on the richness of the underlying metadata that is available. In the real world, data originating from different sources are bound to be unstandardized and inconsistent. Hence the need for data engineers and data janitors."}),`
-`]})]})}function o(n={}){const{wrapper:t}=n.components||{};return t?e.jsx(t,{...n,children:e.jsx(a,{...n})}):a(n)}export{o as default,s as frontmatter};
+`]})]})}function o(n={}){const{wrapper:t}=n.components||{};return t?e.jsx(t,{...n,children:e.jsx(r,{...n})}):r(n)}export{o as default,s as frontmatter};
