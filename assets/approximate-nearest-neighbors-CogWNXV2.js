@@ -1,7 +1,7 @@
-import{j as e}from"./index-CoZp0siZ.js";const s={title:"Approximate Nearest Neighbors (ANN)"};function n(r){const t={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...r.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
+import{j as e}from"./index-C_fwGqWz.js";const s={title:"Approximate Nearest Neighbors (ANN)"};function n(r){const t={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...r.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
 `,e.jsxs(t.p,{children:[`A traditional relational database can be used to power a RAG system but are unlikely to scale well for projects that require searching across a large number of document vectors.\r
 This is because traditional databases typically rely on an `,e.jsx(t.strong,{children:"exhaustive search"}),` process which brings about significant computational overhead\r
-to calculate te distance between a query vector and every single document vector in the database.`]}),`
+to calculate the distance between a query vector and every single document vector in the database.`]}),`
 `,e.jsxs(t.p,{children:["Dedicated vector databases approach this problem by employing ",e.jsx(t.strong,{children:"specialized indexing algorithms"})," that organize vectors in a way that enables fast ",e.jsx(t.strong,{children:"approximate searches"}),`.\r
 While approximate search techniques may worsen retrieval accuracy, the `,e.jsx(t.strong,{children:"improved search latency"})," is generally worth it when working with large document collections in production."]}),`
 `,e.jsx(t.h2,{children:"Navigable Small World (NSW)"}),`

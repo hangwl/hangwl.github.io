@@ -1,4 +1,4 @@
-import{j as e}from"./index-CoZp0siZ.js";const r={title:"Semantic Search",links:["hybrid-search"],hide:!1};function t(s){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-C_fwGqWz.js";const r={title:"Semantic Search",links:["hybrid-search","approximate-nearest-neighbors"],hide:!1};function t(s){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsxs(n.p,{children:["Semantic search is an approach that ",e.jsx(n.strong,{children:"matches queries to documents based on shared meaning"}),`.
 It overcomes the limitations of keyword search that rely on exact word matches by capturing the meaning and nuances behind words.`]}),`
 `,e.jsx(n.p,{children:e.jsx(n.img,{src:"/images/QK5D1O1ltN.png",alt:"Semantic Search"})}),`
@@ -26,4 +26,4 @@ It measures the `,e.jsx(n.strong,{children:"similarity in the direction"})," of 
 `,e.jsx(n.h3,{children:"Dot Product"}),`
 `,e.jsxs(n.p,{children:[`Dot product is another distance measure used in semantic search.
 Compared to cosine similarity, it considers both the `,e.jsx(n.strong,{children:"angle"})," and ",e.jsx(n.strong,{children:"magnitude"})," between vectors."]}),`
-`,e.jsx(n.p,{children:e.jsx(n.img,{src:"/images/v9b0v8RLm1.png",alt:"Dot Product"})})]})}function o(s={}){const{wrapper:n}=s.components||{};return n?e.jsx(n,{...s,children:e.jsx(t,{...s})}):t(s)}export{o as default,r as frontmatter};
+`,e.jsx(n.p,{children:e.jsx(n.img,{src:"/images/v9b0v8RLm1.png",alt:"Dot Product"})})]})}function a(s={}){const{wrapper:n}=s.components||{};return n?e.jsx(n,{...s,children:e.jsx(t,{...s})}):t(s)}export{a as default,r as frontmatter};
