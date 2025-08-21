@@ -1,0 +1,1 @@
+import{j as o}from"./index-B1qFIi4-.js";const c={title:"Transformers"};function e(t){const n={h2:"h2",...t.components};return o.jsx(n.h2,{children:"Introduction"})}function s(t={}){const{wrapper:n}=t.components||{};return n?o.jsx(n,{...t,children:o.jsx(e,{...t})}):e(t)}export{s as default,c as frontmatter};

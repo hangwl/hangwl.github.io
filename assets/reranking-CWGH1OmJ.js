@@ -1,4 +1,4 @@
-import{j as e}from"./index-CifEWHmu.js";const i={title:"Reranking"};function s(r){const n={h2:"h2",img:"img",p:"p",strong:"strong",...r.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-B1qFIi4-.js";const i={title:"Reranking"};function s(r){const n={h2:"h2",img:"img",p:"p",strong:"strong",...r.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsxs(n.p,{children:["Reranking is a ",e.jsx(n.strong,{children:"post-retrieval process"})," whereby retrieved documents as reordered using high-performing models to assess their relevance to a given query."]}),`
 `,e.jsxs(n.p,{children:["Typically, rerankers have a ",e.jsx(n.strong,{children:"cross-encoder"}),` architecture that may increase the latency of the system.\r
 However, they can significantly improve the ranking quality of the retrieved documents.`]}),`
