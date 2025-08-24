@@ -1,0 +1,40 @@
+---
+title: "Amazon EMR"
+links:
+ - 'amazon-s3'
+---
+
+## What is Amazon EMR?
+
+[Amazon EMR (Elastic MapReduce)](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-what-is-emr.html) is a **fully-managed**, **cloud-based platform** that **simplifies** running large-scale **distributed big data processing** frameworks such as Apache Spark or Apache Hadoop.
+
+>Apart from being primarily used to process and analyze data, Amazon EMR can also be used to transform and move large amounts of data from one datastore to another.
+
+<div class="video-container">
+    <iframe 
+        src="https://www.youtube.com/embed/QuwaBOESGiU" 
+        title="An introduction to Amazon EMR - Amazon Web Services" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+    </iframe>
+</div>
+
+## Benefits of using Amazon EMR
+
+The benefits of using Amazon EMR are listed on their [website](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-overview-benefits.html).
+
+I believe most people are interested in the **cost-savings**, as well as the **flexibility and scalability** the platform provides.
+
+### Cost-Savings
+
+- No need to setup on-premise resources
+- Pay-per-use pricing model
+
+### Flexibility and Scalability
+
+- Clusters can be automatically scaled up or down depending on computing needs
+- The EMR File System (EMRFS) allows Amazon S3 to be used as a data layer for applications running on the cluster. 
+This means that compute and storage are separated, but the data can still be persisted. 
+This also means they can be scaled independently. 

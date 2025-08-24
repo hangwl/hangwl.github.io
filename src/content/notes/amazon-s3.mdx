@@ -1,0 +1,84 @@
+---
+title: "Amazon S3"
+---
+
+## What is Amazon S3?
+
+[Amazon Simple Storage Service (Amazon S3)](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html) is an object storage service similar to Google Cloud Storage. 
+As an object store, it does not have a true hierarchical file system. However, it can effectively act as one.
+
+Data can be stored in S3 as **objects**, **hierarchical data**, or **tabular data** within **buckets**. 
+- **Objects**: Any file in a S3 bucket can be considered an object. Every object has a unique identifier known as an object key. 
+- **Buckets**: A bucket is a container for S3 objects similar to top-level directories for files on a hard drive. It should also have a unique name. 
+- **Hierarchical Data**: Files can be "nested" within parent folders via forward slashes e.g. `folder_1/file.txt`. To list objects in the folder, we can use the prefix `folder_1/`. 
+- **Tabular Data**: Files organized in table format such as CSV or Parquet files.
+
+### Bucket Types
+
+S3 buckets generally serve different use cases. 
+
+#### General Purpose Buckets
+- Recommended for **most use cases**.
+- Objects can be redundantly stored across multiple Availability Zones which ensures data **availability** and **durability**.
+
+#### Directory Buckets
+- Recommended for high performance workloads that require **low-latency** access to files. 
+- Also recommended for **data residency** use cases where data is required to be stored in a specific region. 
+- Objects are organized into **hierarchical** directories (prefixes) instead of the flat storage structure of general purpose buckets.
+
+#### Table Buckets
+
+- S3 Table buckets can be used to **create and store tabular data (tables)** and metadata as objects to be used in **Apache Iceberg** supported analytics workloads. 
+- Table buckets integrate with AWS analytics services via **AWS Glue Data Catalog**.
+- **Automatic maintenance** is done to help reduce table storage costs. 
+
+#### Vector Buckets
+
+- Vector buckets are a new type of S3 bucket built for the purpose of **storing vector indexes** that can be used to **query vector data**. 
+
+### Bucket Access Policies
+
+By setting proper bucket access policies, only users (even including authenticated users) with the required permissions can access them. 
+
+#### AWS Identity and Access Management (IAM) Policy
+
+In AWS, an IAM policy is a **JSON document** that **defines permissions** that specify what **actions** are allowed on which **resources**, and under what **conditions**. 
+
+When a user, role, or other principal makes a request to AWS, IAM evaluates the associated policies to determine if the request should be allowed or denied, enforcing fine-grained access control to AWS resources. 
+
+The following policy allows `Akua`, a user in account `123456789012`, `s3:GetObject`, `s3:GetBucketLocation`, and `s3:ListBucket` Amazon S3 permissions on the `amzn-s3-demo-bucket1` bucket.
+
+```JSON
+{
+    "Version": "2012-10-17",
+    "Id": "ExamplePolicy01",
+    "Statement": [
+        {
+            "Sid": "ExampleStatement01",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::123456789012:user/Akua"
+            },
+            "Action": [
+                "s3:GetObject",
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": [
+                "arn:aws:s3:::amzn-s3-demo-bucket1/*",
+                "arn:aws:s3:::amzn-s3-demo-bucket1"
+            ]
+        }
+    ]
+}
+```
+
+### Amazon S3 REST API
+
+Amazon S3 REST API **allows programmatic interaction** with Amazon S3 buckets and objects using **standard HTTP methods**. 
+
+>As a Representational State Transfer (REST) API, it utilizes HTTP requests (GET, PUT, POST, DELETE) to perform operations on S3 resources, 
+making it a stateless protocol where the server does not retain client session information. 
+
+Developers can make use of available **AWS SDK** libraries (**Boto3** for Python) to build applications more easily without having to deal
+with having to manually compute the authentication signature and append it to each request for direct REST API calls. 

@@ -336,3 +336,21 @@ figcaption[data-rehype-pretty-code-caption] {
   color: #a1a1aa;
 }
 
+/* Responsive video container for iframes */
+.video-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  margin-block: 1.5rem; /* Adds vertical padding */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+

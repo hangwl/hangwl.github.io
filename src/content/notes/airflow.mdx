@@ -1,0 +1,64 @@
+---
+title: "Airflow"
+---
+
+## What is Airflow?
+
+Apache Airflow is an open-source platform for **developing**, **scheduling**, and **monitoring** batch-oriented workflows. 
+- **Workflows** are basically data pipelines that contain a series of tasks which are completed in sequence.
+- The concept of **batching** is mainly to make big data processing more efficient. 
+
+Specifically, suppose we have a big dataset that contains over a million rows. 
+Without implementing batch processes, we normally iterate over every single row one by one. 
+This means that the data in each row is loaded into memory and then processed one at a time. 
+
+However with batch processing, we can scale up the number of rows processed in each "batch". 
+This increases memory and compute requirements per data processing operation, but we will be able to process the entire dataset more quickly. 
+
+> Gemini: The core benefit of batching isn't just about faster processing time. It's also about resource optimization. In many systems, there's a significant fixed cost associated with each processing task, such as network latency, database connection overhead, or the spin-up time for a process. By batching, you pay this fixed cost once for a large chunk of data, rather than paying it repeatedly for each individual data point. This is why it's a fundamental concept in technologies like Apache Spark, Hadoop, and of course, Apache Airflow.
+
+## Running Airflow Locally in a Docker Container
+
+References: [Airflow Docker Compose How To Guide](https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/)
+
+We can carry out the following steps to deploy a local docker image which runs Airflow. 
+On my windows machine, I have Docker Desktop installed and running. 
+
+1. Create a directory for the Airflow project.
+
+```powershell
+mkdir <AIRFLOW_PROJECT>
+cd <AIRFLOW_PROJECT>
+```
+
+2. Download the necessary docker-compose file.
+
+```powershell
+curl -LfO 'https://airflow.apache.org/docs/apache-airflow/3.0.5/docker-compose.yaml'
+```
+
+3. Initialize environment.
+
+```powershell
+mkdir dags, logs, plugins, config # create mounted directories
+"AIRFLOW_UID=50000" > .env # add airflow user id to env file to remove set up warning
+```
+
+4. Initialize Database
+
+```powershell
+docker compose up airflow-init
+```
+
+5. Start all services
+
+```powershell
+docker compose up
+```
+
+If everything is successful, we will be able to access the Airflow web interface at `http://localhost:8080`, and see the services running in Docker Desktop. 
+The default login credentials are `airflow` for both the username and password. 
+
+![Airflow Web Interface](/images/w808MjQ3QN.png)
+
+![Docker Container Services](/images/ejaZ2ZcmQm.png)
