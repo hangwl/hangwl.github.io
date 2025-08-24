@@ -1,4 +1,4 @@
-import{j as e}from"./index-BP4W6q2N.js";const i={title:"Chunking"};function s(t){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",li:"li",p:"p",strong:"strong",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-DOxJc1g0.js";const i={title:"Chunking"};function s(t){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",li:"li",p:"p",strong:"strong",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsxs(n.p,{children:["Chunking is the process of breaking down documents into ",e.jsx(n.strong,{children:"smaller segments"}),"."]}),`
 `,e.jsxs(n.p,{children:[`With a good chunking strategy, we can improve the overall retrieval quality of a RAG system.\r
 Mainly, chunking can allows us to `,e.jsx(n.strong,{children:"more precisely represent"}),` a long document over multiple vectors instead of just a single compressed vector.\r
