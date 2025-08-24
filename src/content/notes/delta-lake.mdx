@@ -1,0 +1,46 @@
+---
+title: "Delta Lake"
+---
+
+## Introduction
+
+[Delta Lake](https://delta.io/) is a storage layer framework for lakehouse architectures commonly built on Amazon S3. 
+It addresses many of the shortcomings of traditional data lakes such as **data corruption** and **inconsistency**. 
+
+## Delta Tables
+
+Delta Tables extends the capabilities of [Apache Parquet](https://parquet.apache.org/) with **transactional** and **metadata** features. 
+
+### Transactional features
+
+Delta Lake transactions are **ACID** compliant via `_delta_log` **transaction logs**. 
+
+#### Atomicity
+
+In a traditional data lake, a write operation that fails midway can leave the data in a corrupt or inconsistent state. 
+Delta Lake's transaction logs ensures that every write operation is **atomic**, meaning that it **either fully succeeds or fully fails**.
+This is orchestrated via transaction logs that record all file additions and removals for a transaction. 
+
+#### Consistency
+
+In a Delta Lake, queries are guaranteed to always see a **consistent**, **unchanging snapshot** of the data, even if other transactions are writing to the same table at the same time. 
+This happens because when a query starts, it **binds** the latest committed **table version** at that moment. 
+All reads for that query are resolved against that table version's data, even if new transactions are committed while the query is running. 
+
+#### Isolation
+
+Delta Lake transactions are **isolated**. 
+
+When a writer is ready to commit a transaction, Delta Lake checks the transaction log for new commits. 
+A conflict is detected when two transactions try to modify the same table snapshot. 
+If the table has been modified by another transaction, the writer will abort and retry on the latest snapshot instead. 
+
+>This mechanism is known as Delta Lake's **optimistic concurrency control**. 
+
+#### Durability
+
+Data Durability is generally managed by cloud storage service providers.
+In the case of Amazon S3, durability is generally achieved by saving **copies** of data in **different places**. 
+
+>Data is replicated automatically across multiple Availability Zones (AZs) within a region. 
+If one copy of an object is corrupted, S3 automatically repairs it using redundant copies. 
