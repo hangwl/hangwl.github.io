@@ -1,4 +1,4 @@
-import{j as e}from"./index-B1qFIi4-.js";const o={title:"Cross-Encoders",links:["reranking"]};function t(r){const n={blockquote:"blockquote",h2:"h2",img:"img",p:"p",strong:"strong",...r.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-BP4W6q2N.js";const o={title:"Cross-Encoders",links:["reranking"]};function t(r){const n={blockquote:"blockquote",h2:"h2",img:"img",p:"p",strong:"strong",...r.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsx(n.p,{children:"RAG systems typically rely on Bi-Encoder embedding models to generate and compare between document and query vectors for semantic search."}),`
 `,e.jsxs(n.p,{children:["To further improve search results, ",e.jsx(n.strong,{children:"Cross-Encoder"}),` models can be used instead.\r
 They are `,e.jsx(n.strong,{children:"specialized embedding models"})," that accept ",e.jsx(n.strong,{children:"prompt-document pairs"})," as input, returning the ",e.jsx(n.strong,{children:"relevancy scores"})," for each pair."]}),`

@@ -1,4 +1,4 @@
-import{j as e}from"./index-B1qFIi4-.js";const s={title:"Query Parsing"};function r(n){const t={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
+import{j as e}from"./index-BP4W6q2N.js";const s={title:"Query Parsing"};function r(n){const t={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
 `,e.jsxs(t.p,{children:["Human submitted queries tend to be ",e.jsx(t.strong,{children:"vague and ambiguous"}),`.\r
 If we vectorize these queries directly and submit them to a retriever, it is likely that the retrieved documents are not what the user is actually looking for.`]}),`
 `,e.jsxs(t.p,{children:["To address this, there are several things we options we can consider to ",e.jsx(t.strong,{children:"transform and optimize these queries"})," and improve retrieval performance."]}),`

@@ -1,4 +1,4 @@
-import{j as e}from"./index-B1qFIi4-.js";const r={title:"Semantic Search",links:["hybrid-search","approximate-nearest-neighbors","cross-encoders"],hide:!1};function t(s){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-BP4W6q2N.js";const r={title:"Semantic Search",links:["hybrid-search","approximate-nearest-neighbors","cross-encoders"],hide:!1};function t(s){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",strong:"strong",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsxs(n.p,{children:["Semantic search is an approach that ",e.jsx(n.strong,{children:"matches queries to documents based on shared meaning"}),`.
 It overcomes the limitations of keyword search that rely on exact word matches by capturing the meaning and nuances behind words.`]}),`
 `,e.jsx(n.p,{children:e.jsx(n.img,{src:"/images/QK5D1O1ltN.png",alt:"Semantic Search"})}),`
