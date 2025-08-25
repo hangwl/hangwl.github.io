@@ -1,0 +1,47 @@
+---
+title: "OLTP vs OLAP"
+---
+
+## Introduction
+
+**Online Transaction Processing (OLTP)** and **Online Analytical Processing (OLAP)** are data processing systems designed for different purposes that can be run in parallel. 
+- OLTP is optimized for transactional processing (**WRITES**)
+- OLAP is optimized for complex data analysis and reporting (**READS**)
+
+The two systems are usually connected by a process known as **ETL (Extract, Transform, Load)**. Major cloud providers offer fully managed services that make building and running ETL pipelines much easier: 
+- **AWS**: [AWS Glue](https://aws.amazon.com/glue/)
+- **Google Cloud**: [Cloud Dataflow](https://cloud.google.com/products/dataflow?hl=en)
+- **Azure**: [Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/introduction)
+
+## OLTP
+
+OLTP systems are write-heavy and its data models are **normalized** to minimize data redundancy and to optimize write operations. 
+Typically, they are normalized to the **[Third Normal Form (3NF)](https://www.geeksforgeeks.org/dbms/third-normal-form-3nf/)** within a **relational database**. 
+
+### Third Normal Form (3NF)
+
+The [Third Normal Form (3NF)](https://www.geeksforgeeks.org/dbms/third-normal-form-3nf/) builds on the First (1NF) and Second (2NF) Normal Forms: 
+- **Atomic Values & No Repeating Groups**: Each column must contain indivisible values, and there should be no repeating groups of columns.
+- **No Partial Dependencies**: Non-key attributes should not be dependent on part of a composite key.
+- **No Transitive Dependency for Non-Key Attributes**: Non-key attributes should only depend directly on the primary key.
+
+## OLAP
+
+OLAP systems act as **data warehouses** for organizations that depend on its data for analysis and reporting. 
+Within them, **data marts** can be built to serve different departments. 
+
+>A data mart is a strategic data layer built on top of OLAP systems (typically data warehouses) to serve specific business domain needs.
+They are essentially smaller, more focused databases decoupled from the central data warehouse. 
+
+**OLAP data models** generally make use of the **Star Schema** which is easier to implement and understand in contrast to normalized data models that usually contain many tables and joins.
+
+### Star Schema
+
+A Star Schema is used to denormalize business data into **dimensions** (like time and product) and **facts** (like transactions in amounts and quantities). 
+This approach adds data redundancy for increased query speeds. 
+
+- A star schema has a single fact table in the center, containing business "facts" (like transaction amounts and quantities). 
+- The fact table connects to multiple other dimension tables along "dimensions" like time, or product. 
+- Star schemas enable users to slice and dice the data however they see fit, typically by joining two or more fact tables and dimension tables together.
+
+![Star Schema Example](/images/star-schema-2x.png)
