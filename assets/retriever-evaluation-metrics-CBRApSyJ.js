@@ -1,4 +1,4 @@
-import{j as e}from"./index-DOxJc1g0.js";const o={title:"Retriever Evaluation Metrics"};function n(t){const r={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",li:"li",p:"p",strong:"strong",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(r.h2,{children:"Introduction"}),`
+import{j as e}from"./index-RVLXh9cB.js";const o={title:"Retriever Evaluation Metrics"};function n(t){const r={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",li:"li",p:"p",strong:"strong",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(r.h2,{children:"Introduction"}),`
 `,e.jsxs(r.p,{children:[`The primary goal of establishing metrics for information retrievers is to optimize the quality of search results.\r
 While there are various other metrics such as latency, throughput, resource usage, etc.,\r
 the main metric we want to focus on is `,e.jsx(r.strong,{children:"document relevance"}),"."]}),`

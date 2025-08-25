@@ -1,4 +1,4 @@
-import{j as e}from"./index-DOxJc1g0.js";const n={title:"Airflow"};function a(s){const i={a:"a",blockquote:"blockquote",code:"code",figure:"figure",h2:"h2",img:"img",li:"li",ol:"ol",p:"p",pre:"pre",span:"span",strong:"strong",ul:"ul",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(i.h2,{children:"What is Airflow?"}),`
+import{j as e}from"./index-RVLXh9cB.js";const n={title:"Airflow"};function a(s){const i={a:"a",blockquote:"blockquote",code:"code",figure:"figure",h2:"h2",img:"img",li:"li",ol:"ol",p:"p",pre:"pre",span:"span",strong:"strong",ul:"ul",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(i.h2,{children:"What is Airflow?"}),`
 `,e.jsxs(i.p,{children:["Apache Airflow is an open-source platform for ",e.jsx(i.strong,{children:"developing"}),", ",e.jsx(i.strong,{children:"scheduling"}),", and ",e.jsx(i.strong,{children:"monitoring"})," batch-oriented workflows."]}),`
 `,e.jsxs(i.ul,{children:[`
 `,e.jsxs(i.li,{children:[e.jsx(i.strong,{children:"Workflows"})," are basically data pipelines that contain a series of tasks which are completed in sequence."]}),`

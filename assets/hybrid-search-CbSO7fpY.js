@@ -1,4 +1,4 @@
-import{j as e}from"./index-DOxJc1g0.js";const r={title:"Hybrid Search",hide:!1};function a(t){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-RVLXh9cB.js";const r={title:"Hybrid Search",hide:!1};function a(t){const n={blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",p:"p",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsx(n.p,{children:`Hybrid search combines both keyword and semantic search into a single retrieval pipeline.
 Metadata filters are applied over search search approach as needed.
 The result is the retrieval of separately filtered and ranked documents from the two search approaches.
