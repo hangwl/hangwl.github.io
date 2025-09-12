@@ -13,6 +13,10 @@ The two systems are usually connected by a process known as **ETL (Extract, Tran
 - **Google Cloud**: [Cloud Dataflow](https://cloud.google.com/products/dataflow?hl=en)
 - **Azure**: [Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/introduction)
 
+>The addition of an intermediate data lake staging layer is often used as a cost-effective strategy to decouple OLTP and OLAP systems. 
+Object storage systems like S3 and Google Cloud Storage are cheap and durable, and they can be used to store raw data from OLTP systems that have yet to be processed. 
+When needed, ETL pipelines can be used to transform and load the data into OLAP systems.
+
 ## OLTP
 
 OLTP systems are write-heavy and its data models are **normalized** to minimize data redundancy and to optimize write operations. 
@@ -24,6 +28,8 @@ The [Third Normal Form (3NF)](https://www.geeksforgeeks.org/dbms/third-normal-fo
 - **Atomic Values & No Repeating Groups**: Each column must contain indivisible values, and there should be no repeating groups of columns.
 - **No Partial Dependencies**: Non-key attributes should not be dependent on part of a composite key.
 - **No Transitive Dependency for Non-Key Attributes**: Non-key attributes should only depend directly on the primary key.
+
+![3NF Data Model Example](/images/OLTP_ERD.png)
 
 ## OLAP
 
@@ -38,10 +44,36 @@ They are essentially smaller, more focused databases decoupled from the central 
 ### Star Schema
 
 A Star Schema is used to denormalize business data into **dimensions** (like time and product) and **facts** (like transactions in amounts and quantities). 
-This approach adds data redundancy for increased query speeds. 
+This approach trades data redundancy for increased query speeds. 
 
-- A star schema has a single fact table in the center, containing business "facts" (like transaction amounts and quantities). 
-- The fact table connects to multiple other dimension tables along "dimensions" like time, or product. 
+- A star schema has a single **fact table** in the center, containing business "facts" (e.g. transaction amounts and quantities). 
+- The fact table connects to multiple other **dimension tables** along "dimensions" that hold context (e.g. time and product details). 
 - Star schemas enable users to slice and dice the data however they see fit, typically by joining two or more fact tables and dimension tables together.
 
-![Star Schema Example](/images/star-schema-2x.png)
+![Star Schema Data Model Example](/images/OLAP_ERD.png)
+
+> To design a star schema data model, we always want to start by thinking about the "grain" of the data. 
+The grain is the most detailed level at which the data needs to be to answer the business question at hand. 
+We can rollup the data to higher levels of detail if needed, but cannot drilldown to lower levels of detail if the grain is too coarse.
+
+## Table Optimizations (READS)
+
+The following table optimization strategies are used to improve query speeds for both OLTP and OLAP systems.
+
+### Indexing
+
+- **Faster lookups** in exchange for a **small write overhead**.
+- We should always index primary keys, and fields that are frequently used in filter conditions.
+
+### Partitioning
+
+- **Faster queries** in exchange for a **small write overhead** to create a new partition.
+- Simplifies **data archival and deletion** operations.
+
+>Note however that partitioning an existing table can be resource-intensive if the table is large and contains billions of rows. 
+This is because partitioning requires a full scan of the table to create the partitions.
+
+### Materialized Views
+
+- Materialized views are database objects that stores the **precomputed results** of a query as a physical table. 
+- This trades some data staleness for **faster query speeds** for complex, resource-intensive queries. 
