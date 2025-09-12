@@ -1,0 +1,95 @@
+---
+title: "Event-Driven MLOps Pipeline (AWS)"
+links:
+ - 'oltp-vs-olap'
+ - 'amazon-s3'
+---
+
+## Introduction
+
+Cloud-native MLOps pipelines leverage the power of cloud computing to build, deploy, and manage machine learning models more efficiently. 
+This approach integrates key MLOps principles from **automation**, **version control**, and **continuous integration and delivery (CI/CD)**. 
+Many cloud services offer fully-managed services that make it easier to build and run **scalable**, and **cost-effective** MLOps pipelines. 
+
+## Systems Diagram Example
+
+The following systems diagram illustrates the components of an **Event-Driven ML Inference to BI pipeline**. 
+The system automates the entire model inference lifecycle from model execution to data consumption, 
+ensuring that fresh insights are continuously available for downstream analytics. 
+
+![AWS MLOps Pipeline](/images/aws-mlops-systems-diagram.png)
+
+### Components
+
+#### Scheduler
+
+The process begins with **Amazon EventBridge** as the scheduler which is can be configured to trigger an inference job at a specific time or interval. 
+
+#### Orchestrator
+
+The scheduled event activates the **AWS Step Functions** orchestrator which is designed to manage complex multi-step workflows. 
+Its duty is to monitor and ensure that each workflow component executes in the correct sequence. 
+When the orchestrator detects an error, it will automatically retry the failed component or take an appropriate action based on the error.
+
+#### Kubernetes Cluster
+
+When the "Model Inference Execution" step is reached, an action will be triggered to dispatch a **Kubernetes Job or a Pod** within the **Amazon EKS cluster**.
+
+>A Kubernetes Job is a higher-level object that manages one or more Pods to ensure a task runs to completion. A Pod is the smallest and most fundamental unit of compute in Kubernetes.
+
+The Step Functions state machine would define the EKS configuration, such as the container image to use, necessary environment variables,
+ and any command-line arguments the container needs to exceute the inference. 
+
+>AWS Step Functions effectively acts as a command center, telling EKS what to run and how to run it.
+
+Before deployment, a machine learning model along with all its required dependencies (e.g. Python libraries, model weights, data pre-processing scripts) is packaged into a **Docker container image**. 
+The container image serves as a self-contained, portable execution environment. 
+When the orchestrator dispatches the task, EKS pulls this specific container image from a container registry (like Amazon ECR). 
+
+EKS then launches one or more "dedicated containers" from this image on its underlying compute instances (EC2 nodes). 
+Each container is isolated, ensuring that the model runs in a consistent and predictable environment, regardless of the host it's running on.
+
+#### Model Inference Container
+
+Once a container starts, it executes the pre-defined entry point or command. This command typically initiates the model's inference process. 
+After the required input data has been loaded, any necessary data pre-processing will be performed.
+The pre-processed data will then be fed to the loaded machine learning model to generate predictions or classifications. 
+
+This execution is **highly scalable** as it can be easily distributed across multiple containers running on different EC2 nodes. 
+If a large batch of data needs processing, EKS can spin up multiple identical containers concurrently to process different subnets of the data in parallel, 
+significantly speeding up the overall inference time. 
+
+>To pull data from either S3 or Redshift, we can leverage the Boto3 SDK. 
+Boto3 offers methods such as `download_file()` and `get_object()` to directly pull data from an S3 bucket into a container. 
+To pull data directly from Redshift, we can make use of the `redshift-data` client to execute SQL queries on a data warehouse cluster.
+
+#### Data Lake
+
+Once the model completes its inference, the resulting outputs are stored in S3. 
+
+#### Data Loading Function
+
+**AWS Lambda** is a serverless compute service that runs code in response to events. 
+When a new inference output is detected in S3, an AWS Lambda data loading function can be triggered to insert data into Redshift.
+
+If a large number of model outputs are written to S3 simultaneously, the S3 event can trigger multiple, concurrent invocations of the Lambda function. 
+AWS Lambda automatically scales up to handle this increased load and scales down to zero when the work is done.
+
+To optimize the data loading process, AWS Lambda can be configured to initiate Redshift's native bulk loading mechanism via the `COPY` command. 
+This tells Redshift to pull the data directly from the S3 files and load them into a specified table. 
+
+>Redshift's `COPY` command is designed to leverage its Massively Parallel Processing (MPP) architecture. 
+It can read and load multiple data files in parallel from S3 across all of its compute nodes, making it the fastest and most cost-effective way to get data into redshift.
+
+#### Data Warehouse
+
+**Amazon Redshift** is a fully managed, petabyte-scale data warehouse service that is optimized for analytical workloads. 
+Unlike a traditional database that handles transactional data, Redshift is designed to perform complex queries on massive datasets, 
+making it ideal for business intelligence and data analytics.
+
+>Using a feature called Redshift Spectrum, we can even run SQL queries directly on data stored within S3. 
+
+#### BI Tools
+
+Tools like **Tableau**, **Power BI**, and **Amazon QuickSight** can connect directly to Redshift using standard JDBC/ODBC drivers. 
+Analysts can use these tools to build dashboards and reports by querying the data directly in Redshift. 
