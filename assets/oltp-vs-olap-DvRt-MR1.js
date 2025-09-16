@@ -1,4 +1,4 @@
-import{j as e}from"./index-CpMObvdK.js";const r={title:"OLTP vs OLAP"};function t(s){const n={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",li:"li",p:"p",strong:"strong",ul:"ul",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-DWVz2Fe7.js";const r={title:"OLTP vs OLAP"};function t(s){const n={a:"a",blockquote:"blockquote",h2:"h2",h3:"h3",img:"img",li:"li",p:"p",strong:"strong",ul:"ul",...s.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsxs(n.p,{children:[e.jsx(n.strong,{children:"Online Transaction Processing (OLTP)"})," and ",e.jsx(n.strong,{children:"Online Analytical Processing (OLAP)"})," are data processing systems designed for different purposes that can be run in parallel."]}),`
 `,e.jsxs(n.ul,{children:[`
 `,e.jsxs(n.li,{children:["OLTP is optimized for transactional processing (",e.jsx(n.strong,{children:"WRITES"}),")"]}),`

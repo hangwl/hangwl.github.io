@@ -1,4 +1,4 @@
-import{j as e}from"./index-CpMObvdK.js";const o={title:"Vector Databases",links:["approximate-nearest-neighbors","chunking"]};function r(t){const n={h2:"h2",li:"li",p:"p",strong:"strong",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-DWVz2Fe7.js";const o={title:"Vector Databases",links:["approximate-nearest-neighbors","chunking"]};function r(t){const n={h2:"h2",li:"li",p:"p",strong:"strong",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsxs(n.p,{children:["Vector databases are databases ",e.jsx(n.strong,{children:"optimized to store and search through huge quantities of high-dimensional vector data"}),`.\r
 Some may also be optimized for tasks like building proximity graphs that enable fast approximate nearest neighbor searches.`]}),`
 `,e.jsxs(n.p,{children:[e.jsx(n.strong,{children:"Weaviate"})," is a popular open-source vector database that can be run both locally or in the cloud."]}),`

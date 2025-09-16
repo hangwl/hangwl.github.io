@@ -1,4 +1,4 @@
-import{j as e}from"./index-CpMObvdK.js";const r={title:"Delta Lake"};function a(n){const t={a:"a",blockquote:"blockquote",code:"code",h2:"h2",h3:"h3",h4:"h4",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
+import{j as e}from"./index-DWVz2Fe7.js";const r={title:"Delta Lake"};function a(n){const t={a:"a",blockquote:"blockquote",code:"code",h2:"h2",h3:"h3",h4:"h4",p:"p",strong:"strong",...n.components};return e.jsxs(e.Fragment,{children:[e.jsx(t.h2,{children:"Introduction"}),`
 `,e.jsxs(t.p,{children:[e.jsx(t.a,{href:"https://delta.io/",children:"Delta Lake"}),` is a storage layer framework for lakehouse architectures commonly built on Amazon S3.\r
 It addresses many of the shortcomings of traditional data lakes such as `,e.jsx(t.strong,{children:"data corruption"})," and ",e.jsx(t.strong,{children:"inconsistency"}),"."]}),`
 `,e.jsx(t.h2,{children:"Delta Tables"}),`
