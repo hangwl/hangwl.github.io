@@ -1,0 +1,107 @@
+---
+title: "Transformers"
+---
+
+## Introduction
+
+The **Transformer** architecture was first proposed in the 2017 paper titled [Attention is All You Need](https://arxiv.org/abs/1706.03762) by Google. 
+They were developed to solve the problem of sequence transduction, which is a machine learning task that involves converting an input sequence into an output sequence. 
+
+In the past, encoder-decoder architectures relied on mainly Recurrent Neural Networks (RNNs) to extract sequential information. 
+Transformer models instead make use of **self-attention** mechanisms to capture dependencies between different positions in a sequence. 
+
+The addresses the main problems that RNNs face with respect to NLP tasks:
+- RNNs process input data sequentially. Hence, they cannot make use of GPUs for parallel computation, which limits the speed of training and inference.
+- RNNs become ineffective when input sequences are long, primarily because of the problem of vanishing and exploding gradients. 
+
+## Attention mechanism
+
+<div class="video-container">
+    <iframe 
+        src="https://www.youtube.com/embed/eMlx5fFNoYc" 
+        title=" Attention in transformers, step-by-step | Deep Learning Chapter 6 " 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+    </iframe>
+</div>
+
+### Encoder-Only Models
+
+Encoder-only models are designed for tasks that require deep **contextual understanding of the input sequence** without generating an output sequence. 
+They process entire inputs at once, allowing them to build rich **bi-directional context representations**. 
+
+![Encoder-Only Architecture](/images/encoder-only_architecture.png)
+
+Within each encoder layer:
+
+1. Each token is first mapped into a numerical representation (**embedding**).  
+2. A **positional encoding** is added to each embedding to provide information about the token's position, since self-attention itself is position-agnostic.  
+3. The embeddings are processed through a **multi-head self-attention layer**, where each token can attend to all other tokens in the sequence.  
+4. The output is then passed through a **feed-forward network** for additional transformation.  
+
+After stacking multiple encoder layers, the final contextualized embeddings can either be pooled into a single vector (e.g., mean pooling) 
+or represented by a special token (e.g., `[CLS]`), depending on the model’s design and task.  
+
+>Modern embedding models such as `gemini-embedding-001` leverage attention mechanisms to produce high-quality vector representations, 
+enabling State-of-the-Art performance on semantic similarity and retrieval tasks.
+
+### Encoder-Decoder Models
+
+Encoder-decoder models are designed for tasks that require transformation from one sequence to another. 
+They excel at **Sequence-to-Sequence** tasks such as machine translation, where the input and output sequences are completely different. 
+
+The architecture consists of two separate blocks.
+
+![Encoder-Decoder Architecture](/images/encoder-decoder_architecture.png)
+
+#### Encoder Block
+
+The encoder block first processes the entire input sequence and builds a rich, contextualized understanding of it. 
+It takes the token and positional embeddings, processes them through its **multi-head self-attention layers** to capture the bi-directional context, 
+and produces a final set of contextualized embeddings for the entire input sequence. 
+
+Instead of pooling these embeddings into a single vector, they are then passed to the decoder.
+
+#### Decoder Block
+
+The decoder generates the output sequence one token at a time, using both its own previously generated tokens and the encoder’s representations as context. 
+
+Within each autoregressive step:
+
+1. **Masked Self-Attention**: The decoder attends to its own partial sequence using masked self-attention, ensuring that each position can only depend on previously generated tokens.  
+2. **Cross-Attention**: The decoder's hidden states are used as `Queries` to attend over the encoder's `Keys` and `Values`, focusing on the most relevant parts of the input sequence.  
+3. **Feed-Forward Network**: The output of the cross-attention layer is passed through a feed-forward network for additional transformation.  
+
+After passing through multiple stacked decoder layers, the final output is projected through a linear layer (the prediction head) 
+and softmax to produce a probability distribution over the vocabulary, from which the next token is selected.
+
+>State-of-the-art sequence-to-sequence models such as `T5` (Text-to-Text Transfer Transformer) and `mT5` (its multilingual variant) 
+make use of the encoder-decoder architecture. These models treat every NLP task — from translation to summarization — as a text-to-text problem, 
+leveraging both encoder context and decoder generation for highly flexible performance.
+
+### Decoder-Only Models
+
+Decoder-only models are designed for tasks that require generating text in an autoregressive fashion. 
+They process inputs from left to right, predicting the next token based only on the tokens that have already been generated. 
+This makes them particularly well-suited for tasks such as text completion, dialogue, and creative writing.
+
+![Decoder-Only Architecture](/images/decoder-only_architecture.png)
+
+Within each decoder layer, and at each autoregressive step:
+
+1. Each input token is converted into an **embedding**, with **positional encoding** added to preserve word order.  
+2. The embeddings are processed through a **masked multi-head self-attention layer**, where each token can only attend to previous tokens in the sequence.  
+3. The output is then passed through a **feed-forward network** for additional transformation.  
+4. After stacking multiple decoder layers, the final hidden states are projected into the vocabulary space, softmax is applied, and the next token is predicted.  
+5. The predicted token is appended to the sequence, and the process repeats until an end condition is reached (e.g., end-of-sequence token or max length).  
+
+>Modern large language models such as `gpt-4` are decoder-only architectures that excel at open-ended generation tasks, including conversation, reasoning, and content creation. 
+
+## Additional Notes
+
+### Add & Norm
+
+Add & Norm refers to **Residual Connection followed by Layer Normalization**. 
+Together, they ensure that each layer can always fall back on its input (residual connection) while keeping activations stable and trainable (normalization). 
