@@ -1,4 +1,4 @@
-import{j as e}from"./index-DWVz2Fe7.js";const o={title:"Transformers",links:["cross-encoders"]};function r(t){const n={a:"a",blockquote:"blockquote",code:"code",h2:"h2",h3:"h3",h4:"h4",img:"img",li:"li",ol:"ol",p:"p",strong:"strong",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-CVieuz28.js";const o={title:"Transformers",links:["cross-encoders"]};function r(t){const n={a:"a",blockquote:"blockquote",code:"code",h2:"h2",h3:"h3",h4:"h4",img:"img",li:"li",ol:"ol",p:"p",strong:"strong",ul:"ul",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsxs(n.p,{children:["The ",e.jsx(n.strong,{children:"Transformer"})," architecture was first proposed in the 2017 paper titled ",e.jsx(n.a,{href:"https://arxiv.org/abs/1706.03762",children:"Attention is All You Need"}),` by Google.\r
 They were developed to solve the problem of sequence transduction, which is a machine learning task that involves converting an input sequence into an output sequence.`]}),`
 `,e.jsxs(n.p,{children:[`In the past, encoder-decoder architectures relied on mainly Recurrent Neural Networks (RNNs) to extract sequential information.\r
@@ -10,6 +10,7 @@ Transformer models instead make use of `,e.jsx(n.strong,{children:"self-attentio
 `]}),`
 `,e.jsx(n.h2,{children:"Attention mechanism"}),`
 `,e.jsx("div",{class:"video-container",children:e.jsx("iframe",{src:"https://www.youtube.com/embed/eMlx5fFNoYc",title:" Attention in transformers, step-by-step | Deep Learning Chapter 6 ",frameborder:"0",allow:"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen",referrerpolicy:"strict-origin-when-cross-origin",allowfullscreen:!0})}),`
+`,e.jsx(n.h2,{children:"Architecture Variants"}),`
 `,e.jsx(n.h3,{children:"Encoder-Only Models"}),`
 `,e.jsxs(n.p,{children:["Encoder-only models are designed for tasks that require deep ",e.jsx(n.strong,{children:"contextual understanding of the input sequence"}),` without generating an output sequence.\r
 They process entire inputs at once, allowing them to build rich `,e.jsx(n.strong,{children:"bi-directional context representations"}),"."]}),`

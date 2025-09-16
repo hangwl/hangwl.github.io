@@ -1,4 +1,4 @@
-import{j as e}from"./index-DWVz2Fe7.js";const o={title:"Keyword Search",links:["hybrid-search"],hide:!1};function r(t){const n={h2:"h2",h3:"h3",img:"img",p:"p",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
+import{j as e}from"./index-CVieuz28.js";const o={title:"Keyword Search",links:["hybrid-search"],hide:!1};function r(t){const n={h2:"h2",h3:"h3",img:"img",p:"p",...t.components};return e.jsxs(e.Fragment,{children:[e.jsx(n.h2,{children:"Introduction"}),`
 `,e.jsx(n.p,{children:`The core idea of keyword search is to match documents with keywords found in a query prompt.
 As a part of this process, both prompts and documents are converted into sparse vectors that count how often each word in a system's vocabulary appears in that piece of text.
 Each document is then scored based on the presence of these keywords, and the documents are ranked based on their scores.`}),`
