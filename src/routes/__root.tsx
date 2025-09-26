@@ -5,6 +5,7 @@ import { TOCProvider } from '@/context/toc-context';
 import { BackgroundGrid } from "@/components/background-grid";
 import Header from "@/components/header";
 import { AppDock } from '@/components/dock';
+import { Suspense } from 'react';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -36,14 +37,12 @@ export const Route = createRootRoute({
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <TOCProvider>
         <>
-        {!isNotes && !isImmersive && (
-          <>
-            <Header />
-          </>
-        )}
+        {!isNotes && !isImmersive && <Header />}
         {!isImmersive && <BackgroundGrid />}
         {!isImmersive && <AppDock />}
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
         <TanStackRouterDevtools />
         </>
       </TOCProvider>

@@ -14,15 +14,13 @@ function ThreeIndex() {
   }, [])
 
   return (
-    <div className="px-4 py-10 max-w-5xl mx-auto my-8">
-      <header className="space-y-2 my-4">
+    <div className="max-w-5xl w-full mx-auto px-4 py-24 space-y-6">
+      <header className="text-center space-y-1">
         <h1 className="text-3xl font-bold tracking-tight">Experiments</h1>
         <p className="text-muted-foreground">A playground of threejs experiments and more.</p>
       </header>
-
       {/* Demos list */}
       <section className="mt-6">
-        <h2 className="text-xl font-semibold mb-3">Demos</h2>
         <ul className="grid gap-3 sm:grid-cols-2">
           <li>
             <MagicCard
@@ -63,6 +61,20 @@ function ThreeIndex() {
               >
                 <div className="font-medium">Thompson Sampling Demo</div>
                 <div className="text-sm text-muted-foreground">Multi-armed bandit simulation with Plotly charts and Web Worker</div>
+              </Link>
+            </MagicCard>
+          </li>
+          <li>
+            <MagicCard
+              className="rounded-lg"
+              gradientColor={resolvedTheme === "dark" ? "#262626" : "#D9D9D955"}
+            >
+              <Link
+                to="/lab/research-agent"
+                className="block p-4"
+              >
+                <div className="font-medium">Research Agent</div>
+                <div className="text-sm text-muted-foreground">LangGraph-powered web research with live activity timeline</div>
               </Link>
             </MagicCard>
           </li>

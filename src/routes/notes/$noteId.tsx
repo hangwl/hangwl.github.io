@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { getNote } from '@/lib/notes';
 import { NoteLayout } from '@/components/note-layout';
 import { useHeadings } from '@/hooks/use-headings';
@@ -43,9 +43,7 @@ function NotePage() {
     <NoteLayout>
       <h1 className="text-4xl font-bold mb-8 italic" id={frontmatter.title.toLowerCase().replace(/\s+/g, '-')}>{frontmatter.title}</h1>
       <article className="prose prose-lg max-w-none dark:prose-invert prose-headings:scroll-mt-24">
-        <Suspense fallback={<div>Loading...</div>}>
-          <Component components={{ pre: Pre }} />
-        </Suspense>
+        <Component components={{ pre: Pre }} />
       </article>
     </NoteLayout>
   );

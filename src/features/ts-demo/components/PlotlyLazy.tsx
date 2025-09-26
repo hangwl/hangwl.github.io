@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react'
+import { lazy } from 'react'
 
 // Lazy-load Plotly and the react wrapper to keep initial bundle small
 const LazyPlot = lazy(async () => {
@@ -11,11 +11,5 @@ const LazyPlot = lazy(async () => {
 })
 
 export function PlotlyLazy(props: any) {
-  return (
-    <Suspense
-      fallback={<div className="h-72 w-full rounded-lg bg-muted animate-pulse" />}
-    >
-      <LazyPlot {...props} />
-    </Suspense>
-  )
+  return <LazyPlot {...props} />
 }
