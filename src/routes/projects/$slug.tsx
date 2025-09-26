@@ -1,5 +1,5 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
-import { Suspense, useEffect } from 'react'
+import { useEffect } from 'react'
 import { getProject } from '@/lib/projects'
 import { ProjectLayout } from '@/components/project-layout'
 import { useHeadings } from '@/hooks/use-headings'
@@ -147,9 +147,7 @@ function ProjectPage() {
       
       {/* Project Content */}
       <article className="prose prose-lg max-w-none dark:prose-invert prose-headings:scroll-mt-20">
-        <Suspense fallback={<div className="animate-pulse">Loading content...</div>}>
-          <Component components={{ pre: Pre }} />
-        </Suspense>
+        <Component components={{ pre: Pre }} />
       </article>
     </ProjectLayout>
   )
