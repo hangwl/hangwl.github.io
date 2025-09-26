@@ -53,7 +53,7 @@ function makeAds(n: number) {
 
 // Beta sampling via two Gamma draws (Cheng’s algorithm)
 function sampleBeta(alpha: number, beta: number) {
-  function gamma(k: number) {
+  function gamma(k: number): number {
     if (k < 1) {
       const u = urand()
       return gamma(1 + k) * Math.pow(u, 1 / k)

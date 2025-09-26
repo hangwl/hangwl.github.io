@@ -18,3 +18,10 @@ declare module 'plotly.js-dist-min' {
   const Plotly: any
   export default Plotly
 }
+
+declare module 'seedrandom' {
+  export default function seedrandom(
+    seed?: string,
+    options?: any
+  ): () => number
+}
