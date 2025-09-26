@@ -52,6 +52,20 @@ function ThreeIndex() {
               </Link>
             </MagicCard>
           </li>
+          <li>
+            <MagicCard
+              className="rounded-lg"
+              gradientColor={resolvedTheme === "dark" ? "#262626" : "#D9D9D955"}
+            >
+              <Link
+                to="/lab/ts-demo"
+                className="block p-4"
+              >
+                <div className="font-medium">Thompson Sampling Demo</div>
+                <div className="text-sm text-muted-foreground">Multi-armed bandit simulation with Plotly charts and Web Worker</div>
+              </Link>
+            </MagicCard>
+          </li>
         </ul>
       </section>
 

@@ -1,10 +1,10 @@
 {
-  "include": ["**/*.ts", "**/*.tsx", "**/*.mdx"],
+  "include": ["**/*.ts", "**/*.tsx", "**/*.mdx", "**/*.d.ts"],
   "compilerOptions": {
     "target": "ES2022",
     "jsx": "react-jsx",
     "module": "ESNext",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
     "types": ["@mdx-js/react", "node"],
 
     /* Bundler mode */

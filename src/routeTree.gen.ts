@@ -16,6 +16,7 @@ import { Route as NotesIndexRouteImport } from './routes/notes/index'
 import { Route as LabIndexRouteImport } from './routes/lab/index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
 import { Route as NotesNoteIdRouteImport } from './routes/notes/$noteId'
+import { Route as LabTsDemoRouteImport } from './routes/lab/ts-demo'
 import { Route as LabSpinningCubeRouteImport } from './routes/lab/spinning-cube'
 import { Route as LabSnake3dRouteImport } from './routes/lab/snake-3d'
 
@@ -54,6 +55,11 @@ const NotesNoteIdRoute = NotesNoteIdRouteImport.update({
   path: '/$noteId',
   getParentRoute: () => NotesRoute,
 } as any)
+const LabTsDemoRoute = LabTsDemoRouteImport.update({
+  id: '/lab/ts-demo',
+  path: '/lab/ts-demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LabSpinningCubeRoute = LabSpinningCubeRouteImport.update({
   id: '/lab/spinning-cube',
   path: '/lab/spinning-cube',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/notes': typeof NotesRouteWithChildren
   '/lab/snake-3d': typeof LabSnake3dRoute
   '/lab/spinning-cube': typeof LabSpinningCubeRoute
+  '/lab/ts-demo': typeof LabTsDemoRoute
   '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/lab': typeof LabIndexRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/lab/snake-3d': typeof LabSnake3dRoute
   '/lab/spinning-cube': typeof LabSpinningCubeRoute
+  '/lab/ts-demo': typeof LabTsDemoRoute
   '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/lab': typeof LabIndexRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/notes': typeof NotesRouteWithChildren
   '/lab/snake-3d': typeof LabSnake3dRoute
   '/lab/spinning-cube': typeof LabSpinningCubeRoute
+  '/lab/ts-demo': typeof LabTsDemoRoute
   '/notes/$noteId': typeof NotesNoteIdRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/lab/': typeof LabIndexRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/notes'
     | '/lab/snake-3d'
     | '/lab/spinning-cube'
+    | '/lab/ts-demo'
     | '/notes/$noteId'
     | '/projects/$slug'
     | '/lab'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
     | '/'
     | '/lab/snake-3d'
     | '/lab/spinning-cube'
+    | '/lab/ts-demo'
     | '/notes/$noteId'
     | '/projects/$slug'
     | '/lab'
@@ -126,6 +137,7 @@ export interface FileRouteTypes {
     | '/notes'
     | '/lab/snake-3d'
     | '/lab/spinning-cube'
+    | '/lab/ts-demo'
     | '/notes/$noteId'
     | '/projects/$slug'
     | '/lab/'
@@ -138,6 +150,7 @@ export interface RootRouteChildren {
   NotesRoute: typeof NotesRouteWithChildren
   LabSnake3dRoute: typeof LabSnake3dRoute
   LabSpinningCubeRoute: typeof LabSpinningCubeRoute
+  LabTsDemoRoute: typeof LabTsDemoRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   LabIndexRoute: typeof LabIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
@@ -194,6 +207,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotesNoteIdRouteImport
       parentRoute: typeof NotesRoute
     }
+    '/lab/ts-demo': {
+      id: '/lab/ts-demo'
+      path: '/lab/ts-demo'
+      fullPath: '/lab/ts-demo'
+      preLoaderRoute: typeof LabTsDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lab/spinning-cube': {
       id: '/lab/spinning-cube'
       path: '/lab/spinning-cube'
@@ -228,6 +248,7 @@ const rootRouteChildren: RootRouteChildren = {
   NotesRoute: NotesRouteWithChildren,
   LabSnake3dRoute: LabSnake3dRoute,
   LabSpinningCubeRoute: LabSpinningCubeRoute,
+  LabTsDemoRoute: LabTsDemoRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
   LabIndexRoute: LabIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
