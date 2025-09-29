@@ -8,13 +8,14 @@ export interface Note extends NoteFrontmatter {
   slug: string
 }
 
-const noteModules = import.meta.glob('/src/content/notes/*.mdx', {
+const noteModules = import.meta.glob('/src/content/notes/*.{md,mdx}', {
   eager: false,
 }) as Record<string, () => Promise<{ default: any; frontmatter: NoteFrontmatter }>>
 
 export async function getNote(slug: string) {
-  const path = `/src/content/notes/${slug}.mdx`
-  const module = noteModules[path]
+  const pathMdx = `/src/content/notes/${slug}.mdx`
+  const pathMd = `/src/content/notes/${slug}.md`
+  const module = noteModules[pathMdx] || noteModules[pathMd]
   
   if (!module) {
     return null
@@ -31,7 +32,9 @@ export async function getNote(slug: string) {
 export async function getAllNotes(): Promise<Note[]> {
   const notes = await Promise.all(
     Object.entries(noteModules).map(async ([path, moduleLoader]) => {
-      const slug = path.replace('/src/content/notes/', '').replace('.mdx', '')
+      const slug = path
+        .replace('/src/content/notes/', '')
+        .replace(/\.(mdx|md)$/i, '')
       const { frontmatter } = await moduleLoader()
 
       return {

@@ -26,6 +26,7 @@ export default defineConfig({
           transformers: [],
         }],
       ],
+      include: ['**/*.mdx', '**/*.md'],
     }),
     viteReact(),
   ],
