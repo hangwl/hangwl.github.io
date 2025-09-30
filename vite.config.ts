@@ -30,6 +30,13 @@ export default defineConfig({
     }),
     viteReact(),
   ],
+  optimizeDeps: {
+    include: [
+      'seedrandom',
+      'three',
+      'react-force-graph-2d',
+    ],
+  },
   test: {
     globals: true,
     environment: 'jsdom',

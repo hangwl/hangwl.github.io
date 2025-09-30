@@ -8,6 +8,9 @@ import { Button } from '@/components/ui/button'
 import Pre from '@/components/mdx/Pre'
 import { MagicCard } from '@/components/magicui/magic-card'
 import { useTheme } from '@/components/theme-provider'
+import { SkeletonProject } from '@/components/skeleton-loader'
+import { generateProjectSEO } from '@/lib/seo'
+import { ProjectNotFound } from '@/components/not-found'
 
 export const Route = createFileRoute('/projects/$slug')({
   loader: async ({ params }) => {
@@ -17,8 +20,25 @@ export const Route = createFileRoute('/projects/$slug')({
     }
     return project
   },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {};
+    const { frontmatter, slug } = loaderData;
+    return generateProjectSEO(
+      frontmatter.title,
+      frontmatter.description || '',
+      slug,
+      frontmatter.image,
+      frontmatter.date,
+      frontmatter.tags
+    );
+  },
   component: ProjectPage,
-  notFoundComponent: () => <div>Project not found</div>,
+  pendingComponent: () => (
+    <ProjectLayout tocItems={[]}>
+      <SkeletonProject />
+    </ProjectLayout>
+  ),
+  notFoundComponent: ProjectNotFound,
 })
 
 function ProjectPage() {

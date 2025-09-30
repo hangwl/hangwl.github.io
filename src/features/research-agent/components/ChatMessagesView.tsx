@@ -338,7 +338,7 @@ export function ChatMessagesView({
       setCopiedMessageId(messageId);
       setTimeout(() => setCopiedMessageId(null), 2000);
     } catch (err) {
-      // ignore
+      console.error('Failed to copy to clipboard:', err);
     }
   };
   return (

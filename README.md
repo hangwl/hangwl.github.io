@@ -1,20 +1,70 @@
-Welcome to your new TanStack app! 
+Welcome to hangwl's digital gallery! 
 
 # Getting Started
 
-To run this application:
+## Prerequisites
 
+- Node.js 18+
+- pnpm 9+ (recommended package manager)
+- Git
+
+**Install pnpm** (if not already installed):
 ```bash
-npm install
-npm run start  
+npm install -g pnpm
+# or
+curl -fsSL https://get.pnpm.io/install.sh | sh -
 ```
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/hangwl/hangwl.github.io.git
+   cd hangwl.github.io
+   ```
+
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. Set up environment variables (optional, only needed for Research Agent feature):
+   ```bash
+   cp .env.example .env.development
+   # Edit .env.development with your configuration
+   ```
+   
+   See [ENVIRONMENT.md](./ENVIRONMENT.md) for details.
+
+4. Start the development server:
+   ```bash
+   pnpm dev
+   ```
+
+The app will be available at `http://localhost:3000`
+
+> **Note**: This project uses pnpm as the package manager. Using npm or yarn may cause dependency issues.
 
 # Building For Production
 
 To build this application for production:
 
 ```bash
-npm run build
+pnpm build
+```
+
+## Available Scripts
+
+```bash
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm serve        # Preview production build
+pnpm test         # Run tests
+pnpm lint         # Check code quality
+pnpm lint:fix     # Fix linting issues
+pnpm format       # Format code with Prettier
+pnpm type-check   # Run TypeScript type checking
+pnpm deploy       # Deploy to GitHub Pages
 ```
 
 ## Testing
@@ -22,7 +72,7 @@ npm run build
 This project uses [Vitest](https://vitest.dev/) for testing. You can run the tests with:
 
 ```bash
-npm run test
+pnpm test
 ```
 
 ## Styling
@@ -134,7 +184,7 @@ React-Query is an excellent addition or alternative to route loading and integra
 First add your dependencies:
 
 ```bash
-npm install @tanstack/react-query @tanstack/react-query-devtools
+pnpm add @tanstack/react-query @tanstack/react-query-devtools
 ```
 
 Next we'll need to create a query client and provider. We recommend putting those in `main.tsx`.
@@ -215,7 +265,7 @@ Another common requirement for React applications is state management. There are
 First you need to add TanStack Store as a dependency:
 
 ```bash
-npm install @tanstack/store
+pnpm add @tanstack/store
 ```
 
 Now let's create a simple counter in the `src/App.tsx` file as a demonstration.

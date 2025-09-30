@@ -1,0 +1,71 @@
+---
+title: "Game Contributions Extractor"
+description: "A guild contributions extractor project that uses PaddleOCR to extract game contributions from Maplestory screenshots and fuzzy string matching to match incomplete IGNs. Images were segmented through the analysis of pixel variances."
+date: "2023-07-01"
+tags: ["Python", "PaddleOCR", "Fuzzy String Matching"]
+status: "completed"
+featured: true
+order: 3
+---
+
+# Game Contributions Extractor
+
+An automated tool for extracting and processing guild contribution data from Maplestory game screenshots using computer vision and OCR technology.
+
+## Problem Statement
+
+Guild leaders in Maplestory needed an efficient way to track member contributions from in-game screenshots. Manual data entry was time-consuming and error-prone, especially with:
+- Varying screenshot quality
+- Incomplete or partially visible player names (IGNs)
+- Different UI layouts and resolutions
+
+## Solution
+
+This project implements an automated pipeline that:
+
+### 1. Image Segmentation
+- Analyzes pixel variance patterns to identify contribution rows
+- Handles different screenshot resolutions and UI scales
+- Robust to varying lighting and color schemes
+
+### 2. OCR Processing
+- Uses **PaddleOCR** for text extraction
+- Optimized for game UI fonts and styling
+- Handles both English and special characters in player names
+
+### 3. Fuzzy Matching
+- Implements fuzzy string matching algorithms to handle:
+  - Partially visible IGNs
+  - OCR errors and misrecognitions
+  - Name variations and special characters
+- Matches extracted names against known guild member roster
+
+## Technical Stack
+
+- **Python**: Core implementation language
+- **PaddleOCR**: State-of-the-art OCR engine
+- **OpenCV**: Image preprocessing and segmentation
+- **FuzzyWuzzy/RapidFuzz**: String similarity matching
+- **NumPy**: Numerical operations for pixel analysis
+
+## Key Achievements
+
+- Successfully processed hundreds of contribution screenshots
+- Achieved >95% accuracy in contribution extraction
+- Reduced manual data entry time by ~90%
+- Handled edge cases like overlapping text and UI elements
+
+## Challenges Overcome
+
+1. **Variable Image Quality**: Implemented adaptive preprocessing
+2. **Incomplete Text**: Developed robust fuzzy matching with confidence scores
+3. **UI Variations**: Created flexible segmentation based on pixel patterns
+4. **Performance**: Optimized for batch processing of multiple screenshots
+
+## Impact
+
+This tool significantly improved guild management efficiency, allowing leaders to:
+- Quickly track member activity
+- Identify inactive members
+- Reward top contributors
+- Make data-driven decisions about guild operations

@@ -3,15 +3,16 @@ import { VerticalAnimatedBeam } from "@/components/magicui/vertical-animated-bea
 import { MagicCard } from "@/components/magicui/magic-card";
 import { useTheme } from "@/components/theme-provider";
 import { Link } from "@tanstack/react-router";
+import { Project } from "@/lib/projects";
 
 interface TimelineProject {
-  id: string;
+  slug: string;
   title: string;
   description: ReactNode;
   year: number;
   date?: string;
-  technologies?: string[];
-  projectHref?: string; // Internal link for project page
+  tags?: string[];
+  projectHref: string;
 }
 
 interface TimelineItemProps {
@@ -19,42 +20,20 @@ interface TimelineItemProps {
   index: number;
 }
 
-const Projects: TimelineProject[] = [
-  {
-    id: "1",
-    title: "Aquarium",
-    description: "Aquarium is a community-driven platform aimed at addressing data scarcity and increasing language representation within Southeast Asia. It features an assistive chatbot focused on increasing data accessibility to the public. The data that powers Aquarium is the product of AI-integrated data processing pipelines.",
-    year: 2025,
-    date: "June 2025",
-    technologies: ["Next.js", "LangGraph", "Python", "FastAPI", "PostgreSQL"],
-    // links: {
-    //   homepage: "https://aquarium.sea-lion.ai/",
-    // },
-    projectHref: "/projects/aquarium",
-  },
-  {
-    id: "2",
-    title: "Bayesian Thompson Sampling Demo",
-    description: "A Streamlit application that demonstrates how Bayesian Thompson Sampling can be used to optimize model selection to address model drift.",
-    year: 2024,
-    date: "Sept 2024",
-    technologies: ["Streamlit", "Python", "Bayesian A/B Testing"],
-    // links: {
-    //   github: "https://github.com/hangwl/thompson_sampling_demo"
-    // }
-  },
-  {
-    id: "3",
-    title: "Game Contributions Extractor",
-    description: "A guild contributions extractor project that uses PaddleOCR to extract game contributions from Maplestory screenshots and fuzzy string matching to match incomplete IGNs. Images were segmented through the analysis of pixel variances.",
-    year: 2023,
-    date: "Jul 2023",
-    technologies: ["Python", "PaddleOCR", "Fuzzy String Matching"],
-    // links: {
-    //   github: "https://github.com/hangwl/MaplestoryOCR"
-    // }
-  }
-];
+// Helper to convert Project to TimelineProject
+function projectToTimelineProject(project: Project): TimelineProject {
+  const year = project.date ? new Date(project.date).getFullYear() : new Date().getFullYear();
+  
+  return {
+    slug: project.slug,
+    title: project.title,
+    description: project.description || '',
+    year,
+    date: project.date,
+    tags: project.tags,
+    projectHref: `/projects/${project.slug}`,
+  };
+}
 
 function TimelineItem({ project }: Omit<TimelineItemProps, 'index'>) {
   const { theme } = useTheme();
@@ -84,15 +63,15 @@ function TimelineItem({ project }: Omit<TimelineItemProps, 'index'>) {
                 {project.description}
               </div>
 
-              {/* Technologies */}
-              {project.technologies && (
+              {/* Tags/Technologies */}
+              {project.tags && (
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech, idx) => (
+                  {project.tags.map((tag, idx) => (
                     <span
                       key={idx}
                       className="text-xs px-2 py-1 bg-primary/10 text-primary rounded-full"
                     >
-                      {tech}
+                      {tag}
                     </span>
                   ))}
                 </div>
@@ -141,8 +120,15 @@ function TimelineItem({ project }: Omit<TimelineItemProps, 'index'>) {
   );
 }
 
-export function Timeline() {
-  const projectsByYear = Projects.reduce((acc, project) => {
+interface TimelineProps {
+  projects: Project[];
+}
+
+export function Timeline({ projects }: TimelineProps) {
+  // Convert projects to timeline format
+  const timelineProjects = projects.map(projectToTimelineProject);
+  
+  const projectsByYear = timelineProjects.reduce((acc, project) => {
     if (!acc[project.year]) {
       acc[project.year] = [];
     }
@@ -173,7 +159,7 @@ export function Timeline() {
             <div className="space-y-8 mb-12">
               {projectsByYear[year].map((project) => (
                 <TimelineItem
-                  key={project.id}
+                  key={project.slug}
                   project={project}
                 />
               ))}

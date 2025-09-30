@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { ErrorBoundary } from '@/components/error-boundary'
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen'
@@ -16,6 +17,14 @@ const router = createRouter({
   scrollRestoration: true,
   defaultStructuralSharing: true,
   defaultPreloadStaleTime: 0,
+  defaultErrorComponent: ({ error }) => (
+    <div className="flex min-h-screen items-center justify-center p-4">
+      <div className="max-w-md w-full space-y-4 text-center">
+        <h1 className="text-4xl font-bold">Route Error</h1>
+        <p className="text-destructive">{error.message}</p>
+      </div>
+    </div>
+  ),
 })
 
 // Register the router instance for type safety
@@ -31,7 +40,9 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <ErrorBoundary>
+        <RouterProvider router={router} />
+      </ErrorBoundary>
     </StrictMode>,
   )
 }

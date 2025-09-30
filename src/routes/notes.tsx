@@ -17,9 +17,11 @@ function NotesLayoutComponent() {
     <SidebarProvider>
       <AppSidebar notes={notes} />
       <TOCProvider>
-        <main className="relative flex flex-col flex-1 min-w-0">
+        <main className="relative flex flex-col flex-1 min-w-0 min-h-0">
           <NotesHeader />
-          <Outlet />
+          <div className="flex-1 min-h-0">
+            <Outlet />
+          </div>
         </main>
       </TOCProvider>
     </SidebarProvider>

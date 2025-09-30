@@ -5,12 +5,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useLayoutEffect } from "react";
 import { Timeline } from "@/components/timeline";
+import { getFeaturedProjects } from "@/lib/projects";
+import { SkeletonTimeline } from "@/components/skeleton-loader";
+import { DEFAULT_SEO } from "@/lib/seo";
 
 export const Route = createFileRoute('/')({
+  loader: getFeaturedProjects,
+  head: () => DEFAULT_SEO,
   component: App,
+  pendingComponent: () => (
+    <div className="max-w-4xl mx-auto py-24 px-4">
+      <SkeletonTimeline items={3} />
+    </div>
+  ),
 })
 
 function App() {
+  const projects = Route.useLoaderData();
+  
   useLayoutEffect(() => {
     document.title = "home | hangwl's digital gallery";
 
@@ -24,26 +36,9 @@ function App() {
       effects: true,
     });
 
-    // Set up snapping for each section (DISABLED - smooth scrolling only)
-    // const sections = gsap.utils.toArray(".scroll-section") as Element[];
-    // 
-    // sections.forEach((section) => {
-    //   ScrollTrigger.create({
-    //     trigger: section,
-    //     start: "top center",
-    //     end: "bottom center",
-    //     onEnter: () => {
-    //       smoother.scrollTo(section, true, "top top");
-    //     },
-    //     onEnterBack: () => {
-    //       smoother.scrollTo(section, true, "top top");
-    //     },
-    //   });
-    // });
-
-
     // Animate sections on scroll
-    gsap.utils.toArray(".animate-on-scroll").forEach((section: any) => {
+    const sections = gsap.utils.toArray<HTMLElement>(".animate-on-scroll");
+    sections.forEach((section) => {
       gsap.fromTo(section,
         {
           y: 50,
@@ -111,7 +106,7 @@ function App() {
             <div className="max-w-2xl w-full">
               <h3 className="text-2xl font-semibold tracking-tight mb-4 text-center">Projects</h3>
               <div className="space-y-6">
-                <Timeline />
+                <Timeline projects={projects} />
               </div>
             </div>
           </section>

@@ -149,5 +149,10 @@ count.txt
 .nitro
 .tanstack
 
+# Package Manager Lock Files
+# Using pnpm as the standard package manager
+package-lock.json
+yarn.lock
+
 # VSCode
 .vscode/

@@ -5,6 +5,9 @@ import { NoteLayout } from '@/components/note-layout';
 import { useHeadings } from '@/hooks/use-headings';
 import { useTOC } from '@/context/toc-context';
 import Pre from '@/components/mdx/Pre';
+import { SkeletonNote } from '@/components/skeleton-loader';
+import { generateNoteSEO } from '@/lib/seo';
+import { NoteNotFound } from '@/components/not-found';
 
 export const Route = createFileRoute('/notes/$noteId')({
   loader: async ({ params }) => {
@@ -14,8 +17,17 @@ export const Route = createFileRoute('/notes/$noteId')({
     }
     return note;
   },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {};
+    return generateNoteSEO(loaderData.frontmatter.title, loaderData.slug);
+  },
   component: NotePage,
-  notFoundComponent: () => <div>Note not found</div>,
+  pendingComponent: () => (
+    <NoteLayout>
+      <SkeletonNote />
+    </NoteLayout>
+  ),
+  notFoundComponent: NoteNotFound,
 });
 
 function NotePage() {

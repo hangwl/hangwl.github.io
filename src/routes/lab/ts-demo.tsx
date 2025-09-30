@@ -1,7 +1,8 @@
-import { lazy, useEffect } from 'react'
 import { createFileRoute } from '@tanstack/react-router'
+import { useEffect, lazy, Suspense } from 'react'
+import { PageLoader } from '@/components/page-loader'
 
-const TSDemoApp = lazy(() => import('@/features/ts-demo/App'))
+const ThompsonSamplingDemo = lazy(() => import('@/features/ts-demo/App'))
 
 export const Route = createFileRoute('/lab/ts-demo')({
   component: TSDemoRoute,
@@ -14,7 +15,9 @@ function TSDemoRoute() {
 
   return (
     <div className="px-4 py-10 max-w-6xl mx-auto my-8 space-y-6">
-      <TSDemoApp />
+      <Suspense fallback={<PageLoader message="Loading Thompson Sampling Demo..." fullScreen={false} />}>
+        <ThompsonSamplingDemo />
+      </Suspense>
     </div>
   )
 }

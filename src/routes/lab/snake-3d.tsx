@@ -1,6 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useEffect } from 'react'
-import { Snake3D } from '../../components/three/snake3d'
+import { useEffect, lazy, Suspense } from 'react'
+import { PageLoader } from '@/components/page-loader'
+
+const Snake3D = lazy(() => import('@/components/three/snake3d/Snake3D'))
 
 export const Route = createFileRoute('/lab/snake-3d')({
   component: Snake3DRoute,
@@ -39,9 +41,11 @@ function Snake3DRoute() {
       className="fixed inset-0 w-screen bg-black flex items-center justify-center"
       style={{ height: '100dvh' }}
     >
-      <div className="w-screen">
-        <Snake3D />
-      </div>
+      <Suspense fallback={<PageLoader message="Loading 3D Snake..." />}>
+        <div className="w-screen">
+          <Snake3D />
+        </div>
+      </Suspense>
     </div>
   )
 }

@@ -1,10 +1,14 @@
-import { useRef, useState, useEffect, memo, useMemo } from 'react'
+import { useRef, useState, useEffect, memo, useMemo, useCallback } from 'react'
 import ForceGraph2D, { GraphData, NodeObject, LinkObject } from 'react-force-graph-2d'
 import { useNavigate } from '@tanstack/react-router'
 import { useTheme } from './theme-provider'
 
 export interface NoteGraphProps {
   graph: GraphData
+}
+
+interface CustomNodeObject extends NodeObject {
+  title?: string
 }
 
 const NoteGraph = memo(({ graph }: NoteGraphProps) => {
@@ -15,6 +19,7 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
   const isDarkMode = resolvedTheme === 'dark';
   const [hoveredNode, setHoveredNode] = useState<NodeObject | null>(null);
   const [draggedNode, setDraggedNode] = useState<NodeObject | null>(null);
+  const [nodeRadii, setNodeRadii] = useState<Map<string | number, number>>(new Map());
 
   useEffect(() => {
     if (containerRef.current) {
@@ -30,7 +35,7 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
   }, [])
 
   // Theme-aware colors: opaque nodes, readable labels, subtle links
-  const colors = isDarkMode
+  const colors = useMemo(() => isDarkMode
     ? {
         node: '#e2e8f0',    // slate-200 (opaque)
         text: '#cbd5e1',    // slate-300
@@ -40,22 +45,63 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
         node: '#2d3748',    // gray-800 (opaque)
         text: '#475569',    // slate-600
         link: 'rgba(45, 55, 72, 0.3)',     // subtle
-      };
+      }, [isDarkMode]);
 
   // Theme is derived from ThemeProvider via useTheme(); no MutationObserver needed.
 
-  const handleNodeClick = (node: NodeObject) => {
+  // Animate node radius changes
+  useEffect(() => {
+    const targetRadii = new Map<string | number, number>();
+    
+    graph.nodes.forEach((node) => {
+      const isHovered = hoveredNode && hoveredNode.id === node.id;
+      const isDragged = draggedNode && draggedNode.id === node.id;
+      const targetRadius = isHovered || isDragged ? 5 : 4;
+      targetRadii.set(node.id!, targetRadius);
+    });
+
+    const animationDuration = 200; // ms
+    const startTime = Date.now();
+    
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / animationDuration, 1);
+      
+      // Easing function (ease-out)
+      const eased = 1 - Math.pow(1 - progress, 3);
+      
+      setNodeRadii((prev) => {
+        const newRadii = new Map(prev);
+        
+        targetRadii.forEach((targetRadius, nodeId) => {
+          const currentRadius = prev.get(nodeId) || 4;
+          const newRadius = currentRadius + (targetRadius - currentRadius) * eased;
+          newRadii.set(nodeId, newRadius);
+        });
+        
+        return newRadii;
+      });
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }, [hoveredNode, draggedNode, graph.nodes]);
+
+  const handleNodeClick = useCallback((node: NodeObject) => {
     if (typeof node.id === 'string') {
       navigate({ to: `/notes/${node.id}` })
     }
-  }
+  }, [navigate])
 
-  const handleLinkClick = (link: LinkObject<any, any>) => {
+  const handleLinkClick = useCallback((link: LinkObject) => {
     const target = link.target as NodeObject | undefined
     if (target && typeof target.id === 'string') {
       navigate({ to: `/notes/${target.id}` })
     }
-  }
+  }, [navigate])
 
     const memoizedGraph = useMemo(() => (
     <ForceGraph2D
@@ -70,14 +116,19 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
       onNodeDragEnd={() => {
         setDraggedNode(null);
       }}
-      nodeCanvasObject={(node: any, ctx, globalScale) => {
-        const label = node.title || node.id;
+      nodeCanvasObject={(node: CustomNodeObject, ctx, globalScale) => {
+        // Guard against undefined coordinates
+        if (node.x === undefined || node.y === undefined) return;
+        
+        const label = String(node.title || node.id || '');
         const fontSize = 12 / globalScale;
         ctx.font = `${fontSize}px Sans-Serif`;
 
         const isHovered = hoveredNode && hoveredNode.id === node.id;
         const isDragged = draggedNode && draggedNode.id === node.id;
-        const radius = isHovered || isDragged ? 5 : 4;
+        
+        // Use animated radius from state
+        const radius = nodeRadii.get(node.id!) || 4;
         const color = isHovered || isDragged ? '#ef4444' : colors.node; // red-500
 
         // Draw node circle
@@ -104,16 +155,18 @@ const NoteGraph = memo(({ graph }: NoteGraphProps) => {
       enableNodeDrag={true}
       cooldownTicks={100}
     />
-  ), [dimensions, graph, hoveredNode, draggedNode, colors, navigate]);
+  ), [dimensions, graph, hoveredNode, draggedNode, colors, handleNodeClick, handleLinkClick, nodeRadii]);
 
   return (
     <div
       ref={containerRef}
-      className="w-full h-[60vh] rounded-lg border border-border/40 backdrop-blur-md bg-background/80 dark:bg-black/20 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10"
+      className="w-full h-full rounded-lg border border-border/40 backdrop-blur-md bg-background/80 dark:bg-black/20 supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10"
     >
       {memoizedGraph}
     </div>
   )
 });
+
+NoteGraph.displayName = 'NoteGraph';
 
 export default NoteGraph;

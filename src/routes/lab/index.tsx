@@ -2,8 +2,15 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect } from 'react'
 import { MagicCard } from '@/components/magicui/magic-card'
 import { useTheme } from '@/components/theme-provider'
+import { generateSEO } from '@/lib/seo'
 
 export const Route = createFileRoute('/lab/')({
+  head: () =>
+    generateSEO({
+      title: 'Lab',
+      description: 'Interactive experiments and demos featuring Three.js visualizations, Thompson Sampling, and AI research tools',
+      url: 'https://hangwl.github.io/lab',
+    }),
   component: ThreeIndex,
 })
 

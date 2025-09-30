@@ -111,7 +111,9 @@ export default function ResearchAgentApp() {
         if (websocket) {
           try {
             websocket.close(1000, "Client starting new run");
-          } catch {}
+          } catch (err) {
+            console.error('Error closing websocket:', err);
+          }
         }
       };
       (controller.signal as any).cleanup = cleanup;
@@ -179,7 +181,9 @@ export default function ResearchAgentApp() {
                     setMessages((prev) => [...prev, aiMsg]);
                     hasFinalizeEventOccurredRef.current = true;
                   }
-                } catch {}
+                } catch (err) {
+                  console.error('Error parsing finalize event:', err);
+                }
               }
               break;
             case "event": {
@@ -302,7 +306,9 @@ export default function ResearchAgentApp() {
           if (websocket) {
             try {
               websocket.close(1000, "Client cleanup");
-            } catch {}
+            } catch (err) {
+              console.error('Error closing websocket:', err);
+            }
           }
           clearInterval(keepAliveInterval);
         };
@@ -379,7 +385,11 @@ export default function ResearchAgentApp() {
   );
 
   const handleCancel = useCallback(() => {
-    try { abortRef.current?.abort(); } catch {}
+    try { 
+      abortRef.current?.abort(); 
+    } catch (err) {
+      console.error('Error aborting request:', err);
+    }
     window.location.reload();
   }, []);
 

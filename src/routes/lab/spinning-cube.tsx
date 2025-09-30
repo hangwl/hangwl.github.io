@@ -1,6 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { useEffect, useState } from 'react'
-import SpinningCube from '@/components/three/SpinningCube'
+import { useEffect, useState, lazy, Suspense } from 'react'
+import { PageLoader } from '@/components/page-loader'
+
+const SpinningCube = lazy(() => import('@/components/three/SpinningCube'))
 
 export const Route = createFileRoute('/lab/spinning-cube')({
   component: SpinningCubeRoute,
@@ -26,21 +28,24 @@ function SpinningCubeRoute() {
 
       <section className="py-4 space-y-4">
         <div className="grid gap-6 md:grid-cols-[1fr_320px]">
-          <SpinningCube
-            height="60vh"
-            rotationSpeed={rotationSpeed}
-            color={color}
-            wireframe={wireframe}
-            autoRotate={autoRotate}
-            enableOrbitControls={enableOrbitControls}
-          />
+          <Suspense fallback={<PageLoader message="Loading 3D scene..." fullScreen={false} />}>
+            <SpinningCube
+              height="60vh"
+              rotationSpeed={rotationSpeed}
+              color={color}
+              wireframe={wireframe}
+              autoRotate={autoRotate}
+              enableOrbitControls={enableOrbitControls}
+            />
+          </Suspense>
 
           <div className="rounded-lg border bg-card p-4 h-fit">
             <h3 className="font-medium mb-3">Controls</h3>
             <div className="space-y-4 text-sm">
               <div className="flex items-center justify-between gap-4">
-                <label className="text-muted-foreground">Rotation speed</label>
+                <label htmlFor="rotation-speed" className="text-muted-foreground">Rotation speed</label>
                 <input
+                  id="rotation-speed"
                   type="range"
                   min="0"
                   max="0.1"
@@ -51,8 +56,9 @@ function SpinningCubeRoute() {
               </div>
 
               <div className="flex items-center justify-between gap-4">
-                <label className="text-muted-foreground">Color</label>
+                <label htmlFor="cube-color" className="text-muted-foreground">Color</label>
                 <input
+                  id="cube-color"
                   type="color"
                   value={color}
                   onChange={(e) => setColor(e.target.value)}
@@ -60,8 +66,9 @@ function SpinningCubeRoute() {
               </div>
 
               <div className="flex items-center justify-between gap-4">
-                <label className="text-muted-foreground">Wireframe</label>
+                <label htmlFor="wireframe" className="text-muted-foreground">Wireframe</label>
                 <input
+                  id="wireframe"
                   type="checkbox"
                   checked={wireframe}
                   onChange={(e) => setWireframe(e.target.checked)}
@@ -69,8 +76,9 @@ function SpinningCubeRoute() {
               </div>
 
               <div className="flex items-center justify-between gap-4">
-                <label className="text-muted-foreground">Auto rotate</label>
+                <label htmlFor="auto-rotate" className="text-muted-foreground">Auto rotate</label>
                 <input
+                  id="auto-rotate"
                   type="checkbox"
                   checked={autoRotate}
                   onChange={(e) => setAutoRotate(e.target.checked)}
@@ -78,8 +86,9 @@ function SpinningCubeRoute() {
               </div>
 
               <div className="flex items-center justify-between gap-4">
-                <label className="text-muted-foreground">Orbit controls</label>
+                <label htmlFor="orbit-controls" className="text-muted-foreground">Orbit controls</label>
                 <input
+                  id="orbit-controls"
                   type="checkbox"
                   checked={enableOrbitControls}
                   onChange={(e) => setEnableOrbitControls(e.target.checked)}
