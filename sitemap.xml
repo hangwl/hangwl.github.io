@@ -99,12 +99,37 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hangwl.github.io/notes/fast-api</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/http-vs-https</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/http</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/https</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hangwl.github.io/notes/hybrid-search</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://hangwl.github.io/notes/keyword-search</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/networking</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -120,6 +145,11 @@
   </url>
   <url>
     <loc>https://hangwl.github.io/notes/reranking</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/rest-api</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -144,12 +174,47 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hangwl.github.io/notes/ssl-certificates</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/ssl-tls</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/tcp</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hangwl.github.io/notes/transformers</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://hangwl.github.io/notes/udp</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://hangwl.github.io/notes/vector-databases</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/web-worker</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/webhooks</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hangwl.github.io/notes/websockets</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
