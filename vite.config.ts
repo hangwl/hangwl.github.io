@@ -6,6 +6,7 @@ import { fileURLToPath, URL } from 'node:url'
 import mdx from '@mdx-js/rollup'
 import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
 
 
@@ -15,7 +16,7 @@ export default defineConfig({
   plugins: [
     tanstackRouter({ autoCodeSplitting: true }),
     mdx({
-      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm],
       rehypePlugins: [
         [rehypePrettyCode, {
           theme: {

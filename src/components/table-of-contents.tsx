@@ -32,8 +32,8 @@ export function TableOfContents({ items, className }: TableOfContentsProps) {
   }
 
   return (
-    <nav className={cn('space-y-2', className)}>
-      <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
+    <nav className={cn('space-y-2 overflow-y-auto', className)}>
+      <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide sticky top-0 bg-background pb-2 z-10">
         On This Page
       </h3>
       <ul className="space-y-1 border-l border-border">

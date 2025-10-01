@@ -78,6 +78,8 @@
   /* Shiki code block colors */
   --shiki-light: #24292f;
   --shiki-light-bg: #f6f8fa;
+  --shiki-dark: #d1d5db;
+  --shiki-dark-bg: #181825;
 }
 
 .dark {
@@ -179,7 +181,7 @@
     @apply my-6 w-full;
   }
   .prose thead tr {
-    @apply m-0 border-t border-border p-0;
+    @apply m-0 border-t border-border p-0 bg-muted;
   }
   .prose thead th {
     @apply border border-border px-4 py-2 text-left font-bold;
@@ -191,7 +193,7 @@
     @apply text-right;
   }
   .prose tbody tr {
-    @apply m-0 border-t border-border p-0 even:bg-muted;
+    @apply m-0 border-t border-border p-0;
   }
   .prose tbody td {
     @apply border border-border px-4 py-2 text-left;
@@ -221,13 +223,25 @@
     color: var(--shiki-dark) !important;
     background-color: var(--shiki-dark-bg) !important;
   }
-  /* Code blocks - Handled by rehype-pretty-code */
-  /* .prose pre {
-    @apply rounded-lg bg-muted p-4 my-4;
+  
+  /* Code blocks without language (not handled by rehype-pretty-code) */
+  /* Use dark background in both themes to match language-specified code blocks */
+  .prose pre:not([data-theme]) {
+    @apply rounded-lg p-4 my-4 overflow-x-auto;
+    background-color: #1e1e1e; /* VS Code dark-plus background for light mode */
+    padding-right: 3.5rem !important; /* Space for copy button */
   }
-  .prose pre code {
+  .dark .prose pre:not([data-theme]) {
+    background-color: #0d1117; /* GitHub dark background for dark mode */
+  }
+  .prose pre:not([data-theme]) code {
     @apply bg-transparent p-0;
-  } */
+    color: #d4d4d4; /* Light gray text for readability on dark background */
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 0.95em;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
 }
 
 /* Timeline Styles */
@@ -274,6 +288,31 @@
   .year-section {
     margin-bottom: 3rem !important;
   }
+
+  /* Code blocks: smaller font and word wrapping on mobile */
+  .prose pre code {
+    font-size: 0.8rem !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+  }
+
+  .prose pre:not([data-theme]) code {
+    font-size: 0.8rem !important;
+    white-space: pre-wrap !important;
+    word-break: break-word !important;
+  }
+
+  .prose [data-rehype-pretty-code-figure] pre {
+    padding: 0.75rem !important;
+    padding-right: 3.5rem !important; /* Maintain space for copy button */
+    min-height: 4rem !important; /* Ensure enough height for copy button (top-3 + p-2 + icon + p-2 + margin) */
+  }
+
+  .prose pre:not([data-theme]) {
+    padding: 0.75rem !important;
+    padding-right: 3.5rem !important; /* Maintain space for copy button */
+    min-height: 4rem !important; /* Ensure enough height for copy button (top-3 + p-2 + icon + p-2 + margin) */
+  }
 }
 
 /* Dual theme code block support for rehype-pretty-code and shiki */
@@ -293,6 +332,12 @@ figure[data-rehype-pretty-code-figure] {
 .prose [data-rehype-pretty-code-figure] pre {
   @apply p-4 my-4 rounded-lg overflow-x-auto relative;
   border-radius: var(--radius);
+  padding-right: 3.5rem !important; /* Space for copy button */
+}
+
+.prose [data-rehype-pretty-code-figure] pre code {
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .prose [data-rehype-pretty-code-figure]:has([data-rehype-pretty-code-title]) pre {
