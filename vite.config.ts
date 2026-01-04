@@ -8,6 +8,9 @@ import remarkFrontmatter from 'remark-frontmatter'
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
 import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
+import rehypeSlug from 'rehype-slug'
+import { remarkTocExport } from './src/lib/remark-toc-export'
+import { remarkFixLinks } from './src/lib/remark-fix-links'
 
 
 // https://vitejs.dev/config/
@@ -16,8 +19,9 @@ export default defineConfig({
   plugins: [
     tanstackRouter({ autoCodeSplitting: true }),
     mdx({
-      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm],
+      remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter, remarkGfm, remarkTocExport, remarkFixLinks],
       rehypePlugins: [
+        rehypeSlug,
         [rehypePrettyCode, {
           theme: {
             dark: 'github-dark-default',

@@ -177,8 +177,12 @@
   .prose ol li {
     @apply mt-2;
   }
+  /* Table wrapper for horizontal scroll */
+  .prose .table-wrapper {
+    @apply my-6 overflow-x-auto;
+  }
   .prose table {
-    @apply my-6 w-full;
+    @apply w-full;
   }
   .prose thead tr {
     @apply m-0 border-t border-border p-0 bg-muted;

@@ -1,10 +1,16 @@
-import { TableOfContents } from "@/components/table-of-contents";
+import { TableOfContents, type TOCItem } from "@/components/table-of-contents";
 import { useTOC } from "@/context/toc-context";
 import { cn } from "@/lib/utils";
 import { PropsWithChildren } from "react";
 
-export function NoteLayout({ children }: PropsWithChildren) {
-  const { tocItems } = useTOC();
+interface NoteLayoutProps extends PropsWithChildren {
+  noteId?: string;
+  toc?: TOCItem[];
+}
+
+export function NoteLayout({ children, noteId, toc }: NoteLayoutProps) {
+  const { tocItems: contextTocItems } = useTOC();
+  const tocItems = toc || contextTocItems;
   const hasTOC = tocItems.length > 0;
 
   return (
@@ -25,6 +31,7 @@ export function NoteLayout({ children }: PropsWithChildren) {
           <aside className="hidden lg:block">
             <div className="sticky top-24">
               <TableOfContents
+                key={noteId}
                 items={tocItems}
                 className="max-h-[calc(100vh-7rem)]"
               />

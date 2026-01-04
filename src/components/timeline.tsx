@@ -185,7 +185,7 @@ export function Timeline({ projects }: TimelineProps) {
           toRef={yearRefs.current[index]}       // top year header
           className="z-10"
           startYOffset={26}
-          endYOffset={-100}
+          endYOffset={26}
           duration={3}
         />
       ))}

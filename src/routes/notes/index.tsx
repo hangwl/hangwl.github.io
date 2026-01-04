@@ -1,13 +1,13 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, lazy, Suspense } from 'react';
-import { getNotesGraph } from '@/lib/notes';
+import { getFolderGraphData } from '@/lib/notes';
 import { PageLoader } from '@/components/page-loader';
 import { generateSEO } from '@/lib/seo';
 
 const NoteGraph = lazy(() => import('@/components/note-graph'));
 
 export const Route = createFileRoute('/notes/')({
-  loader: getNotesGraph,
+  loader: getFolderGraphData,
   head: () =>
     generateSEO({
       title: 'Notes',
@@ -20,7 +20,7 @@ export const Route = createFileRoute('/notes/')({
 });
 
 function NotesIndex() {
-  const graph = Route.useLoaderData();
+  const data = Route.useLoaderData();
 
   useEffect(() => {
     document.title = "notes | ...";
@@ -35,7 +35,7 @@ function NotesIndex() {
       </header>
       <div className="flex-1 min-h-0">
         <Suspense fallback={<PageLoader message="Loading graph..." fullScreen={false} />}>
-          <NoteGraph graph={graph} />
+          <NoteGraph data={data} />
         </Suspense>
       </div>
     </div>

@@ -1,0 +1,264 @@
+{
+  "networking/websockets": [
+    "networking/http",
+    "networking/https",
+    "networking/http-vs-https"
+  ],
+  "networking/webhooks": [
+    "networking/http",
+    "networking/https",
+    "dev/rest-api"
+  ],
+  "networking/udp": [
+    "networking/networking",
+    "networking/tcp",
+    "networking/websockets"
+  ],
+  "networking/tcp": [
+    "networking/networking",
+    "networking/udp",
+    "networking/http",
+    "networking/https"
+  ],
+  "networking/ssl-tls": [
+    "networking/https",
+    "networking/http-vs-https"
+  ],
+  "networking/ssl-certificates": [
+    "networking/https",
+    "networking/ssl-tls"
+  ],
+  "networking/networking": [
+    "networking/tcp",
+    "networking/udp",
+    "networking/http",
+    "networking/https"
+  ],
+  "networking/https": [
+    "networking/http",
+    "networking/http-vs-https",
+    "networking/ssl-tls",
+    "networking/ssl-certificates"
+  ],
+  "networking/http": [
+    "networking/https",
+    "networking/http-vs-https",
+    "dev/rest-api"
+  ],
+  "networking/http-vs-https": [
+    "networking/http",
+    "networking/https",
+    "networking/ssl-tls",
+    "networking/ssl-certificates"
+  ],
+  "data-engineering/event-driven-mlops-pipeline-aws": [
+    "data-engineering/oltp-vs-olap",
+    "data-engineering/amazon-s3"
+  ],
+  "data-engineering/amazon-emr": [
+    "data-engineering/amazon-s3",
+    "data-engineering/delta-lake"
+  ],
+  "dev/rest-api": [
+    "networking/http",
+    "networking/https",
+    "networking/webhooks",
+    "networking/websockets"
+  ],
+  "dev/fast-api": [
+    "dev/rest-api",
+    "networking/http",
+    "networking/https"
+  ],
+  "consulting/business-processes/README": [
+    "consulting/business-processes/01-engagement-lifecycle/overview",
+    "consulting/business-processes/01-engagement-lifecycle/visual-workflow",
+    "consulting/business-processes/02-pre-engagement/checklist",
+    "consulting/business-processes/03-project-initiation/kickoff-guide",
+    "consulting/business-processes/04-project-execution/delivery-methodology",
+    "consulting/business-processes/05-quality-and-compliance/quality-assurance"
+  ],
+  "ai/rag/vector-databases": [
+    "ai/rag/approximate-nearest-neighbors",
+    "ai/rag/chunking"
+  ],
+  "ai/rag/semantic-search": [
+    "ai/rag/hybrid-search",
+    "ai/rag/approximate-nearest-neighbors",
+    "ai/rag/cross-encoders"
+  ],
+  "ai/rag/retriever": [
+    "ai/rag/keyword-search",
+    "ai/rag/semantic-search",
+    "ai/rag/retriever-evaluation-metrics",
+    "ai/rag/vector-databases",
+    "ai/rag/query-parsing",
+    "ai/rag/cross-encoders",
+    "ai/rag/reranking"
+  ],
+  "ai/rag/retrieval-augmented-generation": [
+    "ai/rag/retriever",
+    "ai/rag/vector-databases"
+  ],
+  "ai/rag/keyword-search": [
+    "ai/rag/hybrid-search"
+  ],
+  "ai/rag/cross-encoders": [
+    "ai/rag/reranking"
+  ],
+  "ai/ml/transformers": [
+    "ai/rag/cross-encoders"
+  ],
+  "consulting/technical/data-platform/requirements-summary": [
+    "consulting/technical/data-platform/authentication-architecture",
+    "consulting/technical/data-platform/authorization-model",
+    "consulting/technical/data-platform/implementation-guide"
+  ],
+  "consulting/technical/data-platform/implementation-guide": [
+    "consulting/technical/data-platform/authentication-architecture",
+    "consulting/technical/data-platform/authorization-model",
+    "consulting/technical/data-platform/requirements-summary"
+  ],
+  "consulting/technical/data-platform/authorization-model": [
+    "consulting/technical/data-platform/authentication-architecture",
+    "consulting/technical/data-platform/implementation-guide"
+  ],
+  "consulting/technical/data-platform/authentication-architecture": [
+    "consulting/technical/data-platform/implementation-guide",
+    "consulting/technical/data-platform/authorization-model"
+  ],
+  "consulting/technical/data-platform/README": [
+    "consulting/technical/data-platform/authentication-architecture",
+    "consulting/technical/data-platform/authorization-model",
+    "consulting/technical/data-platform/implementation-guide",
+    "consulting/technical/data-platform/requirements-summary"
+  ],
+  "consulting/business-processes/07-templates/weekly-status-update": [
+    "consulting/business-processes/07-templates/project-charter",
+    "consulting/business-processes/07-templates/status-report"
+  ],
+  "consulting/business-processes/07-templates/test-plan": [
+    "consulting/business-processes/05-quality-and-compliance/quality-assurance",
+    "consulting/business-processes/04-project-execution/delivery-methodology"
+  ],
+  "consulting/business-processes/07-templates/retrospective": [
+    "consulting/business-processes/06-project-closure/lessons-learned",
+    "consulting/business-processes/04-project-execution/sprint-planning"
+  ],
+  "consulting/business-processes/07-templates/issue-log": [
+    "consulting/business-processes/07-templates/risk-register",
+    "consulting/business-processes/07-templates/status-report",
+    "consulting/business-processes/05-quality-and-compliance/risk-management"
+  ],
+  "consulting/business-processes/07-templates/data-handling-checklist": [
+    "consulting/business-processes/05-quality-and-compliance/data-privacy-security",
+    "consulting/business-processes/05-quality-and-compliance/risk-management"
+  ],
+  "consulting/business-processes/07-templates/closure-checklist": [
+    "consulting/business-processes/06-project-closure/closure-guide",
+    "consulting/business-processes/07-templates/lessons-learned",
+    "consulting/business-processes/07-templates/client-satisfaction"
+  ],
+  "consulting/business-processes/07-templates/client-satisfaction": [
+    "consulting/business-processes/06-project-closure/closure-guide",
+    "consulting/business-processes/07-templates/lessons-learned"
+  ],
+  "consulting/business-processes/06-project-closure/lessons-learned": [
+    "consulting/business-processes/06-project-closure/closure-guide",
+    "consulting/business-processes/07-templates/lessons-learned",
+    "consulting/business-processes/07-templates/retrospective"
+  ],
+  "consulting/business-processes/06-project-closure/closure-guide": [
+    "consulting/business-processes/07-templates/closure-checklist",
+    "consulting/business-processes/07-templates/lessons-learned",
+    "consulting/business-processes/07-templates/client-satisfaction"
+  ],
+  "consulting/business-processes/05-quality-and-compliance/risk-management": [
+    "consulting/business-processes/07-templates/risk-register",
+    "consulting/business-processes/07-templates/issue-log",
+    "consulting/business-processes/05-quality-and-compliance/quality-assurance"
+  ],
+  "consulting/business-processes/05-quality-and-compliance/quality-assurance": [
+    "consulting/business-processes/07-templates/deliverable-review",
+    "consulting/business-processes/07-templates/test-plan",
+    "consulting/business-processes/07-templates/lessons-learned"
+  ],
+  "consulting/business-processes/05-quality-and-compliance/data-privacy-security": [
+    "consulting/business-processes/05-quality-and-compliance/risk-management",
+    "consulting/business-processes/05-quality-and-compliance/quality-assurance",
+    "consulting/business-processes/07-templates/data-handling-checklist"
+  ],
+  "consulting/business-processes/04-project-execution/status-reporting": [
+    "consulting/business-processes/07-templates/status-report",
+    "consulting/business-processes/07-templates/risk-register",
+    "consulting/business-processes/07-templates/steering-committee"
+  ],
+  "consulting/business-processes/04-project-execution/sprint-planning": [
+    "consulting/business-processes/04-project-execution/delivery-methodology",
+    "consulting/business-processes/04-project-execution/status-reporting",
+    "consulting/business-processes/04-project-execution/change-management"
+  ],
+  "consulting/business-processes/04-project-execution/delivery-methodology": [
+    "consulting/business-processes/04-project-execution/sprint-planning",
+    "consulting/business-processes/04-project-execution/status-reporting",
+    "consulting/business-processes/04-project-execution/change-management"
+  ],
+  "consulting/business-processes/04-project-execution/change-management": [
+    "consulting/business-processes/07-templates/change-request",
+    "consulting/business-processes/07-templates/communication-plan",
+    "consulting/business-processes/07-templates/stakeholder-analysis"
+  ],
+  "consulting/business-processes/03-project-initiation/project-charter": [
+    "consulting/business-processes/03-project-initiation/kickoff-guide",
+    "consulting/business-processes/07-templates/project-charter",
+    "consulting/business-processes/07-templates/risk-register"
+  ],
+  "consulting/business-processes/03-project-initiation/kickoff-guide": [
+    "consulting/business-processes/07-templates/project-charter",
+    "consulting/business-processes/07-templates/communication-plan",
+    "consulting/business-processes/07-templates/raci-matrix",
+    "consulting/business-processes/07-templates/risk-register"
+  ],
+  "consulting/business-processes/02-pre-engagement/risk-assessment": [
+    "consulting/business-processes/02-pre-engagement/checklist",
+    "consulting/business-processes/02-pre-engagement/independence-conflicts",
+    "consulting/business-processes/05-quality-and-compliance/risk-management"
+  ],
+  "consulting/business-processes/02-pre-engagement/proposal-development": [
+    "consulting/business-processes/02-pre-engagement/checklist",
+    "consulting/business-processes/02-pre-engagement/pricing-guidelines",
+    "consulting/business-processes/07-templates/proposal-review-checklist"
+  ],
+  "consulting/business-processes/02-pre-engagement/pricing-guidelines": [
+    "consulting/business-processes/02-pre-engagement/checklist",
+    "consulting/business-processes/02-pre-engagement/proposal-development",
+    "consulting/business-processes/07-templates/effort-estimation"
+  ],
+  "consulting/business-processes/02-pre-engagement/opportunity-management": [
+    "consulting/business-processes/02-pre-engagement/checklist",
+    "consulting/business-processes/02-pre-engagement/proposal-development",
+    "consulting/business-processes/02-pre-engagement/independence-conflicts"
+  ],
+  "consulting/business-processes/02-pre-engagement/independence-conflicts": [
+    "consulting/business-processes/02-pre-engagement/checklist",
+    "consulting/business-processes/02-pre-engagement/risk-assessment",
+    "consulting/business-processes/05-quality-and-compliance/quality-assurance"
+  ],
+  "consulting/business-processes/02-pre-engagement/checklist": [
+    "consulting/business-processes/02-pre-engagement/opportunity-management",
+    "consulting/business-processes/02-pre-engagement/proposal-development",
+    "consulting/business-processes/02-pre-engagement/independence-conflicts",
+    "consulting/business-processes/02-pre-engagement/pricing-guidelines"
+  ],
+  "consulting/business-processes/01-engagement-lifecycle/roles-and-responsibilities": [
+    "consulting/business-processes/01-engagement-lifecycle/overview",
+    "consulting/business-processes/07-templates/communication-plan"
+  ],
+  "consulting/business-processes/01-engagement-lifecycle/overview": [
+    "consulting/business-processes/02-pre-engagement/checklist",
+    "consulting/business-processes/03-project-initiation/kickoff-guide",
+    "consulting/business-processes/04-project-execution/delivery-methodology",
+    "consulting/business-processes/05-quality-and-compliance/quality-assurance",
+    "consulting/business-processes/06-project-closure/closure-guide"
+  ]
+}
