@@ -51,14 +51,6 @@
     "networking/ssl-tls",
     "networking/ssl-certificates"
   ],
-  "data-engineering/event-driven-mlops-pipeline-aws": [
-    "data-engineering/oltp-vs-olap",
-    "data-engineering/amazon-s3"
-  ],
-  "data-engineering/amazon-emr": [
-    "data-engineering/amazon-s3",
-    "data-engineering/delta-lake"
-  ],
   "dev/rest-api": [
     "networking/http",
     "networking/https",
@@ -69,6 +61,14 @@
     "dev/rest-api",
     "networking/http",
     "networking/https"
+  ],
+  "data-engineering/event-driven-mlops-pipeline-aws": [
+    "data-engineering/oltp-vs-olap",
+    "data-engineering/amazon-s3"
+  ],
+  "data-engineering/amazon-emr": [
+    "data-engineering/amazon-s3",
+    "data-engineering/delta-lake"
   ],
   "consulting/business-processes/README": [
     "consulting/business-processes/01-engagement-lifecycle/overview",
