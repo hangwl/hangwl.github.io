@@ -16,6 +16,7 @@ import { remarkFixLinks } from './src/lib/remark-fix-links'
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/',
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   plugins: [
     tanstackRouter({ autoCodeSplitting: true }),
     mdx({
@@ -34,7 +35,7 @@ export default defineConfig({
       include: ['**/*.mdx', '**/*.md'],
     }),
     viteReact(),
-  ],
+  ] as any,
   optimizeDeps: {
     include: [
       'seedrandom',
