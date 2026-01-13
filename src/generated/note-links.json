@@ -70,6 +70,35 @@
     "data-engineering/amazon-s3",
     "data-engineering/delta-lake"
   ],
+  "frontend-development/figma/wireframing": [
+    "frontend-development/figma/figma-basics",
+    "frontend-development/figma/components"
+  ],
+  "frontend-development/figma/readme": [
+    "frontend-development/figma/figma-basics",
+    "frontend-development/figma/auto-layout",
+    "frontend-development/figma/components",
+    "frontend-development/figma/wireframing",
+    "frontend-development/figma/developer-mode",
+    "frontend-development/figma/mui/intro"
+  ],
+  "frontend-development/figma/figma-basics": [
+    "frontend-development/figma/auto-layout",
+    "frontend-development/figma/components",
+    "frontend-development/figma/wireframing"
+  ],
+  "frontend-development/figma/developer-mode": [
+    "frontend-development/figma/figma-basics",
+    "frontend-development/figma/auto-layout"
+  ],
+  "frontend-development/figma/components": [
+    "frontend-development/figma/auto-layout",
+    "frontend-development/figma/figma-basics"
+  ],
+  "frontend-development/figma/auto-layout": [
+    "frontend-development/figma/figma-basics",
+    "frontend-development/figma/components"
+  ],
   "consulting/business-processes/README": [
     "consulting/business-processes/01-engagement-lifecycle/overview",
     "consulting/business-processes/01-engagement-lifecycle/visual-workflow",
@@ -108,6 +137,23 @@
   ],
   "ai/ml/transformers": [
     "ai/rag/cross-encoders"
+  ],
+  "frontend-development/figma/mui/workflow": [
+    "frontend-development/figma/mui/setup",
+    "frontend-development/figma/mui/dev-handoff"
+  ],
+  "frontend-development/figma/mui/setup": [
+    "frontend-development/figma/mui/intro",
+    "frontend-development/figma/mui/workflow"
+  ],
+  "frontend-development/figma/mui/intro": [
+    "frontend-development/figma/mui/setup",
+    "frontend-development/figma/mui/workflow",
+    "frontend-development/figma/mui/dev-handoff"
+  ],
+  "frontend-development/figma/mui/dev-handoff": [
+    "frontend-development/figma/mui/intro",
+    "frontend-development/figma/mui/workflow"
   ],
   "consulting/technical/data-platform/requirements-summary": [
     "consulting/technical/data-platform/authentication-architecture",
